@@ -1,3 +1,7 @@
+package item.armadura;
+
+import item.Item;
+
 public abstract class Armadura extends Item{
     protected float defensa;
     protected int durabilidad_max;

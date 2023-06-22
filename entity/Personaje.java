@@ -1,4 +1,9 @@
-import java.util.ArrayList;
+package entity;
+
+import item.Item;
+import item.armadura.*;
+import item.arma.*;
+import java.util.List;
 
 public class Personaje extends Entidad{
     private Arma arma;
@@ -10,9 +15,9 @@ public class Personaje extends Entidad{
     /**
      * Inventario del personaje.
      */
-    private ArrayList<Item> items;
+    private List<Item> items;
 
-    public Personaje(String nombre, ArrayList<Item> items){
+    public Personaje(String nombre, List<Item> items){
         super(nombre, 100, 100, 10, 10, 10);
         this.items = items;
     }

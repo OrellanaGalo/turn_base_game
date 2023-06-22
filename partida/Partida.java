@@ -1,3 +1,7 @@
+package partida;
+
+import main.Modificar;
+
 public class Partida extends Modificar{
 
     @Override

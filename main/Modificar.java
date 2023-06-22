@@ -1,3 +1,5 @@
+package main;
+
 public abstract class Modificar {
     /**
      * Metodo modificarStat que se traslada a las clases hijo.

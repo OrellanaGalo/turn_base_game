@@ -1,16 +1,20 @@
-public class Casco extends Armadura{
+package item.armadura;
+
+import entity.Personaje;
+
+public class Pantalon extends Armadura{
     /**
      * Personaje al cual le afectan los cambios de stats.
      */
     private Personaje personaje;
 
     /**
-     * @param nombre Nombre que va a llevar el casco.
-     * @param defensa Cantidad de defensa que otorga el casco actual.
-     * @param durabilidad_max Durabilidad maxima del casco.
-     * @param durabilidad_actual Durabilidad actual del casco.
+     * @param nombre Nombre que va a llevar el pantalon.
+     * @param defensa Cantidad de defensa que otorga el pantalon actual.
+     * @param durabilidad_max Durabilidad maxima del pantalon.
+     * @param durabilidad_actual Durabilidad actual del pantalon.
      */
-    protected Casco(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
+    protected Pantalon(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
         super(nombre, defensa, durabilidad_max, durabilidad_actual);
         this.personaje = personaje;
     }

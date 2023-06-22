@@ -1,3 +1,7 @@
+package item.armadura;
+
+import entity.Personaje;
+
 public class Torso extends Armadura{
     /**
      * Personaje al cual le afectan los cambios de stats.

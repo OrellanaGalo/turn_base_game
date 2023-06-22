@@ -1,3 +1,7 @@
+package item.arma;
+
+import entity.Personaje;
+
 public class Lanza extends Arma{
     private Personaje personaje;
 

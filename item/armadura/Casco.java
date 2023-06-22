@@ -1,16 +1,20 @@
-public class Pies extends Armadura{
+package item.armadura;
+
+import entity.Personaje;
+
+public class Casco extends Armadura{
     /**
      * Personaje al cual le afectan los cambios de stats.
      */
     private Personaje personaje;
 
     /**
-     * @param nombre Nombre que va a llevar los pies.
-     * @param defensa Cantidad de defensa que otorgan los pies actuales.
-     * @param durabilidad_max Durabilidad maxima del pies.
-     * @param durabilidad_actual Durabilidad actual de los pies.
+     * @param nombre Nombre que va a llevar el casco.
+     * @param defensa Cantidad de defensa que otorga el casco actual.
+     * @param durabilidad_max Durabilidad maxima del casco.
+     * @param durabilidad_actual Durabilidad actual del casco.
      */
-    protected Pies(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
+    protected Casco(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
         super(nombre, defensa, durabilidad_max, durabilidad_actual);
         this.personaje = personaje;
     }
