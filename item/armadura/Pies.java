@@ -32,4 +32,17 @@ public class Pies extends Armadura{
     public String aCadena() {
         return "[" + nombre + "//" + defensa + "//" + durabilidad_actual + "/" + durabilidad_max + "]";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o){
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()){
+            return false;
+        }
+
+        Pies pies = (Pies) o;
+        return nombre.equals(pies.nombre);
+    }
 }

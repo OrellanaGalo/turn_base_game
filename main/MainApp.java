@@ -3,39 +3,54 @@ package main;
 import entity.Personaje;
 import item.Item;
 import item.arma.Lanza;
-import item.armadura.Casco;
-import item.armadura.Pantalon;
-import item.armadura.Pies;
-import item.armadura.Torso;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class MainApp {
     public static void main(String[] args) {
         List<Item> items = null;
+        List<Item> equipado = null;
 
-        Personaje personaje = new Personaje("Galo el caballero de la noche", items);
+        Personaje personaje = new Personaje("Galo el caballero de la noche", null, null);
+        Scanner scanner = new Scanner(System.in);
 
-        Lanza lanza = new Lanza("Bidente de gargola", 50, 100);
-        Lanza lanza2 = new Lanza("Lanza de Santier", 50, 100);
-        Lanza lanza3 = new Lanza("Lanza platinegra", 50, 100);
+        Lanza lanza = new Lanza("Bidente de gargola", 50, 100, personaje);
 
-        Casco casco = new Casco("Mascara del hechicero de humo", 30, 50, 50, personaje);
-        Torso torso = new Torso("Tunicas del hechicero de humo", 45, 100, 100, personaje);
-        Pies pies = new Pies("Botas del hechicero de humo", 45, 100, 100, personaje);
+        while (true){
 
-        personaje.agregarItem(lanza);
-        personaje.agregarItem(lanza2);
-        personaje.agregarItem(lanza3);
-        personaje.agregarItem(casco);
-        personaje.agregarItem(torso);
-        personaje.agregarItem(pies);
+            System.out.println("Bienvenido al menu: \n");
+            System.out.println("Opcion 1 -> AGREGAR ITEM\n");
+            System.out.println("Opcion 2 -> ELIMINAR ITEM\n");
+            System.out.println("Opcion 3 -> INFORMACION DEL PERSONAJE\n");
+            System.out.println("Opcion 4 -> EQUIPAR ITEM\n");
+            System.out.print(":");
 
-        personaje.equiparArma(lanza);
-        personaje.equiparCasco(casco);
-        personaje.equiparTorso(torso);
-        personaje.equiparPies(pies);
+            int numero;
+            numero = scanner.nextInt();
 
-        System.out.println(personaje.aCadena());
+            switch (numero){
+                case 1:
+                    personaje.agregarItem(lanza);
+                    break;
+
+                case 2:
+                    personaje.removerItem(lanza);
+                    break;
+
+                case 3:
+                    System.out.println(personaje.aCadena());
+                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+
+                    if(scanner.nextInt() == 1){
+                        break;
+                    }
+                case 4:
+                    personaje.equiparItem(lanza);
+                    System.out.println(personaje.aCadena());
+            }
+
+            System.out.println("-------------------------------------------------------------------------------------");
+        }
     }
 }

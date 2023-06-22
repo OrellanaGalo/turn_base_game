@@ -3,11 +3,13 @@ package item;
 import main.Modificar;
 
 public abstract class Item extends Modificar{
-    protected String nombre;
+    public String nombre;
 
     public Item(String nombre){
         this.nombre = nombre;
     }
+
+    public abstract boolean equals(Object o);
 
     @Override
     public String toString(){

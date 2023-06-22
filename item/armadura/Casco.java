@@ -32,4 +32,17 @@ public class Casco extends Armadura{
     public String aCadena() {
         return "[" + nombre + "//" + defensa + "//" + durabilidad_actual + "/" + durabilidad_max + "]";
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()){
+            return false;
+        }
+
+        Casco casco = (Casco) o;
+        return nombre.equals(casco.nombre);
+    }
 }

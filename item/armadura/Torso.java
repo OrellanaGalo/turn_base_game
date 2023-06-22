@@ -19,6 +19,10 @@ public class Torso extends Armadura{
         this.personaje = personaje;
     }
 
+    /**
+     * asd
+     * @return asd
+     */
     @Override
     public float modificarStat() {
         if(personaje != null && defensa >= 0){
@@ -28,8 +32,30 @@ public class Torso extends Armadura{
         return personaje != null ? personaje.defensa : 0;
     }
 
+    /**
+     * asd
+     * @return asd
+     */
     @Override
     public String aCadena() {
         return "[" + nombre + "//" + defensa + "//" + durabilidad_actual + "/" + durabilidad_max + "]";
+    }
+
+    /**
+     * asd
+     * @param o asd
+     * @return asd
+     */
+    @Override
+    public boolean equals(Object o) {
+        if(this == o){
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()){
+            return false;
+        }
+
+        Torso torso = (Torso) o;
+        return nombre.equals(torso.nombre);
     }
 }

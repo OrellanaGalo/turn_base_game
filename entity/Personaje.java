@@ -1,27 +1,25 @@
 package entity;
 
 import item.Item;
-import item.armadura.*;
-import item.arma.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Personaje extends Entidad{
-    private Arma arma;
-    private Casco casco;
-    private Torso torso;
-    private Pantalon pantalon;
-    private Pies pies;
+    /**
+     * Elementos que tiene equipado el personaje.
+     */
+    private List<Item> equipado;
 
     /**
      * Inventario del personaje.
      */
     private List<Item> items;
 
-    public Personaje(String nombre, List<Item> items){
+    public Personaje(String nombre, List<Item> equipado, List<Item> items){
         super(nombre, 100, 100, 10, 10, 10);
         this.items = items != null ? items : new ArrayList<>();
+        this.equipado = equipado != null ? equipado : new ArrayList<>();
     }
 
     /**
@@ -30,6 +28,14 @@ public class Personaje extends Entidad{
      */
     public void agregarItem(Item item){
         this.items.add(item);
+    }
+
+    /**
+     * Remueve un item del inventario del personaje.
+     * @param item Es el item que se desea remover del inventario.
+     */
+    public void removerItem(Item item){
+        this.items.remove(item);
     }
 
     /**
@@ -48,68 +54,28 @@ public class Personaje extends Entidad{
     }
 
     /**
-     * Metodo para que un personaje A se defienda de personaje B.
-     * @param personaje Personaje del cual deseas defenderte.
-     * @return Un entero que representa la defensa total de este personaje.
+     * Metodo que permite equipar items pero solo los que estan presentes en el inventario.
+     * @param item Item que se desea equipar.
      */
-    public float defender(Personaje personaje){
-        if(personaje.arma.condicion >= 80 && defensa >= 0){
-            defensa -= personaje.ataque;
-        } else if(personaje.arma.condicion <= 80 && personaje.arma.condicion >= 50 && defensa >= 0){
-            defensa -= personaje.ataque * 0.70;
-        } else if (defensa >= 0){
-            defensa -= personaje.ataque * 0.40;
+    public void equiparItem(Item item){
+        if(equipado.stream().anyMatch(e -> e.equals(item))){
+            System.out.println("Ya hay un item de la misma clase equipado.");
+        } else if(items.contains(item)){
+            equipado.add(item);
+            item.modificarStat();
+            System.out.println("Item equipado: " + item);
         } else {
-            vida -= personaje.ataque;
+            System.out.println("El item no esta presente en el inventario.");
         }
-
-        return defensa;
     }
 
-    public void equiparArma(Arma arma){
-        this.arma = arma;
-        arma.modificarStat();
-    }
-
-    public void equiparCasco(Casco casco){
-        this.casco = casco;
-        casco.modificarStat();
-    }
-
-    public void equiparTorso(Torso torso){
-        this.torso = torso;
-        torso.modificarStat();
-    }
-
-    public void equiparPantalon(Pantalon pantalon){
-        this.pantalon = pantalon;
-        pantalon.modificarStat();
-    }
-
-    public void equiparPies(Pies pies){
-        this.pies = pies;
-        pies.modificarStat();
-    }
-
+    /**
+     * Modifica las stats de manera general.
+     * @return Un flotante.
+     */
     @Override
     public float modificarStat() {
-        float nueva_defensa = 0;
-
-        if(casco != null){
-            nueva_defensa += casco.modificarStat();
-        }
-        if(torso != null){
-            nueva_defensa += torso.modificarStat();
-        }
-        if(pantalon != null){
-            nueva_defensa += pantalon.modificarStat();
-        }
-        if(pies != null){
-            nueva_defensa += pies.modificarStat();
-        }
-
-        defensa = defensa + nueva_defensa;
-        return defensa;
+        return 0;
     }
 
     /**
@@ -125,6 +91,12 @@ public class Personaje extends Entidad{
                     .append(defensa).append("\t").append("Inteligencia: ").append(inteligencia).append("]");
         sb.append("\n").append("Inventario de: " ).append(nombre).append("\n").append("[");
         for(Item item : items){
+            sb.append(item).append(", ");
+        }
+        sb.append("]");
+
+        sb.append("\n").append("Equipo de: " ).append(nombre).append("\n").append("[");
+        for(Item item : equipado){
             sb.append(item).append(", ");
         }
         sb.append("]");
