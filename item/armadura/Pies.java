@@ -14,7 +14,7 @@ public class Pies extends Armadura{
      * @param durabilidad_max Durabilidad maxima del pies.
      * @param durabilidad_actual Durabilidad actual de los pies.
      */
-    protected Pies(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
+    public Pies(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
         super(nombre, defensa, durabilidad_max, durabilidad_actual);
         this.personaje = personaje;
     }

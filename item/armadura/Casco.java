@@ -14,7 +14,7 @@ public class Casco extends Armadura{
      * @param durabilidad_max Durabilidad maxima del casco.
      * @param durabilidad_actual Durabilidad actual del casco.
      */
-    protected Casco(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
+    public Casco(String nombre, float defensa, int durabilidad_max, int durabilidad_actual, Personaje personaje) {
         super(nombre, defensa, durabilidad_max, durabilidad_actual);
         this.personaje = personaje;
     }

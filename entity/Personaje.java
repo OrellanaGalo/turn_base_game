@@ -3,6 +3,8 @@ package entity;
 import item.Item;
 import item.armadura.*;
 import item.arma.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Personaje extends Entidad{
@@ -19,7 +21,7 @@ public class Personaje extends Entidad{
 
     public Personaje(String nombre, List<Item> items){
         super(nombre, 100, 100, 10, 10, 10);
-        this.items = items;
+        this.items = items != null ? items : new ArrayList<>();
     }
 
     /**
@@ -66,22 +68,27 @@ public class Personaje extends Entidad{
 
     public void equiparArma(Arma arma){
         this.arma = arma;
+        arma.modificarStat();
     }
 
     public void equiparCasco(Casco casco){
         this.casco = casco;
+        casco.modificarStat();
     }
 
     public void equiparTorso(Torso torso){
         this.torso = torso;
+        torso.modificarStat();
     }
 
     public void equiparPantalon(Pantalon pantalon){
         this.pantalon = pantalon;
+        pantalon.modificarStat();
     }
 
     public void equiparPies(Pies pies){
         this.pies = pies;
+        pies.modificarStat();
     }
 
     @Override
@@ -101,12 +108,27 @@ public class Personaje extends Entidad{
             nueva_defensa += pies.modificarStat();
         }
 
-        defensa += nueva_defensa;
+        defensa = defensa + nueva_defensa;
         return defensa;
     }
 
+    /**
+     * Convierte todos los atributos e informacion en un String para ser mostrado en consola.
+     * @return Un StringBuilder convertido a un String para mostrarlo en consola.
+     */
     @Override
     public String aCadena() {
-        return "[" + nombre + "||" + vida + "||" + stamina + "||" + ataque + "||" + defensa + "||" + inteligencia + "]" + "[" + items + "]";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("[").append(nombre).append("\t->\t").append("Vida: ").append(vida).append("\t").append("Stamina: ")
+                .append(stamina).append("\t").append("Ataque: ").append(ataque).append("\t").append("Defensa: ")
+                    .append(defensa).append("\t").append("Inteligencia: ").append(inteligencia).append("]");
+        sb.append("\n").append("Inventario de: " ).append(nombre).append("\n").append("[");
+        for(Item item : items){
+            sb.append(item).append(", ");
+        }
+        sb.append("]");
+
+        return sb.toString();
     }
 }
