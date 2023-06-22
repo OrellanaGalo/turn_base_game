@@ -3,22 +3,24 @@ package main;
 import entity.Personaje;
 import item.Item;
 import item.arma.Lanza;
+import item.armadura.Casco;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MainApp {
     public static void main(String[] args) {
-        List<Item> items = null;
-        List<Item> equipado = null;
+        List<Item> items = new ArrayList<>();
+        List<Item> equipado = new ArrayList<>();
 
-        Personaje personaje = new Personaje("Galo el caballero de la noche", null, null);
+        Personaje personaje = new Personaje("Galo el caballero de la noche", equipado, items);
         Scanner scanner = new Scanner(System.in);
 
         Lanza lanza = new Lanza("Bidente de gargola", 50, 100, personaje);
+        Casco casco = new Casco("Sombrero de playa", 15, 100, 100, personaje);
 
         while (true){
-
             System.out.println("Bienvenido al menu: \n");
             System.out.println("Opcion 1 -> AGREGAR ITEM\n");
             System.out.println("Opcion 2 -> ELIMINAR ITEM\n");
@@ -31,7 +33,7 @@ public class MainApp {
 
             switch (numero){
                 case 1:
-                    personaje.agregarItem(lanza);
+                    personaje.agregarItem(casco);
                     break;
 
                 case 2:
@@ -46,8 +48,7 @@ public class MainApp {
                         break;
                     }
                 case 4:
-                    personaje.equiparItem(lanza);
-                    System.out.println(personaje.aCadena());
+                    personaje.equiparItem(casco);
             }
 
             System.out.println("-------------------------------------------------------------------------------------");
