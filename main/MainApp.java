@@ -2,6 +2,7 @@ package main;
 
 import entity.Personaje;
 import item.Item;
+import item.acessorio.Amuleto;
 import item.arma.Lanza;
 import item.armadura.Casco;
 
@@ -19,6 +20,7 @@ public class MainApp {
 
         Lanza lanza = new Lanza("Bidente de gargola", 50, 100, personaje);
         Casco casco = new Casco("Sombrero de playa", 15, 100, 100, personaje);
+        Amuleto amuleto = new Amuleto("Collar de oro", 100, 100, 5, personaje);
 
         while (true){
             System.out.println("Bienvenido al menu: \n");
@@ -34,6 +36,7 @@ public class MainApp {
             switch (numero){
                 case 1:
                     personaje.agregarItem(casco);
+                    personaje.agregarItem(amuleto);
                     break;
 
                 case 2:
@@ -49,6 +52,7 @@ public class MainApp {
                     }
                 case 4:
                     personaje.equiparItem(casco);
+                    personaje.equiparItem(amuleto);
             }
 
             System.out.println("-------------------------------------------------------------------------------------");
