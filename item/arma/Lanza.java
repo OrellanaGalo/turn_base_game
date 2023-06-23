@@ -8,14 +8,21 @@ public class Lanza extends Arma{
      */
     private Personaje personaje;
 
+    /**
+     * Constructor de la clase Lanza.
+     * @param nombre Nombre de la lanza.
+     * @param ataque Ataque base de la lanza
+     * @param condicion Condicion total de la lanza.
+     * @param personaje Personaje el cual va a ser modificado.
+     */
     public Lanza(String nombre, float ataque, float condicion, Personaje personaje) {
         super(nombre, ataque, condicion);
         this.personaje = personaje;
     }
 
     /**
-     * asd
-     * @return asd
+     * Modifica los stats del personaje.
+     * @return Un flotante que es numero por el cual se modifican los stats de ataque del personaje.
      */
     @Override
     public float modificarStat() {
@@ -27,8 +34,8 @@ public class Lanza extends Arma{
     }
 
     /**
-     * asd
-     * @return asd
+     * Pasa como un String todos los atributos presentes en la clase de Lanza.
+     * @return Retorna un String con los atributos pasados a texto.
      */
     @Override
     public String aCadena() {
@@ -36,9 +43,9 @@ public class Lanza extends Arma{
     }
 
     /**
-     * asd
-     * @param o asd
-     * @return asd
+     * Verifica que el objeto introducido en el argumento sea de la misma clase que Lanza.
+     * @param o Objeto que se desea comparar con Lanza.
+     * @return Retorna True si es de la misma clase, y False si no lo es.
      */
     @Override
     public boolean equals(Object o) {

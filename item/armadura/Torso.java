@@ -20,8 +20,8 @@ public class Torso extends Armadura{
     }
 
     /**
-     * asd
-     * @return asd
+     * Modifica los stats del personaje.
+     * @return Un flotante que es numero por el cual se modifican los stats de defensa del personaje.
      */
     @Override
     public float modificarStat() {
@@ -33,8 +33,8 @@ public class Torso extends Armadura{
     }
 
     /**
-     * asd
-     * @return asd
+     * Pasa como un String todos los atributos presentes en la clase de Torso.
+     * @return Retorna un String con los atributos pasados a texto.
      */
     @Override
     public String aCadena() {
@@ -42,9 +42,9 @@ public class Torso extends Armadura{
     }
 
     /**
-     * asd
-     * @param o asd
-     * @return asd
+     * Verifica que el objeto introducido en el argumento sea de la misma clase que Torso.
+     * @param o Objeto que se desea comparar con Torso.
+     * @return Retorna True si es de la misma clase, y False si no lo es.
      */
     @Override
     public boolean equals(Object o) {

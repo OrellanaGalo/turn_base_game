@@ -28,6 +28,7 @@ public class MainApp {
             System.out.println("Opcion 2 -> ELIMINAR ITEM\n");
             System.out.println("Opcion 3 -> INFORMACION DEL PERSONAJE\n");
             System.out.println("Opcion 4 -> EQUIPAR ITEM\n");
+            System.out.println("Opcion 5 -> DESEQUIPAR ITEM\n");
             System.out.print(":");
 
             int numero;
@@ -50,9 +51,15 @@ public class MainApp {
                     if(scanner.nextInt() == 1){
                         break;
                     }
+
                 case 4:
                     personaje.equiparItem(casco);
                     personaje.equiparItem(amuleto);
+                    break;
+
+                case 5:
+                    personaje.desequiparItem(amuleto);
+                    break;
             }
 
             System.out.println("-------------------------------------------------------------------------------------");

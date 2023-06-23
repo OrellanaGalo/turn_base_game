@@ -16,6 +16,12 @@ public class Personaje extends Entidad{
      */
     private List<Item> items;
 
+    /**
+     * Constructor de Personaje.
+     * @param nombre Nombre que va a llevar el personaje.
+     * @param equipado Lista que indica que objetos tiene equipado el personaje.
+     * @param items Lista de Items que tiene en el inventario el personaje.
+     */
     public Personaje(String nombre, List<Item> equipado, List<Item> items){
         super(nombre, 100, 100, 10, 10, 10);
         this.items = items != null ? items : new ArrayList<>();
@@ -62,11 +68,19 @@ public class Personaje extends Entidad{
             System.out.println("Ya hay un item de la misma clase equipado.");
         } else if(items.contains(item)){
             equipado.add(item);
-            item.modificarStat();
+            item.modificarStat(); // Esto no deberia estar aca.
             System.out.println("Item equipado: " + item);
         } else {
             System.out.println("El item no esta presente en el inventario.");
         }
+    }
+
+    /**
+     * Desequipa el item seleccionado presente en la lista equipado.
+     * @param item Item que se desea desequipar.
+     */
+    public void desequiparItem(Item item){
+        this.equipado.remove(item);
     }
 
     /**
