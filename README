@@ -1,1 +1,69 @@
+# Implementaciones.
 
+> por que hay atributos como float? es complicar bastante las cosas es mas facil si metes (de ultima) un número mas
+grande
+
+> mejorar la organización de los paquetes porque ahora esta todo suelto en la raíz del repositorio.
+idealmente, con gradle y sin subir los archivos de proyecto de intellij (como esta en los enunciados de los TP) esto
+ayuda a que si no tenes exactamente la misma configuración, funcione bien (en mi caso tengo que cambiar el JDK porque
+no tenemos el mismo instalado, y de usar verificación automática, no funcionaria).
+
+> que otras entidades hay?
+
+si no hay mas, deja solo Personaje, cuando sea necesario lo separas en dos. siendo que por el momento es lo unico que
+hay, no vale la pena complicarse.
+
+> en Accesorio, por que la durabilidad es un float?
+
+> Las comparaciones de floats no son directas y los decimales de punto flotante introducen errores no hay razón para
+utilizarlos.
+
+> Pero lo mas importante, que es la durabilidad? porque lo mencionas pero no lo explicas.
+
+> Entidad tiene su documentación incompleta.
+
+las clases llevan su documentación ademas de sus miembros
+
+/**
+ * esta clase representa ...
+ */
+public class Personaje extends Entidad{
+    // Lo que hace la clase.
+}
+
+> this.items = items != null ? items : new ArrayList<>();
+
+* Sin apilar lineas
+
+> todos los accesorios debiera de comportarse exactemente iguales. sin embargo, el amuleto tiene una construcción
+diferente (lo mismo que el anillo) pero lo mas importante el amuleto y anillo hacen lo mismo (el código es igual),
+pero esta duplicado.
+
+> el método modificarStat modifica atributos que no le pertenecen; aquellos que son privados al Personaje.
+
+> Lo mismo con las armas, la idea de la orientación a objetos, es reducir la duplicacion de codigo.
+
+> el aCadena es toString.
+
+> equals es igual para todas las armas.
+
+> todas las armas modifican los stats de la misma manera.
+
+> pero la forma de cambiar el stat en el personaje no es correcta.
+
+> Lo mismo para la armadura.
+
+> Todo lo que es Equipable se debe de comportar exactamente igual.
+
+> la idea es que minimices el código duplicado al super recontra mínimo.
+
+> la clave es, si te ves haciendo lo mismo varias veces entonces hay que alejar la silla y ver que se puede hacer para
+que eso no se duplique.
+
+> Todos los equals de los Item, van ahí; son todos iguales, es interesante pensar que el equals es diferente por tipo
+de item, pero la realidad es que no.
+
+> algo que podes implementar es una clase Stat para guardar todos los atributos de algo. los base del personaje
+y los 'modificadores' en los Items.
+De esta manera, podes hacer un método en Item que sea public Stat obtenerStat() que te devuelve una clase de ese tipo
+Que ese Stat puede ser una clase así.
