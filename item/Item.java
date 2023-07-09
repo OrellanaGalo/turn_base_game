@@ -1,15 +1,15 @@
 package item;
 
-import main.Modificar;
+import item.arma.Arma;
 
-public abstract class Item extends Modificar{
+public abstract class Item{
     /**
      * Nombre del Item.
      */
     public String nombre;
 
     /**
-     * Constructo de la clase abstracta Item.
+     * Constructor de la clase abstracta Item.
      * @param nombre Nombre que va a llevar el item.
      */
     public Item(String nombre){
@@ -17,18 +17,24 @@ public abstract class Item extends Modificar{
     }
 
     /**
-     * Metodo para que hereden y complementen los hijos de esta clase.
-     * @param o Objeto para comparar.
-     * @return Retorna un boleano True o False segun la comparacion que se de.
+     * Completar...
      */
-    public abstract boolean equals(Object o);
+    public boolean equals(Object o) {
+        if(this == o){
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()){
+            return false;
+        }
+
+        Item item = (Item) o;
+        return nombre.equals(item.nombre);
+    }
 
     /**
-     * Pasa como un String el atributo nombre presente en la clase abstracta de Item.
-     * @return Un String con el nombre del Item.
+     * Operacion que muestra el nombre del item.
      */
-    @Override
-    public String toString(){
-        return nombre;
+    public String toString() {
+        return "[" + nombre + "\t->\t";
     }
 }

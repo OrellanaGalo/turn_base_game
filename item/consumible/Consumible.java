@@ -3,7 +3,14 @@ package item.consumible;
 import item.Item;
 
 public abstract class Consumible extends Item {
+    /**
+     * completar...
+     */
     public String nombre;
+
+    /**
+     * completar...
+     */
     public int cantidad;
 
     /**
@@ -17,10 +24,9 @@ public abstract class Consumible extends Item {
     }
 
     /**
-     * Pasa como un String el atributo nombre presente en la clase abstracta de Consumible.
-     * @return Un String con el nombre del Consumible.
+     * Pasa como un String el atributo nombre y la cantidad presente en la clase abstracta de Consumible.
      */
     public String toString(){
-        return nombre;
+        return super.toString() + cantidad + ']';
     }
 }

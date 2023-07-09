@@ -6,12 +6,12 @@ public abstract class Arma extends Item{
     /**
      * Ataque base que posee el arma.
      */
-    public float ataque;
+    public int ataque;
 
     /**
      * Condicion actual en la cual se encuentra el arma.
      */
-    public float condicion;
+    public int condicion;
 
     /**
      * Constructor de la clase abstracta Arma.
@@ -19,9 +19,16 @@ public abstract class Arma extends Item{
      * @param ataque Ataque base del arma.
      * @param condicion Condicion total del arma.
      */
-    public Arma(String nombre, float ataque, float condicion) {
+    public Arma(String nombre, int ataque, int condicion) {
         super(nombre);
         this.ataque = ataque;
         this.condicion = condicion;
+    }
+
+    /**
+     * completar...
+     */
+    public String toString() {
+        return super.toString() + ataque + condicion + ']';
     }
 }
