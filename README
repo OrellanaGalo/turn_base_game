@@ -1,26 +1,26 @@
 # Implementaciones.
 
-> por que hay atributos como float? es complicar bastante las cosas es mas facil si metes (de ultima) un número mas
-grande
+>  ̶p̶o̶r̶ ̶q̶u̶e̶ ̶h̶a̶y̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶c̶o̶m̶o̶ ̶f̶l̶o̶a̶t̶?̶ ̶e̶s̶ ̶c̶o̶m̶p̶l̶i̶c̶a̶r̶ ̶b̶a̶s̶t̶a̶n̶t̶e̶ ̶l̶a̶s̶ ̶c̶o̶s̶a̶s̶ ̶e̶s̶ ̶m̶a̶s̶ ̶f̶a̶c̶i̶l̶ ̶s̶i̶ ̶m̶e̶t̶e̶s̶ ̶(̶d̶e̶ ̶u̶l̶t̶i̶m̶a̶)̶ ̶u̶n̶ ̶n̶ú̶m̶e̶r̶o̶ ̶m̶a̶s̶
+̶g̶r̶a̶n̶d̶e̶
 
 > mejorar la organización de los paquetes porque ahora esta todo suelto en la raíz del repositorio.
 idealmente, con gradle y sin subir los archivos de proyecto de intellij (como esta en los enunciados de los TP) esto
 ayuda a que si no tenes exactamente la misma configuración, funcione bien (en mi caso tengo que cambiar el JDK porque
 no tenemos el mismo instalado, y de usar verificación automática, no funcionaria).
 
-> que otras entidades hay?
+>  ̶q̶u̶e̶ ̶o̶t̶r̶a̶s̶ ̶e̶n̶t̶i̶d̶a̶d̶e̶s̶ ̶h̶a̶y̶?̶
 
 si no hay mas, deja solo Personaje, cuando sea necesario lo separas en dos. siendo que por el momento es lo unico que
 hay, no vale la pena complicarse.
 
-> en Accesorio, por que la durabilidad es un float?
+>  ̶e̶n̶ ̶A̶c̶c̶e̶s̶o̶r̶i̶o̶,̶ ̶p̶o̶r̶ ̶q̶u̶e̶ ̶l̶a̶ ̶d̶u̶r̶a̶b̶i̶l̶i̶d̶a̶d̶ ̶e̶s̶ ̶u̶n̶ ̶f̶l̶o̶a̶t̶?̶
 
-> Las comparaciones de floats no son directas y los decimales de punto flotante introducen errores no hay razón para
-utilizarlos.
+>  ̶L̶a̶s̶ ̶c̶o̶m̶p̶a̶r̶a̶c̶i̶o̶n̶e̶s̶ ̶d̶e̶ ̶f̶l̶o̶a̶t̶s̶ ̶n̶o̶ ̶s̶o̶n̶ ̶d̶i̶r̶e̶c̶t̶a̶s̶ ̶y̶ ̶l̶o̶s̶ ̶d̶e̶c̶i̶m̶a̶l̶e̶s̶ ̶d̶e̶ ̶p̶u̶n̶t̶o̶ ̶f̶l̶o̶t̶a̶n̶t̶e̶ ̶i̶n̶t̶r̶o̶d̶u̶c̶e̶n̶ ̶e̶r̶r̶o̶r̶e̶s̶ ̶n̶o̶ ̶h̶a̶y̶ ̶r̶a̶z̶ó̶n̶ ̶p̶a̶r̶a̶
+̶u̶t̶i̶l̶i̶z̶a̶r̶l̶o̶s̶.̶
 
-> Pero lo mas importante, que es la durabilidad? porque lo mencionas pero no lo explicas.
+>  ̶P̶e̶r̶o̶ ̶l̶o̶ ̶m̶a̶s̶ ̶i̶m̶p̶o̶r̶t̶a̶n̶t̶e̶,̶ ̶q̶u̶e̶ ̶e̶s̶ ̶l̶a̶ ̶d̶u̶r̶a̶b̶i̶l̶i̶d̶a̶d̶?̶ ̶p̶o̶r̶q̶u̶e̶ ̶l̶o̶ ̶m̶e̶n̶c̶i̶o̶n̶a̶s̶ ̶p̶e̶r̶o̶ ̶n̶o̶ ̶l̶o̶ ̶e̶x̶p̶l̶i̶c̶a̶s̶.
 
-> Entidad tiene su documentación incompleta.
+>  ̶E̶n̶t̶i̶d̶a̶d̶ ̶t̶i̶e̶n̶e̶ ̶s̶u̶ ̶d̶o̶c̶u̶m̶e̶n̶t̶a̶c̶i̶ó̶n̶ ̶i̶n̶c̶o̶m̶p̶l̶e̶t̶a̶.̶
 
 las clases llevan su documentación ademas de sus miembros
 
@@ -39,11 +39,11 @@ public class Personaje extends Entidad{
 diferente (lo mismo que el anillo) pero lo mas importante el amuleto y anillo hacen lo mismo (el código es igual),
 pero esta duplicado.
 
-> el método modificarStat modifica atributos que no le pertenecen; aquellos que son privados al Personaje.
+>  ̶e̶l̶ ̶m̶é̶t̶o̶d̶o̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶r̶S̶t̶a̶t̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶q̶u̶e̶ ̶n̶o̶ ̶l̶e̶ ̶p̶e̶r̶t̶e̶n̶e̶c̶e̶n̶;̶ ̶a̶q̶u̶e̶l̶l̶o̶s̶ ̶q̶u̶e̶ ̶s̶o̶n̶ ̶p̶r̶i̶v̶a̶d̶o̶s̶ ̶a̶l̶ ̶P̶e̶r̶s̶o̶n̶a̶j̶e̶.̶
 
-> Lo mismo con las armas, la idea de la orientación a objetos, es reducir la duplicacion de codigo.
+>  ̶L̶o̶ ̶m̶i̶s̶m̶o̶ ̶c̶o̶n̶ ̶l̶a̶s̶ ̶a̶r̶m̶a̶s̶,̶ ̶l̶a̶ ̶i̶d̶e̶a̶ ̶d̶e̶ ̶l̶a̶ ̶o̶r̶i̶e̶n̶t̶a̶c̶i̶ó̶n̶ ̶a̶ ̶o̶b̶j̶e̶t̶o̶s̶,̶ ̶e̶s̶ ̶r̶e̶d̶u̶c̶i̶r̶ ̶l̶a̶ ̶d̶u̶p̶l̶i̶c̶a̶c̶i̶o̶n̶ ̶d̶e̶ ̶c̶o̶d̶i̶g̶o̶.̶
 
-> el aCadena es toString.
+>  ̶e̶l̶ ̶a̶C̶a̶d̶e̶n̶a̶ ̶e̶s̶ ̶t̶o̶S̶t̶r̶i̶n̶g̶.̶
 
 > equals es igual para todas las armas.
 
@@ -57,8 +57,8 @@ pero esta duplicado.
 
 > la idea es que minimices el código duplicado al super recontra mínimo.
 
-> la clave es, si te ves haciendo lo mismo varias veces entonces hay que alejar la silla y ver que se puede hacer para
-que eso no se duplique.
+>  ̶l̶a̶ ̶c̶l̶a̶v̶e̶ ̶e̶s̶,̶ ̶s̶i̶ ̶t̶e̶ ̶v̶e̶s̶ ̶h̶a̶c̶i̶e̶n̶d̶o̶ ̶l̶o̶ ̶m̶i̶s̶m̶o̶ ̶v̶a̶r̶i̶a̶s̶ ̶v̶e̶c̶e̶s̶ ̶e̶n̶t̶o̶n̶c̶e̶s̶ ̶h̶a̶y̶ ̶q̶u̶e̶ ̶a̶l̶e̶j̶a̶r̶ ̶l̶a̶ ̶s̶i̶l̶l̶a̶ ̶y̶ ̶v̶e̶r̶ ̶q̶u̶e̶ ̶s̶e̶ ̶p̶u̶e̶d̶e̶ ̶h̶a̶c̶e̶r̶ ̶p̶a̶r̶a̶
+̶q̶u̶e̶ ̶e̶s̶o̶ ̶n̶o̶ ̶s̶e̶ ̶d̶u̶p̶l̶i̶q̶u̶e̶.̶
 
 > Todos los equals de los Item, van ahí; son todos iguales, es interesante pensar que el equals es diferente por tipo
 de item, pero la realidad es que no.
