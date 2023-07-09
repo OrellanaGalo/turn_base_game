@@ -10,8 +10,8 @@ no tenemos el mismo instalado, y de usar verificación automática, no funcionar
 
 >  ̶q̶u̶e̶ ̶o̶t̶r̶a̶s̶ ̶e̶n̶t̶i̶d̶a̶d̶e̶s̶ ̶h̶a̶y̶?̶
 
-si no hay mas, deja solo Personaje, cuando sea necesario lo separas en dos. siendo que por el momento es lo unico que
-hay, no vale la pena complicarse.
+>  ̶s̶i̶ ̶n̶o̶ ̶h̶a̶y̶ ̶m̶a̶s̶,̶ ̶d̶e̶j̶a̶ ̶s̶o̶l̶o̶ ̶P̶e̶r̶s̶o̶n̶a̶j̶e̶,̶ ̶c̶u̶a̶n̶d̶o̶ ̶s̶e̶a̶ ̶n̶e̶c̶e̶s̶a̶r̶i̶o̶ ̶l̶o̶ ̶s̶e̶p̶a̶r̶a̶s̶ ̶e̶n̶ ̶d̶o̶s̶.̶ ̶s̶i̶e̶n̶d̶o̶ ̶q̶u̶e̶ ̶p̶o̶r̶ ̶e̶l̶ ̶m̶o̶m̶e̶n̶t̶o̶ ̶e̶s̶ ̶l̶o̶ ̶u̶n̶i̶c̶o̶ ̶q̶u̶e̶
+̶h̶a̶y̶,̶ ̶n̶o̶ ̶v̶a̶l̶e̶ ̶l̶a̶ ̶p̶e̶n̶a̶ ̶c̶o̶m̶p̶l̶i̶c̶a̶r̶s̶e̶.̶
 
 >  ̶e̶n̶ ̶A̶c̶c̶e̶s̶o̶r̶i̶o̶,̶ ̶p̶o̶r̶ ̶q̶u̶e̶ ̶l̶a̶ ̶d̶u̶r̶a̶b̶i̶l̶i̶d̶a̶d̶ ̶e̶s̶ ̶u̶n̶ ̶f̶l̶o̶a̶t̶?̶
 
@@ -45,23 +45,23 @@ pero esta duplicado.
 
 >  ̶e̶l̶ ̶a̶C̶a̶d̶e̶n̶a̶ ̶e̶s̶ ̶t̶o̶S̶t̶r̶i̶n̶g̶.̶
 
-> equals es igual para todas las armas.
+>  ̶e̶q̶u̶a̶l̶s̶ ̶e̶s̶ ̶i̶g̶u̶a̶l̶ ̶p̶a̶r̶a̶ ̶t̶o̶d̶a̶s̶ ̶l̶a̶s̶ ̶a̶r̶m̶a̶s̶.̶
 
-> todas las armas modifican los stats de la misma manera.
+>  ̶t̶o̶d̶a̶s̶ ̶l̶a̶s̶ ̶a̶r̶m̶a̶s̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶n̶ ̶l̶o̶s̶ ̶s̶t̶a̶t̶s̶ ̶d̶e̶ ̶l̶a̶ ̶m̶i̶s̶m̶a̶ ̶m̶a̶n̶e̶r̶a̶.̶
 
-> pero la forma de cambiar el stat en el personaje no es correcta.
+>  ̶p̶e̶r̶o̶ ̶l̶a̶ ̶f̶o̶r̶m̶a̶ ̶d̶e̶ ̶c̶a̶m̶b̶i̶a̶r̶ ̶e̶l̶ ̶s̶t̶a̶t̶ ̶e̶n̶ ̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶ ̶n̶o̶ ̶e̶s̶ ̶c̶o̶r̶r̶e̶c̶t̶a̶.̶
 
-> Lo mismo para la armadura.
+>  ̶L̶o̶ ̶m̶i̶s̶m̶o̶ ̶p̶a̶r̶a̶ ̶l̶a̶ ̶a̶r̶m̶a̶d̶u̶r̶a̶.̶
 
-> Todo lo que es Equipable se debe de comportar exactamente igual.
+>  ̶T̶o̶d̶o̶ ̶l̶o̶ ̶q̶u̶e̶ ̶e̶s̶ ̶E̶q̶u̶i̶p̶a̶b̶l̶e̶ ̶s̶e̶ ̶d̶e̶b̶e̶ ̶d̶e̶ ̶c̶o̶m̶p̶o̶r̶t̶a̶r̶ ̶e̶x̶a̶c̶t̶a̶m̶e̶n̶t̶e̶ ̶i̶g̶u̶a̶l̶.̶
 
-> la idea es que minimices el código duplicado al super recontra mínimo.
+>  ̶l̶a̶ ̶i̶d̶e̶a̶ ̶e̶s̶ ̶q̶u̶e̶ ̶m̶i̶n̶i̶m̶i̶c̶e̶s̶ ̶e̶l̶ ̶c̶ó̶d̶i̶g̶o̶ ̶d̶u̶p̶l̶i̶c̶a̶d̶o̶ ̶a̶l̶ ̶s̶u̶p̶e̶r̶ ̶r̶e̶c̶o̶n̶t̶r̶a̶ ̶m̶í̶n̶i̶m̶o̶.̶
 
 >  ̶l̶a̶ ̶c̶l̶a̶v̶e̶ ̶e̶s̶,̶ ̶s̶i̶ ̶t̶e̶ ̶v̶e̶s̶ ̶h̶a̶c̶i̶e̶n̶d̶o̶ ̶l̶o̶ ̶m̶i̶s̶m̶o̶ ̶v̶a̶r̶i̶a̶s̶ ̶v̶e̶c̶e̶s̶ ̶e̶n̶t̶o̶n̶c̶e̶s̶ ̶h̶a̶y̶ ̶q̶u̶e̶ ̶a̶l̶e̶j̶a̶r̶ ̶l̶a̶ ̶s̶i̶l̶l̶a̶ ̶y̶ ̶v̶e̶r̶ ̶q̶u̶e̶ ̶s̶e̶ ̶p̶u̶e̶d̶e̶ ̶h̶a̶c̶e̶r̶ ̶p̶a̶r̶a̶
 ̶q̶u̶e̶ ̶e̶s̶o̶ ̶n̶o̶ ̶s̶e̶ ̶d̶u̶p̶l̶i̶q̶u̶e̶.̶
 
-> Todos los equals de los Item, van ahí; son todos iguales, es interesante pensar que el equals es diferente por tipo
-de item, pero la realidad es que no.
+>  ̶T̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶e̶q̶u̶a̶l̶s̶ ̶d̶e̶ ̶l̶o̶s̶ ̶I̶t̶e̶m̶,̶ ̶v̶a̶n̶ ̶a̶h̶í̶;̶ ̶s̶o̶n̶ ̶t̶o̶d̶o̶s̶ ̶i̶g̶u̶a̶l̶e̶s̶,̶ ̶e̶s̶ ̶i̶n̶t̶e̶r̶e̶s̶a̶n̶t̶e̶ ̶p̶e̶n̶s̶a̶r̶ ̶q̶u̶e̶ ̶e̶l̶ ̶e̶q̶u̶a̶l̶s̶ ̶e̶s̶ ̶d̶i̶f̶e̶r̶e̶n̶t̶e̶ ̶p̶o̶r̶ ̶t̶i̶p̶o̶
+̶d̶e̶ ̶i̶t̶e̶m̶,̶ ̶p̶e̶r̶o̶ ̶l̶a̶ ̶r̶e̶a̶l̶i̶d̶a̶d̶ ̶e̶s̶ ̶q̶u̶e̶ ̶n̶o̶.̶
 
 > algo que podes implementar es una clase Stat para guardar todos los atributos de algo. los base del personaje
 y los 'modificadores' en los Items.

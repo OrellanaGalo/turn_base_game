@@ -29,6 +29,6 @@ public abstract class Arma extends Item{
      * completar...
      */
     public String toString() {
-        return super.toString() + ataque + condicion + ']';
+        return super.toString() + ataque + "//" + condicion + ']';
     }
 }

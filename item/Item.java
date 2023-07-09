@@ -17,7 +17,9 @@ public abstract class Item{
     }
 
     /**
-     * Completar...
+     * Compara este objeto con otro objeto para determinar si son iguales.
+     * @param o el objeto a comparar con este objeto.
+     * @return True si los objetos son iguales, False en caso contrario.
      */
     public boolean equals(Object o) {
         if(this == o){
@@ -35,6 +37,6 @@ public abstract class Item{
      * Operacion que muestra el nombre del item.
      */
     public String toString() {
-        return "[" + nombre + "\t->\t";
+        return "[" + nombre + "\t->";
     }
 }

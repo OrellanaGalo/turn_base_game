@@ -92,7 +92,7 @@ public class Personaje{
      * Convierte todos los atributos e informacion en un String para ser mostrado en consola.
      * @return Un StringBuilder convertido a un String para mostrarlo en consola.
      */
-    public String aCadena() {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("[").append(nombre).append("\t->\t").append("Vida: ").append(base.vida).append("\t").append("Stamina: ")

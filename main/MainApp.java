@@ -3,6 +3,7 @@ package main;
 import item.armadura.Pantalon;
 import item.armadura.Pies;
 import item.armadura.Torso;
+import partida.Administrador;
 import partida.Stat;
 import personaje.Personaje;
 import item.Item;
@@ -16,19 +17,13 @@ import java.util.Scanner;
 
 public class MainApp {
     public static void main(String[] args) {
+        Administrador administrador = new Administrador();
         List<Item> items = new ArrayList<>();
         List<Item> equipado = new ArrayList<>();
         Stat base = new Stat(100, 100, 10, 10, 10);
 
         Personaje personaje = new Personaje("Galo el conquistador", base, equipado, items);
         Scanner scanner = new Scanner(System.in);
-
-        Lanza lanza = new Lanza("Bidente de gargola", 50, 100);
-        Casco casco = new Casco("Sombrero de playa", 15);
-        Torso torso = new Torso("Camisa Hawaaiana", 20);
-        Pantalon pantalon = new Pantalon("Short veraniego", 17);
-        Pies pies = new Pies("Sandalias", 10);
-        Amuleto amuleto = new Amuleto("Collar de oro", 5);
 
         while (true){
             System.out.println("Bienvenido al menu: \n");
@@ -38,6 +33,7 @@ public class MainApp {
             System.out.println("Opcion 4 -> EQUIPAR ITEM\n");
             System.out.println("Opcion 5 -> EQUIPAR ITEM REPETIDO\n");
             System.out.println("Opcion 6 -> DESEQUIPAR ITEM\n");
+            System.out.println("Opcion 7 -> LISTA DE TODOS LOS ITEMS.\n");
             System.out.print(":");
 
             int numero;
@@ -45,20 +41,15 @@ public class MainApp {
 
             switch (numero){
                 case 1:
-                    personaje.agregarItem(casco);
-                    personaje.agregarItem(torso);
-                    personaje.agregarItem(pantalon);
-                    personaje.agregarItem(pies);
-                    personaje.agregarItem(amuleto);
-                    personaje.agregarItem(lanza);
+                    System.out.println("Caso 1");
                     break;
 
                 case 2:
-                    personaje.removerItem(lanza);
+                    System.out.println("Caso 2");
                     break;
 
                 case 3:
-                    System.out.println(personaje.aCadena());
+                    System.out.println(personaje.toString());
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -66,19 +57,18 @@ public class MainApp {
                     }
 
                 case 4:
-                    personaje.equiparItem(casco);
-                    personaje.equiparItem(torso);
-                    personaje.equiparItem(pantalon);
-                    personaje.equiparItem(pies);
-                    personaje.equiparItem(lanza);
-                    personaje.equiparItem(amuleto);
+                    System.out.println("Caso 4");
                     break;
 
                 case 5:
-                    personaje.equiparItem(casco);
+                    System.out.println("Caso 5");
 
                 case 6:
-                    personaje.desequiparItem(amuleto);
+                    System.out.println("Caso 6");
+                    break;
+
+                case 7:
+                    System.out.println(administrador.toString());
                     break;
             }
 
