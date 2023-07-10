@@ -6,6 +6,9 @@ import partida.Stat;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La clase que se encarga de manejar todo lo relacionado al personaje y sus diferentes atributos.
+ */
 public class Personaje{
     /**
      * Nombre que va a tener nuestro personaje.
@@ -68,7 +71,30 @@ public class Personaje{
      * @return un entero que representa el ataque total de este personaje.
      */
     public int atacar(Personaje personaje){
-        return personaje.stats_modificados.vida - stats_modificados.ataque;
+        int ataque_total = stats_modificados.ataque - personaje.stats_modificados.defensa;
+
+        if (ataque_total <= 0) {
+            return 0;
+        }
+
+        int danio_realizado = Math.min(ataque_total, personaje.stats_modificados.vida);
+        personaje.recibirDanio(danio_realizado);
+
+        return danio_realizado;
+    }
+
+    /**
+     * Crea un nuevo Stat con la vida reducida en base al ataque que haya recibido el personaje.
+     * @param danio Entero que representa el danio recibido por el personaje.
+     */
+    public void recibirDanio(int danio) {
+        stats_modificados = new Stat(
+                stats_modificados.vida - danio,
+                stats_modificados.stamina,
+                stats_modificados.ataque,
+                stats_modificados.defensa,
+                stats_modificados.inteligencia
+        );
     }
 
     /**
@@ -77,10 +103,10 @@ public class Personaje{
      */
     public void equiparItem(Item item){
         if(equipado.stream().anyMatch(e -> e.equals(item))){
+            // Agregar excepciones.
             System.out.println("Ya hay un item de la misma clase equipado.");
         } else if(items.contains(item)){
             equipado.add(item);
-            System.out.println("Item equipado: " + item);
         } else {
             // agregar excepciones.
             System.out.println("El item no esta presente en el inventario.");
@@ -95,6 +121,11 @@ public class Personaje{
         this.equipado.remove(item);
     }
 
+    /**
+     * Aplica los stats obtenidos del item a los diferentes stats del personaje.
+     * @param item Item del cual van a ser obtenidos los stats.
+     * @return Retorna un nuevo Stat que va a reemplazar el viejo.
+     */
     public Stat aplicarStats(Item item) {
         Stat nuevo_stat = item.obtenerStat();
 
@@ -117,6 +148,9 @@ public class Personaje{
         StringBuilder sb = new StringBuilder();
         int contador = 0;
 
+        sb.append("----------------------------------------------------------------------------------------------" +
+                    "-------------------------------------------------------------------");
+        sb.append("\n");
         sb.append(String.format(
                 "%-30s %-10s %-10s %-10s %-10s %-10s", "Nombre:", "Vida", "Stamina", "Ataque", "Defensa",
                 "Inteligencia")).append("\n");
@@ -130,9 +164,9 @@ public class Personaje{
 
         sb.append("Inventario de: ").append(nombre).append("\n").append("\n");
 
-        sb.append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\n");
+        sb.append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\n");
 
         for(Item item : items){
             String string_items = item.toString();
@@ -153,11 +187,11 @@ public class Personaje{
             }
         }
 
-        sb.append("\n").append("Elementos equipados de: ").append(nombre).append("\n").append("\n");
+        sb.append("\n\n").append("Elementos equipados de: ").append(nombre).append("\n").append("\n");
 
-        sb.append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\n");
+        sb.append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\n");
 
         for(Item item : equipado){
             String string_items = item.toString();

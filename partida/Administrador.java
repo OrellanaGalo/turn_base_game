@@ -5,6 +5,7 @@ import item.acessorio.Amuleto;
 import item.acessorio.Anillo;
 import item.arma.Lanza;
 import item.armadura.*;
+import personaje.Personaje;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,67 @@ public class Administrador {
     private List<Item> itemList;
 
     /**
+     * Lista de personajes jugables.
+     */
+    private List<Personaje> playerList;
+
+    /**
+     * Lista de inventarios para los 6 personajes jugables.
+     */
+    private List<Item> inventario_001;
+    private List<Item> inventario_002;
+    private List<Item> inventario_003;
+    private List<Item> inventario_004;
+    private List<Item> inventario_005;
+    private List<Item> inventario_006;
+
+    /**
+     * Lista de equipamientos para los 6 personajes jugables.
+     */
+    private List<Item> equipamiento_001;
+    private List<Item> equipamiento_002;
+    private List<Item> equipamiento_003;
+    private List<Item> equipamiento_004;
+    private List<Item> equipamiento_005;
+    private List<Item> equipamiento_006;
+
+    /**
+     * Stats base para todos los 6 personajes.
+     */
+    private Stat base;
+
+    /**
+     * Stats modificables para los 6 personajes.
+     */
+    private Stat modificable;
+
+    /**
      * Constructor de la clase Administrador.
      * Inicializa la lista de items y agrega los objetos predefinidos.
      */
     public Administrador() {
         itemList = new ArrayList<>();
+        playerList = new ArrayList<>();
+
+        inventario_001 = new ArrayList<>();
+        inventario_002 = new ArrayList<>();
+        inventario_003 = new ArrayList<>();
+        inventario_004 = new ArrayList<>();
+        inventario_005 = new ArrayList<>();
+        inventario_006 = new ArrayList<>();
+
+        equipamiento_001 = new ArrayList<>();
+        equipamiento_002 = new ArrayList<>();
+        equipamiento_003 = new ArrayList<>();
+        equipamiento_004 = new ArrayList<>();
+        equipamiento_005 = new ArrayList<>();
+        equipamiento_006 = new ArrayList<>();
+
+        base = new Stat(100, 100, 10, 10, 10);
+        modificable = base;
+
         agregarObjetos();
+        inicializarPersonajes();
     }
 
     /**
@@ -98,6 +154,7 @@ public class Administrador {
     Anillo anillo_006 = new Anillo("Anillo#006", 10, 10);
 
     private void agregarObjetos() {
+        agregarInvetarios();
         agregarLanzas();
         agregarCascos();
         agregarTorsos();
@@ -105,6 +162,84 @@ public class Administrador {
         agregarPies();
         agregarAmuletos();
         agregarAnillos();
+    }
+
+    private void inicializarPersonajes() {
+        Personaje personaje_001 = new Personaje(
+                "Elysia Tayne", base, modificable, equipamiento_001, inventario_001);
+        Personaje personaje_002 = new Personaje(
+                "Ecriane Brel", base, modificable, equipamiento_002, inventario_002);
+        Personaje personaje_003 = new Personaje(
+                "Igon Farquan", base, modificable, equipamiento_003, inventario_003);
+        Personaje personaje_004 = new Personaje(
+                "Aenid Menor", base, modificable, equipamiento_004, inventario_004);
+        Personaje personaje_005 = new Personaje(
+                "Davida Bryll", base, modificable, equipamiento_005, inventario_005);
+        Personaje personaje_006 = new Personaje(
+                "Vyre Kaalin", base, modificable, equipamiento_006, inventario_006);
+
+        playerList.add(personaje_001);
+        playerList.add(personaje_002);
+        playerList.add(personaje_003);
+        playerList.add(personaje_004);
+        playerList.add(personaje_005);
+        playerList.add(personaje_006);
+    }
+
+    private void agregarInvetarios() {
+        // Inventario del personaje 1.
+        inventario_001.add(lanza_001);
+        inventario_001.add(casco_001);
+        inventario_001.add(torso_001);
+        inventario_001.add(pantalon_001);
+        inventario_001.add(pies_001);
+        inventario_001.add(amuleto_001);
+        inventario_001.add(anillo_001);
+
+        // Inventario del personaje 2.
+        inventario_002.add(lanza_002);
+        inventario_002.add(casco_002);
+        inventario_002.add(torso_002);
+        inventario_002.add(pantalon_002);
+        inventario_002.add(pies_002);
+        inventario_002.add(amuleto_002);
+        inventario_002.add(anillo_002);
+
+        // Inventario del personaje 3.
+        inventario_003.add(lanza_003);
+        inventario_003.add(casco_003);
+        inventario_003.add(torso_003);
+        inventario_003.add(pantalon_003);
+        inventario_003.add(pies_003);
+        inventario_003.add(amuleto_003);
+        inventario_003.add(anillo_003);
+
+        // Inventario del personaje 4.
+        inventario_004.add(lanza_004);
+        inventario_004.add(casco_004);
+        inventario_004.add(torso_004);
+        inventario_004.add(pantalon_004);
+        inventario_004.add(pies_004);
+        inventario_004.add(amuleto_004);
+        inventario_004.add(anillo_004);
+
+        // Inventario del personaje 5.
+        inventario_005.add(lanza_005);
+        inventario_005.add(casco_005);
+        inventario_005.add(torso_005);
+        inventario_005.add(pantalon_005);
+        inventario_005.add(pies_005);
+        inventario_005.add(amuleto_005);
+        inventario_005.add(anillo_005);
+
+        // Inventario del personaje 6.
+        inventario_006.add(lanza_006);
+        inventario_006.add(casco_006);
+        inventario_006.add(torso_006);
+        inventario_006.add(pantalon_006);
+        inventario_006.add(pies_006);
+        inventario_006.add(amuleto_006);
+        inventario_006.add(anillo_006);
     }
 
     private void agregarLanzas() {
@@ -174,9 +309,9 @@ public class Administrador {
         StringBuilder sb = new StringBuilder();
         int contador = 0;
 
-        sb.append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\t\t")
-                    .append(String.format("%-40s %-10s", "Nombre", "   Stats")).append("\n");
+        sb.append(String.format("%-40s %-10s", "Nombre de Item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-40s %-10s", "Nombre de Item:", "   Stats:")).append("\t\t")
+                    .append(String.format("%-40s %-10s", "Nombre de Item:", "   Stats:")).append("\n");
 
         for (Item item : itemList) {
             String string_items = item.toString();
@@ -188,6 +323,17 @@ public class Administrador {
             String linea = String.format("%-40s -> %s", nombre_de_item, numeros_formateados);
 
             sb.append(linea);
+            contador++;
+
+            if (contador % 3 == 0) {
+                sb.append("\n");
+            } else {
+                sb.append("\t");
+            }
+        }
+
+        for (Personaje personaje : playerList) {
+            sb.append(personaje);
             contador++;
 
             if (contador % 3 == 0) {

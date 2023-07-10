@@ -21,8 +21,8 @@ public class MainApp {
         List<Item> equipado2 = new ArrayList<>();
         Stat base = new Stat(100, 100, 10, 10, 10);
         Stat base2 = new Stat(100, 100, 10, 10, 10);
-        Stat base_modificable = new Stat(100, 100, 10, 10, 10);
-        Stat base_modificable2 = new Stat(100, 100, 10, 10, 10);
+        Stat base_modificable = new Stat(100, 100, 11, 10, 10);
+        Stat base_modificable2 = new Stat(100, 100, 11, 10, 10);
 
         Casco casco = new Casco("Pieza de armadura casco.", 50);
         Torso torso = new Torso("Pieza de armadura torso.", 100);
@@ -34,13 +34,13 @@ public class MainApp {
 
         while (true){
             System.out.println("Bienvenido al menu: \n");
-            System.out.println("Opcion 1 -> AGREGAR ITEM\n");
-            System.out.println("Opcion 2 -> ELIMINAR ITEM\n");
-            System.out.println("Opcion 3 -> INFORMACION DEL PERSONAJE\n");
-            System.out.println("Opcion 4 -> EQUIPAR ITEM\n");
-            System.out.println("Opcion 5 -> APLICAR STATS\n");
-            System.out.println("Opcion 6 -> DESEQUIPAR ITEM\n");
-            System.out.println("Opcion 7 -> LISTA DE TODOS LOS ITEMS.\n");
+            System.out.println("Opcion 1 -> CASO 1\n");
+            System.out.println("Opcion 2 -> CASO 2\n");
+            System.out.println("Opcion 3 -> CASO 3\n");
+            System.out.println("Opcion 4 -> CASO 4\n");
+            System.out.println("Opcion 5 -> CASO 5\n");
+            System.out.println("Opcion 6 -> ATACAR (PERSONAJE 2 A PERSONAJE 1)\n");
+            System.out.println("Opcion 7 -> LISTA DE TODOS LOS ITEMS Y PERSONAJES.\n");
             System.out.print(":");
 
             int numero;
@@ -48,30 +48,10 @@ public class MainApp {
 
             switch (numero){
                 case 1:
-                    System.out.println("Item agregado exitosamente.");
-                    personaje.agregarItem(casco);
-                    personaje.agregarItem(torso);
-                    personaje.agregarItem(lanza);
+                    System.out.println("CASO 1.");
                     personaje2.agregarItem(lanza);
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
-
-                    if(scanner.nextInt() == 1){
-                        break;
-                    }
-
-                case 2:
-                    System.out.println("Item removido exitosamente.");
-                    personaje.removerItem(casco);
-                    personaje.removerItem(torso);
-                    personaje.removerItem(lanza);
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
-
-                    if(scanner.nextInt() == 1){
-                        break;
-                    }
-
-                case 3:
-                    System.out.println(personaje);
+                    personaje2.equiparItem(lanza);
+                    personaje2.aplicarStats(lanza);
                     System.out.println(personaje2);
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
@@ -79,11 +59,24 @@ public class MainApp {
                         break;
                     }
 
+                case 2:
+                    System.out.println("CASO 2.");
+                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+
+                    if(scanner.nextInt() == 1){
+                        break;
+                    }
+
+                case 3:
+                    System.out.println("CASO 3.");
+                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+
+                    if(scanner.nextInt() == 1){
+                        break;
+                    }
+
                 case 4:
-                    System.out.println("Caso 4");
-                    personaje.equiparItem(casco);
-                    personaje.equiparItem(torso);
-                    personaje.equiparItem(lanza);
+                    System.out.println("CASO 4");
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -91,11 +84,7 @@ public class MainApp {
                     }
 
                 case 5:
-                    System.out.println("Aplicaste los stats.");
-                    personaje.aplicarStats(casco);
-                    personaje.aplicarStats(torso);
-                    personaje.aplicarStats(lanza);
-                    personaje2.aplicarStats(lanza);
+                    System.out.println("CASO 5.");
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -103,9 +92,10 @@ public class MainApp {
                     }
 
                 case 6:
-                    System.out.println("Caso 6");
                     System.out.println("Atacaste");
-                    System.out.println(personaje2.atacar(personaje));
+                    System.out.println(personaje2);
+                    personaje2.atacar(personaje);
+                    System.out.println(personaje);
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -123,8 +113,6 @@ public class MainApp {
                 default:
                     break;
             }
-
-            System.out.println("-------------------------------------------------------------------------------------");
         }
     }
 }
