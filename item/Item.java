@@ -1,6 +1,6 @@
 package item;
 
-import item.arma.Arma;
+import partida.Stat;
 
 public abstract class Item{
     /**
@@ -15,6 +15,8 @@ public abstract class Item{
     public Item(String nombre){
         this.nombre = nombre;
     }
+
+    public abstract Stat obtenerStat();
 
     /**
      * Compara este objeto con otro objeto para determinar si son iguales.

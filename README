@@ -63,7 +63,31 @@ pero esta duplicado.
 >  ̶T̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶e̶q̶u̶a̶l̶s̶ ̶d̶e̶ ̶l̶o̶s̶ ̶I̶t̶e̶m̶,̶ ̶v̶a̶n̶ ̶a̶h̶í̶;̶ ̶s̶o̶n̶ ̶t̶o̶d̶o̶s̶ ̶i̶g̶u̶a̶l̶e̶s̶,̶ ̶e̶s̶ ̶i̶n̶t̶e̶r̶e̶s̶a̶n̶t̶e̶ ̶p̶e̶n̶s̶a̶r̶ ̶q̶u̶e̶ ̶e̶l̶ ̶e̶q̶u̶a̶l̶s̶ ̶e̶s̶ ̶d̶i̶f̶e̶r̶e̶n̶t̶e̶ ̶p̶o̶r̶ ̶t̶i̶p̶o̶
 ̶d̶e̶ ̶i̶t̶e̶m̶,̶ ̶p̶e̶r̶o̶ ̶l̶a̶ ̶r̶e̶a̶l̶i̶d̶a̶d̶ ̶e̶s̶ ̶q̶u̶e̶ ̶n̶o̶.̶
 
-> algo que podes implementar es una clase Stat para guardar todos los atributos de algo. los base del personaje
-y los 'modificadores' en los Items.
-De esta manera, podes hacer un método en Item que sea public Stat obtenerStat() que te devuelve una clase de ese tipo
-Que ese Stat puede ser una clase así.
+ ̶>̶ ̶a̶l̶g̶o̶ ̶q̶u̶e̶ ̶p̶o̶d̶e̶s̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶a̶r̶ ̶e̶s̶ ̶u̶n̶a̶ ̶c̶l̶a̶s̶e̶ ̶S̶t̶a̶t̶ ̶p̶a̶r̶a̶ ̶g̶u̶a̶r̶d̶a̶r̶ ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶d̶e̶ ̶a̶l̶g̶o̶.̶ ̶l̶o̶s̶ ̶b̶a̶s̶e̶ ̶d̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶
+̶y̶ ̶l̶o̶s̶ ̶'̶m̶o̶d̶i̶f̶i̶c̶a̶d̶o̶r̶e̶s̶'̶ ̶e̶n̶ ̶l̶o̶s̶ ̶I̶t̶e̶m̶s̶.̶
+ ̶D̶e̶ ̶e̶s̶t̶a̶ ̶m̶a̶n̶e̶r̶a̶,̶ ̶p̶o̶d̶e̶s̶ ̶h̶a̶c̶e̶r̶ ̶u̶n̶ ̶m̶é̶t̶o̶d̶o̶ ̶e̶n̶ ̶I̶t̶e̶m̶ ̶q̶u̶e̶ ̶s̶e̶a̶ ̶p̶u̶b̶l̶i̶c̶ ̶S̶t̶a̶t̶ ̶o̶b̶t̶e̶n̶e̶r̶S̶t̶a̶t̶(̶)̶ ̶q̶u̶e̶ ̶t̶e̶ ̶d̶e̶v̶u̶e̶l̶v̶e̶ ̶u̶n̶a̶ ̶c̶l̶a̶s̶e̶ ̶d̶e̶ ̶e̶s̶e̶ ̶t̶i̶p̶o̶.̶
+
+Que ese Stat puede ser una clase así:
+    public class Stat {
+        public final int vida;
+        public final int stamina;
+        public final int ataque;
+        public final int defensa;
+        public final int inteligencia;
+
+        public Stat(int v, int s, int a, int d, int i){
+            vida = v;
+            stamina = s;
+            ataque = a;
+            defensa = d;
+            inteligencia = i;
+        }
+    }
+>  ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶,̶ ̶v̶a̶ ̶a̶ ̶l̶l̶a̶m̶a̶r̶ ̶e̶l̶ ̶o̶b̶t̶e̶n̶e̶r̶S̶t̶a̶t̶ ̶d̶e̶ ̶s̶u̶s̶ ̶i̶t̶e̶m̶s̶.̶ ̶c̶o̶n̶ ̶e̶s̶o̶s̶ ̶s̶t̶a̶t̶s̶,̶ ̶l̶o̶s̶ ̶"̶a̶p̶l̶i̶c̶a̶"̶ ̶a̶ ̶s̶u̶ ̶S̶t̶a̶t̶
+  ̶(̶q̶u̶e̶ ̶p̶o̶d̶e̶s̶ ̶u̶s̶a̶r̶ ̶e̶n̶ ̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶ ̶t̶a̶m̶b̶i̶e̶n̶ ̶��̶ ̶)̶,̶ ̶l̶a̶ ̶s̶u̶m̶a̶ ̶d̶e̶ ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶S̶t̶a̶t̶ ̶h̶a̶c̶e̶ ̶e̶l̶ ̶v̶a̶l̶o̶r̶ ̶f̶i̶n̶a̶l̶ ̶d̶e̶ ̶a̶t̶a̶q̶u̶e̶ ̶(̶y̶ ̶e̶t̶c̶)̶.̶
+
+> Esta clase, esta pensada para ser "inmutable" --- Se refiere a la clase STAT.
+  todas las operaciones que necesiten un cambio de Stat, generan un nuevo Stat
+  (el personaje, debiera de tener dos, uno para la 'base', la cual son los puntos que el jugador asigna directamente, y
+  otro para la suma calculada del equipamiento cuando hay un cambio de equipo, recalculas la suma del stat (esto sería
+  para no tener que recorrer todos los items cuando queres hacer una operación, cosa que a priori, no esta mal).

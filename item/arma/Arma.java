@@ -1,17 +1,18 @@
 package item.arma;
 
 import item.Item;
+import partida.Stat;
 
 public abstract class Arma extends Item{
     /**
      * Ataque base que posee el arma.
      */
-    public int ataque;
+    private int ataque;
 
     /**
      * Condicion actual en la cual se encuentra el arma.
      */
-    public int condicion;
+    private int condicion;
 
     /**
      * Constructor de la clase abstracta Arma.
@@ -23,6 +24,13 @@ public abstract class Arma extends Item{
         super(nombre);
         this.ataque = ataque;
         this.condicion = condicion;
+    }
+
+    /**
+     * Crea un nuevo Stat en base al atributo principal de cada clase.
+     */
+    public Stat obtenerStat() {
+        return new Stat(0, 0, ataque, 0, 0);
     }
 
     /**

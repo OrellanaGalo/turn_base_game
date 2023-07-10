@@ -1,5 +1,7 @@
 package item.arma;
 
+import partida.Stat;
+
 public class Lanza extends Arma{
     /**
      * Constructor de la clase Lanza.

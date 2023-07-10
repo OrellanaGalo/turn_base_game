@@ -9,10 +9,11 @@ public class Amuleto extends Accesorio{
     /**
      * Constructor de la clase Amuleto.
      * @param nombre Nombre del Amuleto.
+     * @param inteligencia ....
      * @param porcentaje Porcentaje por el cual se modifican los stats de personaje si utiliza el Amuleto.
      */
-    public Amuleto(String nombre, int porcentaje) {
-        super(nombre);
+    public Amuleto(String nombre, int inteligencia, int porcentaje) {
+        super(nombre, inteligencia);
         this.porcentaje = porcentaje;
     }
 }

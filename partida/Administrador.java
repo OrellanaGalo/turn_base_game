@@ -18,6 +18,10 @@ public class Administrador {
      */
     private List<Item> itemList;
 
+    /**
+     * Constructor de la clase Administrador.
+     * Inicializa la lista de items y agrega los objetos predefinidos.
+     */
     public Administrador() {
         itemList = new ArrayList<>();
         agregarObjetos();
@@ -76,22 +80,22 @@ public class Administrador {
     /**
      * Amuletos - Collares.
      */
-    Amuleto amuleto_001 = new Amuleto("Collar#001", 5);
-    Amuleto amuleto_002 = new Amuleto("Collar#002", 5);
-    Amuleto amuleto_003 = new Amuleto("Collar#003", 5);
-    Amuleto amuleto_004 = new Amuleto("Collar#004", 5);
-    Amuleto amuleto_005 = new Amuleto("Collar#005", 5);
-    Amuleto amuleto_006 = new Amuleto("Collar#006", 5);
+    Amuleto amuleto_001 = new Amuleto("Collar#001", 5, 10);
+    Amuleto amuleto_002 = new Amuleto("Collar#002", 5, 10);
+    Amuleto amuleto_003 = new Amuleto("Collar#003", 5, 10);
+    Amuleto amuleto_004 = new Amuleto("Collar#004", 5, 10);
+    Amuleto amuleto_005 = new Amuleto("Collar#005", 5, 10);
+    Amuleto amuleto_006 = new Amuleto("Collar#006", 5, 10);
 
     /**
      * Anillos.
      */
-    Anillo anillo_001 = new Anillo("Anillo#001", 10);
-    Anillo anillo_002 = new Anillo("Anillo#002", 10);
-    Anillo anillo_003 = new Anillo("Anillo#003", 10);
-    Anillo anillo_004 = new Anillo("Anillo#004", 10);
-    Anillo anillo_005 = new Anillo("Anillo#005", 10);
-    Anillo anillo_006 = new Anillo("Anillo#006", 10);
+    Anillo anillo_001 = new Anillo("Anillo#001", 10, 10);
+    Anillo anillo_002 = new Anillo("Anillo#002", 10, 10);
+    Anillo anillo_003 = new Anillo("Anillo#003", 10, 10);
+    Anillo anillo_004 = new Anillo("Anillo#004", 10, 10);
+    Anillo anillo_005 = new Anillo("Anillo#005", 10, 10);
+    Anillo anillo_006 = new Anillo("Anillo#006", 10, 10);
 
     private void agregarObjetos() {
         agregarLanzas();

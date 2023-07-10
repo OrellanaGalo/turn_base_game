@@ -1,12 +1,13 @@
 package item.armadura;
 
 import item.Item;
+import partida.Stat;
 
 public abstract class Armadura extends Item{
     /**
      * Defensa base de la armadura.
      */
-    protected int defensa;
+    private int defensa;
 
     /**
      * Constructor de la clase abstracta Armadura.
@@ -15,6 +16,10 @@ public abstract class Armadura extends Item{
     public Armadura(String nombre, int defensa) {
         super(nombre);
         this.defensa = defensa;
+    }
+
+    public Stat obtenerStat() {
+        return new Stat(0, 0, 0, defensa, 0);
     }
 
     /**

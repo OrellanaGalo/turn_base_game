@@ -4,9 +4,10 @@ public class Pocion extends Consumible{
     /**
      * Constructor de la clase Pocion.
      * @param nombre Nombre de la pocion.
-     * @param cantidad Cantidad de la pocion presente en el inventario.
+     * @param vida asd.
+     * @param stamina asd.
      */
-    public Pocion(String nombre, int cantidad) {
-        super(nombre, cantidad);
+    public Pocion(String nombre, int vida, int stamina) {
+        super(nombre, vida, stamina);
     }
 }
