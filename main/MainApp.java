@@ -1,46 +1,41 @@
 package main;
 
 import item.arma.Lanza;
-import item.armadura.Casco;
 import item.armadura.Torso;
 import partida.Administrador;
+import partida.Inventario;
 import partida.Stat;
 import personaje.Personaje;
 import item.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MainApp {
     public static void main(String[] args) {
         Administrador administrador = new Administrador();
-        List<Item> items = new ArrayList<>();
-        List<Item> items2 = new ArrayList<>();
-        List<Item> equipado = new ArrayList<>();
-        List<Item> equipado2 = new ArrayList<>();
+
+        List<Item> itemList = administrador.getItemList();
+
         Stat base = new Stat(100, 100, 10, 10, 10);
-        Stat base2 = new Stat(100, 100, 10, 10, 10);
-        Stat base_modificable = new Stat(100, 100, 11, 10, 10);
-        Stat base_modificable2 = new Stat(100, 100, 11, 10, 10);
 
-        Casco casco = new Casco("Pieza de armadura casco.", 50);
-        Torso torso = new Torso("Pieza de armadura torso.", 100);
-        Lanza lanza = new Lanza("Lanza que aporta ataque.", 100, 100);
+        Inventario inventario_000 = new Inventario();
+        Inventario inventario_001 = new Inventario();
 
-        Personaje personaje = new Personaje("Galo el conquistador", base, base_modificable, equipado, items);
-        Personaje personaje2 = new Personaje("Galo el destructor", base2, base_modificable2, equipado2, items2);
+        Personaje personaje = new Personaje("Personaje 1", base, inventario_000);
+        Personaje personaje2 = new Personaje("Personaje 2", base, inventario_001);
+
         Scanner scanner = new Scanner(System.in);
 
         while (true){
             System.out.println("Bienvenido al menu: \n");
-            System.out.println("Opcion 1 -> CASO 1\n");
-            System.out.println("Opcion 2 -> CASO 2\n");
-            System.out.println("Opcion 3 -> CASO 3\n");
-            System.out.println("Opcion 4 -> CASO 4\n");
-            System.out.println("Opcion 5 -> CASO 5\n");
-            System.out.println("Opcion 6 -> ATACAR (PERSONAJE 2 A PERSONAJE 1)\n");
-            System.out.println("Opcion 7 -> LISTA DE TODOS LOS ITEMS Y PERSONAJES.\n");
+            System.out.println("Opcion 1 -> AGREGAR ITEMS DE LA LISTA GLOBAL DE ITEMS.\n");
+            System.out.println("Opcion 2 -> IMPRIME PERSONAJES.\n");
+            System.out.println("Opcion 3 -> IMPRIME INVENTARIOS Y EQUIPAMIENTOS DE AMBOS PERSONAJES.\n");
+            System.out.println("Opcion 4 -> SELECCIONA UN ITEM Y TE LO EQUIPA.\n");
+            System.out.println("Opcion 5 -> CASO 5.\n");
+            System.out.println("Opcion 6 -> ATACAR (PERSONAJE 1 A PERSONAJE 2).\n");
+            System.out.println("Opcion 7 -> CASO 7.\n");
             System.out.print(":");
 
             int numero;
@@ -48,11 +43,13 @@ public class MainApp {
 
             switch (numero){
                 case 1:
-                    System.out.println("CASO 1.");
-                    personaje2.agregarItem(lanza);
-                    personaje2.equiparItem(lanza);
-                    personaje2.aplicarStats(lanza);
-                    System.out.println(personaje2);
+                    System.out.println("AGREGAR ITEMS DE LA LISTA GLOBAL DE ITEMS.");
+                    System.out.println(administrador);
+
+                    int entrada_001 = scanner.nextInt();
+                    Item obj = itemList.get(entrada_001);
+
+                    inventario_000.agregarItem(obj);
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -60,7 +57,9 @@ public class MainApp {
                     }
 
                 case 2:
-                    System.out.println("CASO 2.");
+                    System.out.println("IMPRIME PERSONAJES.");
+                    System.out.println(personaje);
+                    System.out.println(personaje2);
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -68,7 +67,10 @@ public class MainApp {
                     }
 
                 case 3:
-                    System.out.println("CASO 3.");
+                    System.out.println("IMPRIME INVENTARIOS Y EQUIPAMIENTOS DE AMBOS PERSONAJES.");
+                    System.out.println(inventario_000);
+                    System.out.println("\n--------------------------------------------------------\n");
+                    System.out.println(inventario_001);
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -76,7 +78,14 @@ public class MainApp {
                     }
 
                 case 4:
-                    System.out.println("CASO 4");
+                    System.out.println("SELECCIONA UN ITEM Y TE LO EQUIPA.");
+
+                    int entrada = scanner.nextInt();
+                    Item objetoSeleccionado = inventario_000.seleccionarItem(entrada);
+
+                    inventario_000.equiparItem(objetoSeleccionado);
+                    //personaje.equipar(objetoSeleccionado);
+
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -93,9 +102,10 @@ public class MainApp {
 
                 case 6:
                     System.out.println("Atacaste");
-                    System.out.println(personaje2);
-                    personaje2.atacar(personaje);
+                    personaje.atacar(personaje2);
                     System.out.println(personaje);
+                    System.out.println(personaje2);
+
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -103,7 +113,7 @@ public class MainApp {
                     }
 
                 case 7:
-                    System.out.println(administrador);
+                    System.out.println("CASO 7.");
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){

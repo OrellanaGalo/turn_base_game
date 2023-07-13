@@ -1,10 +1,8 @@
 package personaje;
 
 import item.Item;
+import partida.Inventario;
 import partida.Stat;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * La clase que se encarga de manejar todo lo relacionado al personaje y sus diferentes atributos.
@@ -21,123 +19,62 @@ public class Personaje{
     private Stat base;
 
     /**
-     * Aca se guardan los stats pasados por los modificadores.
+     * Estadisticas del personaje que van a ser modificadas.
      */
-    private Stat stats_modificados;
-
-    /**
-     * Elementos que tiene equipado el personaje.
-     */
-    private List<Item> equipado;
+    private Stat stat;
 
     /**
      * Inventario del personaje.
      */
-    private List<Item> items;
+    private Inventario inventario;
 
     /**
      * Constructor de Personaje.
      * @param nombre Nombre que va a llevar el personaje.
-     * @param equipado Lista que indica que objetos tiene equipado el personaje.
-     * @param items Lista de Items que tiene en el inventario el personaje.
+     * @param base Son los stats base del personaje, la clase Stat contiene los atributos principales del personaje.
+     * Estos pueden ser vida, stamina, ataque, etc.
+     * @param inventario Es el inventario del personaje, aca se guardan los items y tambien se controla el equipamiento
+     * del personaje.
      */
-    public Personaje(String nombre, Stat base, Stat stats_modificados, List<Item> equipado, List<Item> items){
+    public Personaje(String nombre, Stat base, Inventario inventario){
         this.nombre = nombre;
         this.base = base;
-        this.stats_modificados = stats_modificados;
-        this.items = items != null ? items : new ArrayList<>();
-        this.equipado = equipado != null ? equipado : new ArrayList<>();
+        this.inventario = inventario;
+
+        stat = base;
     }
 
     /**
-     * Agrega un item al inventario del personaje.
-     * @param item Es el item que se desea agregar al inventario.
-     */
-    public void agregarItem(Item item){
-        this.items.add(item);
-    }
-
-    /**
-     * Remueve un item del inventario del personaje.
-     * @param item Es el item que se desea remover del inventario.
-     */
-    public void removerItem(Item item){
-        this.items.remove(item);
-    }
-
-    /**
-     * Metodo para que el personaje A ataque al personaje B.
-     * @param personaje Personaje al cual se desea atacar.
+     * Metodo que calcula el ataque del personaje segun sus stats.
      * @return un entero que representa el ataque total de este personaje.
      */
-    public int atacar(Personaje personaje){
-        int ataque_total = stats_modificados.ataque - personaje.stats_modificados.defensa;
+    private int ataque(int stamina){
+        int ataque_total = stat.ataque;
 
-        if (ataque_total <= 0) {
+        if (stamina < 15) {
+            System.out.println(stamina);
+
             return 0;
         }
 
-        int danio_realizado = Math.min(ataque_total, personaje.stats_modificados.vida);
-        personaje.recibirDanio(danio_realizado);
+        stamina = stamina - 15;
+        double danio_realizado = Math.pow(ataque_total, (stamina * 0.004));
 
-        return danio_realizado;
+        System.out.println(danio_realizado);
+
+        return (int) danio_realizado;
     }
 
     /**
-     * Crea un nuevo Stat con la vida reducida en base al ataque que haya recibido el personaje.
-     * @param danio Entero que representa el danio recibido por el personaje.
+     * Metodo por el cual atacamos al personaje que elijamos.
+     * @param personaje Personaje al cual deseamos atacar.
      */
-    public void recibirDanio(int danio) {
-        stats_modificados = new Stat(
-                stats_modificados.vida - danio,
-                stats_modificados.stamina,
-                stats_modificados.ataque,
-                stats_modificados.defensa,
-                stats_modificados.inteligencia
-        );
+    public void atacar(Personaje personaje) {
+        personaje.stat = stat.aplicarDanio(personaje.stat, ataque(stat.stamina));
     }
 
-    /**
-     * Metodo que permite equipar items pero solo los que estan presentes en el inventario.
-     * @param item Item que se desea equipar.
-     */
-    public void equiparItem(Item item){
-        if(equipado.stream().anyMatch(e -> e.equals(item))){
-            // Agregar excepciones.
-            System.out.println("Ya hay un item de la misma clase equipado.");
-        } else if(items.contains(item)){
-            equipado.add(item);
-        } else {
-            // agregar excepciones.
-            System.out.println("El item no esta presente en el inventario.");
-        }
-    }
-
-    /**
-     * Desequipa el item seleccionado presente en la lista equipado.
-     * @param item Item que se desea desequipar.
-     */
-    public void desequiparItem(Item item){
-        this.equipado.remove(item);
-    }
-
-    /**
-     * Aplica los stats obtenidos del item a los diferentes stats del personaje.
-     * @param item Item del cual van a ser obtenidos los stats.
-     * @return Retorna un nuevo Stat que va a reemplazar el viejo.
-     */
-    public Stat aplicarStats(Item item) {
-        Stat nuevo_stat = item.obtenerStat();
-
-        Stat stat_final = new Stat(
-                stats_modificados.vida + nuevo_stat.vida,
-                stats_modificados.stamina + nuevo_stat.stamina,
-                stats_modificados.ataque + nuevo_stat.ataque,
-                stats_modificados.defensa + nuevo_stat.defensa,
-                stats_modificados.inteligencia + nuevo_stat.inteligencia
-        );
-
-        return stats_modificados = stat_final;
+    public void equipar(Item item) {
+        stat = stat.aplicarStats(stat, item);
     }
 
     /**
@@ -145,73 +82,24 @@ public class Personaje{
      * @return Un StringBuilder convertido a un String para mostrarlo en consola.
      */
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        int contador = 0;
 
-        sb.append("----------------------------------------------------------------------------------------------" +
-                    "-------------------------------------------------------------------");
-        sb.append("\n");
-        sb.append(String.format(
-                "%-30s %-10s %-10s %-10s %-10s %-10s", "Nombre:", "Vida", "Stamina", "Ataque", "Defensa",
-                "Inteligencia")).append("\n");
-        sb.append(String.format(
-                "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, base.vida, base.stamina, base.ataque, base.defensa,
-                    base.inteligencia)).append("\n");
-        sb.append(String.format(
-                "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, stats_modificados.vida, stats_modificados.stamina,
-                    stats_modificados.ataque, stats_modificados.defensa, stats_modificados.inteligencia)).append("\n")
-                        .append("\n");
+        String string = "----------------------------------------------------------------------------------------------" +
+                "-------------------------------------------------------------------" +
+                "\n" +
+                String.format(
+                        "%-30s %-10s %-10s %-10s %-10s %-10s", "Nombre:", "Vida", "Stamina", "Ataque", "Defensa",
+                        "Inteligencia") +
+                "\n" +
+                String.format(
+                        "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, base.vida, base.stamina, base.ataque, base.defensa,
+                        base.inteligencia) +
+                "\n" +
+                String.format(
+                        "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, stat.vida, stat.stamina,
+                        stat.ataque, stat.defensa, stat.inteligencia) +
+                "\n" +
+                "\n";
 
-        sb.append("Inventario de: ").append(nombre).append("\n").append("\n");
-
-        sb.append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\n");
-
-        for(Item item : items){
-            String string_items = item.toString();
-            String[] partes = string_items.split("->");
-            String nombre_de_item = partes[0].trim();
-            String valor_item = partes[1].trim();
-
-            String numeros_formateados = String.format("%-10s", valor_item);
-            String linea = String.format("%-40s -> %s", nombre_de_item, numeros_formateados);
-
-            sb.append(linea);
-            contador++;
-
-            if (contador % 3 == 0) {
-                sb.append("\n");
-            } else {
-                sb.append("\t");
-            }
-        }
-
-        sb.append("\n\n").append("Elementos equipados de: ").append(nombre).append("\n").append("\n");
-
-        sb.append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\n");
-
-        for(Item item : equipado){
-            String string_items = item.toString();
-            String[] partes = string_items.split("->");
-            String nombre_de_item = partes[0].trim();
-            String valor_item = partes[1].trim();
-
-            String numeros_formateados = String.format("%-10s", valor_item);
-            String linea = String.format("%-40s -> %s", nombre_de_item, numeros_formateados);
-
-            sb.append(linea);
-            contador++;
-
-            if (contador % 3 == 0) {
-                sb.append("\n");
-            } else {
-                sb.append("\t");
-            }
-        }
-
-        return sb.toString();
+        return string;
     }
 }
