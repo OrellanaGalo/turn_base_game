@@ -32,18 +32,18 @@ public class Stat {
     }
 
     /**
-     * Aplica el dano obtenido del entero pasado como argumento y lo aplica a los stats del personaje.
-     * @param original Son los stats del personaje al cual le vamos a aplicar el dano.
-     * @param danio El dano entero que se le aplica.
-     * @return Retorna un nuevo stat que reemplaza al anterior.
+     * Metodo que recibe un stat nuevo y le aplica los cambios al stat viejo.
+     * @param original Stat que va a recibir los cambios.
+     * @param nuevo Stat nuevo que trae los cambios de estado para los stats viejos.
+     * @return Retorna un nuevo stat que es la combinacion de los dos stats.
      */
-    public Stat aplicarDanio(Stat original, int danio) {
+    public Stat aplicarStats(Stat original, Stat nuevo) {
         return new Stat(
-                original.vida - danio,
-                original.stamina,
-                original.ataque,
-                original.defensa,
-                original.inteligencia
+                original.vida + nuevo.vida,
+                original.stamina + nuevo.stamina,
+                original.ataque + nuevo.ataque,
+                original.defensa + nuevo.defensa,
+                original.inteligencia + nuevo.inteligencia
         );
     }
 
@@ -52,7 +52,7 @@ public class Stat {
      * @param item Item del cual van a ser obtenidos los stats.
      * @return Retorna un nuevo Stat que va a reemplazar el viejo.
      */
-    public Stat aplicarStats(Stat original, Item item) {
+    public Stat aplicarStatsItem(Stat original, Item item) {
         Stat nuevo_stat = item.obtenerStat();
 
         return new Stat(

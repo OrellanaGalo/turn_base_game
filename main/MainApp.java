@@ -84,7 +84,7 @@ public class MainApp {
                     Item objetoSeleccionado = inventario_000.seleccionarItem(entrada);
 
                     inventario_000.equiparItem(objetoSeleccionado);
-                    //personaje.equipar(objetoSeleccionado);
+                    personaje.equipar(objetoSeleccionado);
 
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
@@ -103,6 +103,7 @@ public class MainApp {
                 case 6:
                     System.out.println("Atacaste");
                     personaje.atacar(personaje2);
+                    personaje2.defender();
                     System.out.println(personaje);
                     System.out.println(personaje2);
 

@@ -29,6 +29,11 @@ public class Personaje{
     private Inventario inventario;
 
     /**
+     * Atributo que indica si el personaje se encuentra actualmente defendiendo o no.
+     */
+    private boolean defensa = false;
+
+    /**
      * Constructor de Personaje.
      * @param nombre Nombre que va a llevar el personaje.
      * @param base Son los stats base del personaje, la clase Stat contiene los atributos principales del personaje.
@@ -46,23 +51,39 @@ public class Personaje{
 
     /**
      * Metodo que calcula el ataque del personaje segun sus stats.
+     * @param variable El argumento variable sirve para cambiar el ataque del personaje.
      * @return un entero que representa el ataque total de este personaje.
      */
-    private int ataque(int stamina){
+    private Stat calcularAtaque(int variable){
         int ataque_total = stat.ataque;
 
-        if (stamina < 15) {
-            System.out.println(stamina);
+        double danio_realizado = Math.pow(ataque_total, (variable * 0.007));
 
-            return 0;
+        System.out.println((int) danio_realizado);
+
+        return new Stat((int) -danio_realizado, 0, 0, 0, 0);
+    }
+
+    /**
+     * Metodo que calcula la defensa momentanea del personaje segun la variable introducida.
+     * @param variable El argumento variable sirve para modificar la cantidad de defensa que recibe el personaje.
+     * @return Retorna un nuevo stat el cual va a sobreescribir momentaneamente el stat viejo del personaje.
+     */
+    private Stat calcularDefensa(int variable) {
+        return new Stat(0, 0, 0, variable, 0);
+    }
+
+    /**
+     * Metodo para defenderse por un turno. Aumenta su defensa un 50% por un turno.
+     */
+    public void defender() {
+        if(!defensa) {
+            stat = stat.aplicarStats(stat, calcularDefensa(80));
+            defensa = true;
+        } else {
+            stat = stat.aplicarStats(stat, calcularDefensa(-80));
+            defensa = false;
         }
-
-        stamina = stamina - 15;
-        double danio_realizado = Math.pow(ataque_total, (stamina * 0.004));
-
-        System.out.println(danio_realizado);
-
-        return (int) danio_realizado;
     }
 
     /**
@@ -70,12 +91,24 @@ public class Personaje{
      * @param personaje Personaje al cual deseamos atacar.
      */
     public void atacar(Personaje personaje) {
-        personaje.stat = stat.aplicarDanio(personaje.stat, ataque(stat.stamina));
+        personaje.stat = stat.aplicarStats(personaje.stat, calcularAtaque(stat.stamina));
     }
 
+    /**
+     * Aplica los stats del item seleccionado.
+     * @param item Es el item que se desea equipar.
+     */
     public void equipar(Item item) {
-        stat = stat.aplicarStats(stat, item);
+        stat = stat.aplicarStatsItem(stat, item);
     }
+
+//    /**
+//     * Metodo que aplica los efectos de estado de gastar o sumar stamina.
+//     * @param stamina La estamina que se desea agregar o sacar. Tiene que ser un entero.
+//     */
+//    public void gastarStamina(int stamina) {
+//        stat = stat.aplicarStamina(stat, stamina);
+//    }
 
     /**
      * Convierte todos los atributos e informacion en un String para ser mostrado en consola.
