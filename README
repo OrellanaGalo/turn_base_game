@@ -31,13 +31,13 @@ public class Personaje extends Entidad{
     // Lo que hace la clase.
 }
 
-> this.items = items != null ? items : new ArrayList<>();
+> ̶t̶h̶i̶s̶.̶i̶t̶e̶m̶s̶ ̶=̶ ̶i̶t̶e̶m̶s̶ ̶!̶=̶ ̶n̶u̶l̶l̶ ̶?̶ ̶i̶t̶e̶m̶s̶ ̶:̶ ̶n̶e̶w̶ ̶A̶r̶r̶a̶y̶L̶i̶s̶t̶<̶>̶(̶)̶;̶
 
 * Sin apilar lineas
 
-> todos los accesorios debiera de comportarse exactemente iguales. sin embargo, el amuleto tiene una construcción
-diferente (lo mismo que el anillo) pero lo mas importante el amuleto y anillo hacen lo mismo (el código es igual),
-pero esta duplicado.
+>  ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶a̶c̶c̶e̶s̶o̶r̶i̶o̶s̶ ̶d̶e̶b̶i̶e̶r̶a̶ ̶d̶e̶ ̶c̶o̶m̶p̶o̶r̶t̶a̶r̶s̶e̶ ̶e̶x̶a̶c̶t̶e̶m̶e̶n̶t̶e̶ ̶i̶g̶u̶a̶l̶e̶s̶.̶ ̶s̶i̶n̶ ̶e̶m̶b̶a̶r̶g̶o̶,̶ ̶e̶l̶ ̶a̶m̶u̶l̶e̶t̶o̶ ̶t̶i̶e̶n̶e̶ ̶u̶n̶a̶ ̶c̶o̶n̶s̶t̶r̶u̶c̶c̶i̶ó̶n̶
+̶d̶i̶f̶e̶r̶e̶n̶t̶e̶ ̶(̶l̶o̶ ̶m̶i̶s̶m̶o̶ ̶q̶u̶e̶ ̶e̶l̶ ̶a̶n̶i̶l̶l̶o̶)̶ ̶p̶e̶r̶o̶ ̶l̶o̶ ̶m̶a̶s̶ ̶i̶m̶p̶o̶r̶t̶a̶n̶t̶e̶ ̶e̶l̶ ̶a̶m̶u̶l̶e̶t̶o̶ ̶y̶ ̶a̶n̶i̶l̶l̶o̶ ̶h̶a̶c̶e̶n̶ ̶l̶o̶ ̶m̶i̶s̶m̶o̶ ̶(̶e̶l̶ ̶c̶ó̶d̶i̶g̶o̶ ̶e̶s̶ ̶i̶g̶u̶a̶l̶)̶,̶
+̶p̶e̶r̶o̶ ̶e̶s̶t̶a̶ ̶d̶u̶p̶l̶i̶c̶a̶d̶o̶.̶
 
 >  ̶e̶l̶ ̶m̶é̶t̶o̶d̶o̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶r̶S̶t̶a̶t̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶q̶u̶e̶ ̶n̶o̶ ̶l̶e̶ ̶p̶e̶r̶t̶e̶n̶e̶c̶e̶n̶;̶ ̶a̶q̶u̶e̶l̶l̶o̶s̶ ̶q̶u̶e̶ ̶s̶o̶n̶ ̶p̶r̶i̶v̶a̶d̶o̶s̶ ̶a̶l̶ ̶P̶e̶r̶s̶o̶n̶a̶j̶e̶.̶
 
@@ -87,7 +87,7 @@ Que ese Stat puede ser una clase así:
   ̶(̶q̶u̶e̶ ̶p̶o̶d̶e̶s̶ ̶u̶s̶a̶r̶ ̶e̶n̶ ̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶ ̶t̶a̶m̶b̶i̶e̶n̶ ̶��̶ ̶)̶,̶ ̶l̶a̶ ̶s̶u̶m̶a̶ ̶d̶e̶ ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶S̶t̶a̶t̶ ̶h̶a̶c̶e̶ ̶e̶l̶ ̶v̶a̶l̶o̶r̶ ̶f̶i̶n̶a̶l̶ ̶d̶e̶ ̶a̶t̶a̶q̶u̶e̶ ̶(̶y̶ ̶e̶t̶c̶)̶.̶
 
 > Esta clase, esta pensada para ser "inmutable" --- Se refiere a la clase STAT.
-  todas las operaciones que necesiten un cambio de Stat, generan un nuevo Stat
-  (el personaje, debiera de tener dos, uno para la 'base', la cual son los puntos que el jugador asigna directamente, y
-  otro para la suma calculada del equipamiento cuando hay un cambio de equipo, recalculas la suma del stat (esto sería
-  para no tener que recorrer todos los items cuando queres hacer una operación, cosa que a priori, no esta mal).
+   ̶t̶o̶d̶a̶s̶ ̶l̶a̶s̶ ̶o̶p̶e̶r̶a̶c̶i̶o̶n̶e̶s̶ ̶q̶u̶e̶ ̶n̶e̶c̶e̶s̶i̶t̶e̶n̶ ̶u̶n̶ ̶c̶a̶m̶b̶i̶o̶ ̶d̶e̶ ̶S̶t̶a̶t̶,̶ ̶g̶e̶n̶e̶r̶a̶n̶ ̶u̶n̶ ̶n̶u̶e̶v̶o̶ ̶S̶t̶a̶t̶
+̶ ̶ ̶(̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶,̶ ̶d̶e̶b̶i̶e̶r̶a̶ ̶d̶e̶ ̶t̶e̶n̶e̶r̶ ̶d̶o̶s̶,̶ ̶u̶n̶o̶ ̶p̶a̶r̶a̶ ̶l̶a̶ ̶'̶b̶a̶s̶e̶'̶,̶ ̶l̶a̶ ̶c̶u̶a̶l̶ ̶s̶o̶n̶ ̶l̶o̶s̶ ̶p̶u̶n̶t̶o̶s̶ ̶q̶u̶e̶ ̶e̶l̶ ̶j̶u̶g̶a̶d̶o̶r̶ ̶a̶s̶i̶g̶n̶a̶ ̶d̶i̶r̶e̶c̶t̶a̶m̶e̶n̶t̶e̶,̶ ̶y̶
+̶ ̶ ̶o̶t̶r̶o̶ ̶p̶a̶r̶a̶ ̶l̶a̶ ̶s̶u̶m̶a̶ ̶c̶a̶l̶c̶u̶l̶a̶d̶a̶ ̶d̶e̶l̶ ̶e̶q̶u̶i̶p̶a̶m̶i̶e̶n̶t̶o̶ ̶c̶u̶a̶n̶d̶o̶ ̶h̶a̶y̶ ̶u̶n̶ ̶c̶a̶m̶b̶i̶o̶ ̶d̶e̶ ̶e̶q̶u̶i̶p̶o̶,̶ ̶r̶e̶c̶a̶l̶c̶u̶l̶a̶s̶ ̶l̶a̶ ̶s̶u̶m̶a̶ ̶d̶e̶l̶ ̶s̶t̶a̶t̶ ̶(̶e̶s̶t̶o̶ ̶s̶e̶r̶í̶a̶
+̶ ̶ ̶p̶a̶r̶a̶ ̶n̶o̶ ̶t̶e̶n̶e̶r̶ ̶q̶u̶e̶ ̶r̶e̶c̶o̶r̶r̶e̶r̶ ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶i̶t̶e̶m̶s̶ ̶c̶u̶a̶n̶d̶o̶ ̶q̶u̶e̶r̶e̶s̶ ̶h̶a̶c̶e̶r̶ ̶u̶n̶a̶ ̶o̶p̶e̶r̶a̶c̶i̶ó̶n̶,̶ ̶c̶o̶s̶a̶ ̶q̶u̶e̶ ̶a̶ ̶p̶r̶i̶o̶r̶i̶,̶ ̶n̶o̶ ̶e̶s̶t̶a̶ ̶m̶a̶l̶)̶.̶
