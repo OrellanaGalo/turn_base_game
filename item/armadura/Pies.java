@@ -1,6 +1,10 @@
 package item.armadura;
 
+/**
+ * completar.
+ */
 public class Pies extends Armadura{
+
     /**
      * @param nombre Nombre que va a llevar los pies.
      * @param defensa Cantidad de defensa que otorgan los pies actuales.

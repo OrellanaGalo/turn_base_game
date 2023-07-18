@@ -1,6 +1,10 @@
 package item.armadura;
 
+/**
+ * completar.
+ */
 public class Torso extends Armadura{
+
     /**
      * @param nombre Nombre que va a llevar el torso.
      * @param defensa Cantidad de defensa que otorga el torso actual.

@@ -1,9 +1,8 @@
 package main;
 
-import item.arma.Lanza;
-import item.armadura.Torso;
 import partida.Administrador;
 import partida.Inventario;
+import partida.Juego;
 import partida.Stat;
 import personaje.Personaje;
 import item.Item;
@@ -16,6 +15,7 @@ public class MainApp {
         Administrador administrador = new Administrador();
 
         List<Item> itemList = administrador.getItemList();
+        List<Personaje> playerList = administrador.getPlayerList();
 
         Stat base = new Stat(100, 100, 10, 10, 10);
 
@@ -25,6 +25,8 @@ public class MainApp {
         Personaje personaje = new Personaje("Personaje 1", base, inventario_000);
         Personaje personaje2 = new Personaje("Personaje 2", base, inventario_001);
 
+        Juego juego = new Juego();
+
         Scanner scanner = new Scanner(System.in);
 
         while (true){
@@ -33,9 +35,9 @@ public class MainApp {
             System.out.println("Opcion 2 -> IMPRIME PERSONAJES.\n");
             System.out.println("Opcion 3 -> IMPRIME INVENTARIOS Y EQUIPAMIENTOS DE AMBOS PERSONAJES.\n");
             System.out.println("Opcion 4 -> SELECCIONA UN ITEM Y TE LO EQUIPA.\n");
-            System.out.println("Opcion 5 -> CASO 5.\n");
-            System.out.println("Opcion 6 -> ATACAR (PERSONAJE 1 A PERSONAJE 2).\n");
-            System.out.println("Opcion 7 -> CASO 7.\n");
+            System.out.println("Opcion 5 -> CREA Y AGREGA UN PERSONAJE.\n");
+            System.out.println("Opcion 6 -> PELEAR.\n");
+            System.out.println("Opcion 7 -> PERSONAJE 1 DESCANSA UN TURNO.\n");
             System.out.print(":");
 
             int numero;
@@ -93,7 +95,9 @@ public class MainApp {
                     }
 
                 case 5:
-                    System.out.println("CASO 5.");
+                    System.out.println("CREA Y AGREGA UN PERSONAJE.");
+                    playerList.add(juego.crearPersonaje());
+                    System.out.println(playerList);
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){
@@ -101,11 +105,18 @@ public class MainApp {
                     }
 
                 case 6:
-                    System.out.println("Atacaste");
-                    personaje.atacar(personaje2);
-                    personaje2.defender();
-                    System.out.println(personaje);
-                    System.out.println(personaje2);
+                    System.out.println(playerList);
+
+                    System.out.println("\nIngresa al primer personaje que desees: ");
+                    int player = scanner.nextInt();
+
+                    System.out.println("\nIngresa al segundo personaje que desees: ");
+                    int player_2 = scanner.nextInt();
+
+                    personaje = playerList.get(player);
+                    personaje2 = playerList.get(player_2);
+
+                    juego.pelear(personaje, personaje2);
 
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
@@ -114,7 +125,8 @@ public class MainApp {
                     }
 
                 case 7:
-                    System.out.println("CASO 7.");
+                    System.out.println("PERSONAJE 1 DESCANSA UN TURNO.");
+                    personaje.modificarStamina(+50);
                     System.out.println("\t> Si desea salir del inventario presiones '1'.");
 
                     if(scanner.nextInt() == 1){

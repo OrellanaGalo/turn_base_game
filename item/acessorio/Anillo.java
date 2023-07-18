@@ -1,8 +1,11 @@
 package item.acessorio;
 
+/**
+ * completar.
+ */
 public class Anillo extends Accesorio{
     /**
-     * Atributo flotante que indica la inteligencia que aporta la calse Anillo.
+     * Atributo entero que indica la inteligencia que aporta la calse Anillo.
      */
     private int variable;
 

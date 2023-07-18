@@ -5,6 +5,9 @@ import item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * completar.
+ */
 public class Inventario {
     /**
      * Inventario principal del personaje donde se guardan todos los items.

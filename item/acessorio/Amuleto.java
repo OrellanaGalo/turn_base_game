@@ -1,19 +1,22 @@
 package item.acessorio;
 
+/**
+ * completar.
+ */
 public class Amuleto extends Accesorio{
     /**
-     * Atributo que indica el porcentaje por el cual se modifican los stats del personaje.
+     * Atributo que indica el variable por el cual se modifican los stats del personaje.
      */
-    private int porcentaje;
+    private int variable;
 
     /**
      * Constructor de la clase Amuleto.
      * @param nombre Nombre del Amuleto.
      * @param inteligencia ....
-     * @param porcentaje Porcentaje por el cual se modifican los stats de personaje si utiliza el Amuleto.
+     * @param variable variable por el cual se modifican los stats de personaje si utiliza el Amuleto.
      */
-    public Amuleto(String nombre, int inteligencia, int porcentaje) {
+    public Amuleto(String nombre, int inteligencia, int variable) {
         super(nombre, inteligencia);
-        this.porcentaje = porcentaje;
+        this.variable = variable;
     }
 }

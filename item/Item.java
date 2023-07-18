@@ -2,6 +2,9 @@ package item;
 
 import partida.Stat;
 
+/**
+ * completar.
+ */
 public abstract class Item{
     /**
      * Nombre del Item.
@@ -16,6 +19,10 @@ public abstract class Item{
         this.nombre = nombre;
     }
 
+    /**
+     * Completar.
+     * @return completar.
+     */
     public abstract Stat obtenerStat();
 
     /**
@@ -36,7 +43,7 @@ public abstract class Item{
     }
 
     /**
-     * Operacion que muestra el nombre del item.
+     * Operacion que muestra el nombre del item, y deja un espacio para que las siguiente clases completen.
      */
     public String toString() {
         return "[" + nombre + "\t->";

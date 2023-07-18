@@ -121,6 +121,9 @@ public class Administrador {
         agregarAnillos();
     }
 
+    /**
+     * Agrega los objetos 'Lanza' a la lista de Items.
+     */
     private void agregarLanzas() {
         itemList.add(lanza_001);
         itemList.add(lanza_002);
@@ -130,6 +133,9 @@ public class Administrador {
         itemList.add(lanza_006);
     }
 
+    /**
+     * Agrega los objetos 'Casco' a la lista de Items.
+     */
     private void agregarCascos() {
         itemList.add(casco_001);
         itemList.add(casco_002);
@@ -139,6 +145,9 @@ public class Administrador {
         itemList.add(casco_006);
     }
 
+    /**
+     * Agrega los objetos 'Torso' a la lista de Items.
+     */
     private void agregarTorsos() {
         itemList.add(torso_001);
         itemList.add(torso_002);
@@ -148,6 +157,9 @@ public class Administrador {
         itemList.add(torso_006);
     }
 
+    /**
+     * Agrega los objetos 'Pantalon' a la lista de Items.
+     */
     private void agregarPantalones() {
         itemList.add(pantalon_001);
         itemList.add(pantalon_002);
@@ -157,6 +169,9 @@ public class Administrador {
         itemList.add(pantalon_006);
     }
 
+    /**
+     * Agrega los objetos 'Pies' a la lista de Items.
+     */
     private void agregarPies() {
         itemList.add(pies_001);
         itemList.add(pies_002);
@@ -166,6 +181,9 @@ public class Administrador {
         itemList.add(pies_006);
     }
 
+    /**
+     * Agrega los objetos 'Amuleto' a la lista de Items.
+     */
     private void agregarAmuletos() {
         itemList.add(amuleto_001);
         itemList.add(amuleto_002);
@@ -175,6 +193,9 @@ public class Administrador {
         itemList.add(amuleto_006);
     }
 
+    /**
+     * Agrega los objetos 'Anillo' a la lista de Items.
+     */
     private void agregarAnillos() {
         itemList.add(anillo_001);
         itemList.add(anillo_002);
@@ -184,10 +205,34 @@ public class Administrador {
         itemList.add(anillo_006);
     }
 
+    /**
+     * Este metodo tiene como proposito devolver la lista de items para ser usada en otra clase.
+     * @return Retorna la lista de items.
+     */
     public List<Item> getItemList() {
         return itemList;
     }
 
+    /**
+     * Este metodo tiene como proposito devolver la lista de personajes para ser usada en otra clase.
+     * @return Retorna la lista de personajes.
+     */
+    public List<Personaje> getPlayerList() {
+        return playerList;
+    }
+
+    /**
+     * Este metodo tiene como proposito devolver la lista de inventarios para ser usada en otra clase.
+     * @return Retorna la lista de inventarios.
+     */
+    public List<Inventario> getInventoryList() {
+        return inventoryList;
+    }
+
+    /**
+     * Un metodo que se encarga de ordenar y devolver todos los objetos presentes en las listas de esta clase.
+     * @return Un String que contiene toda las listas presentes en esta clase.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int contador = 0;

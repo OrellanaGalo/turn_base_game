@@ -1,7 +1,5 @@
 package partida;
 
-import item.Item;
-
 /**
  * Es la clase que se encarga de manejar las estadisticas de los jugadores.
  */
@@ -37,7 +35,7 @@ public class Stat {
      * @param nuevo Stat nuevo que trae los cambios de estado para los stats viejos.
      * @return Retorna un nuevo stat que es la combinacion de los dos stats.
      */
-    public Stat aplicarStats(Stat original, Stat nuevo) {
+    public static Stat aplicarStats(Stat original, Stat nuevo) {
         return new Stat(
                 original.vida + nuevo.vida,
                 original.stamina + nuevo.stamina,
@@ -48,19 +46,50 @@ public class Stat {
     }
 
     /**
-     * Aplica los stats obtenidos del item a los diferentes stats del personaje.
-     * @param item Item del cual van a ser obtenidos los stats.
-     * @return Retorna un nuevo Stat que va a reemplazar el viejo.
+     * Metodo que muestra la informacion de los argumentos presente en esta clase.
+     * @return Retorna un String con todos los elementos.
      */
-    public Stat aplicarStatsItem(Stat original, Item item) {
-        Stat nuevo_stat = item.obtenerStat();
+    public String toString() {
+        return "\n" + vida + stamina + ataque + defensa + inteligencia + "\n";
+    }
 
-        return new Stat(
-                original.vida + nuevo_stat.vida,
-                original.stamina + nuevo_stat.stamina,
-                original.ataque + nuevo_stat.ataque,
-                original.defensa + nuevo_stat.defensa,
-                original.inteligencia + nuevo_stat.inteligencia
-        );
+    /**
+     * Compara el objeto Stat con otro objeto introducido como argumento para determinar si son iguales o no.
+     * @param o El objeto con el cual se compara Stat.
+     * @return True si ambos objetos son iguales o False si son distintos.
+     */
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Stat otro_stat = (Stat) o;
+
+        return vida == otro_stat.vida &&
+                stamina == otro_stat.stamina &&
+                ataque == otro_stat.ataque &&
+                defensa == otro_stat.defensa &&
+                inteligencia == otro_stat.inteligencia;
+    }
+
+    /**
+     * Calcula el valor de Hash para el objeto Stat.
+     * @return Un entero que representa el valor de hash para este objeto.
+     */
+    @Override
+    public int hashCode() {
+        final int primo = 31;
+        int resultado = 1;
+
+        resultado = primo * resultado + vida;
+        resultado = primo * resultado + stamina;
+        resultado = primo * resultado + ataque;
+        resultado = primo * resultado + defensa;
+        resultado = primo * resultado + inteligencia;
+
+        return resultado;
     }
 }

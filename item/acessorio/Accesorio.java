@@ -3,6 +3,9 @@ package item.acessorio;
 import item.Item;
 import partida.Stat;
 
+/**
+ * completar.
+ */
 public abstract class Accesorio extends Item{
     /**
      * completar...

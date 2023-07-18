@@ -3,6 +3,9 @@ package item.consumible;
 import item.Item;
 import partida.Stat;
 
+/**
+ * completar.
+ */
 public abstract class Consumible extends Item {
     /**
      * Cantidad de ese consumible presente en el inventario. Puede ser tanto positivo como negativo, ya que si usamos
@@ -26,6 +29,10 @@ public abstract class Consumible extends Item {
         this.stamina = stamina;
     }
 
+    /**
+     * completar
+     * @return completar
+     */
     public Stat obtenerStat() {
         return new Stat(vida, stamina, 0, 0, 0);
     }

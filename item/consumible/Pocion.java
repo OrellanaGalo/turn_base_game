@@ -1,6 +1,10 @@
 package item.consumible;
 
+/**
+ * completar.
+ */
 public class Pocion extends Consumible{
+
     /**
      * Constructor de la clase Pocion.
      * @param nombre Nombre de la pocion.

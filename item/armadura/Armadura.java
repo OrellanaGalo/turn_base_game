@@ -3,6 +3,9 @@ package item.armadura;
 import item.Item;
 import partida.Stat;
 
+/**
+ * completar.
+ */
 public abstract class Armadura extends Item{
     /**
      * Defensa base de la armadura.
@@ -18,6 +21,10 @@ public abstract class Armadura extends Item{
         this.defensa = defensa;
     }
 
+    /**
+     * completar.
+     * @return completar.
+     */
     public Stat obtenerStat() {
         return new Stat(0, 0, 0, defensa, 0);
     }

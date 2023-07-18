@@ -1,6 +1,10 @@
 package item.armadura;
 
+/**
+ * completar.
+ */
 public class Casco extends Armadura{
+
     /**
      * @param nombre Nombre que va a llevar el casco.
      * @param defensa Cantidad de defensa que otorga el casco actual.

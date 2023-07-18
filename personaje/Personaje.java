@@ -74,14 +74,23 @@ public class Personaje{
     }
 
     /**
+     * Metodo que calcula la stamina restante del personaje luego de aplicar un modificador.
+     * @param variable La cantidad de stamina que se modifica.
+     * @return Un stat nuevo en base a la nueva variable.
+     */
+    private Stat calcularStamina(int variable) {
+        return new Stat (0, variable, 0, 0, 0);
+    }
+
+    /**
      * Metodo para defenderse por un turno. Aumenta su defensa un 50% por un turno.
      */
     public void defender() {
         if(!defensa) {
-            stat = stat.aplicarStats(stat, calcularDefensa(80));
+            stat = Stat.aplicarStats(stat, calcularDefensa(80));
             defensa = true;
         } else {
-            stat = stat.aplicarStats(stat, calcularDefensa(-80));
+            stat = Stat.aplicarStats(stat, calcularDefensa(-80));
             defensa = false;
         }
     }
@@ -91,7 +100,7 @@ public class Personaje{
      * @param personaje Personaje al cual deseamos atacar.
      */
     public void atacar(Personaje personaje) {
-        personaje.stat = stat.aplicarStats(personaje.stat, calcularAtaque(stat.stamina));
+        personaje.stat = Stat.aplicarStats(personaje.stat, calcularAtaque(stat.stamina));
     }
 
     /**
@@ -99,16 +108,32 @@ public class Personaje{
      * @param item Es el item que se desea equipar.
      */
     public void equipar(Item item) {
-        stat = stat.aplicarStatsItem(stat, item);
+        stat = Stat.aplicarStats(stat, item.obtenerStat());
     }
 
-//    /**
-//     * Metodo que aplica los efectos de estado de gastar o sumar stamina.
-//     * @param stamina La estamina que se desea agregar o sacar. Tiene que ser un entero.
-//     */
-//    public void gastarStamina(int stamina) {
-//        stat = stat.aplicarStamina(stat, stamina);
-//    }
+    /**
+     * Metodo que aplica los efectos de estado de gastar o sumar stamina.
+     * @param stamina La estamina que se desea agregar o sacar. Tiene que ser un entero.
+     */
+    public void modificarStamina(int stamina) {
+        stat = Stat.aplicarStats(stat, calcularStamina(stamina));
+    }
+
+    /**
+     * Metodo que retorna la vida del personaje.
+     * @return Retorna un entero que representa el stat vida del personaje.
+     */
+    public int getVida() {
+        return stat.vida;
+    }
+
+    /**
+     * Metodo que muestra el nombre del personaje.
+     * @return Retorna un String que representa el nombre del personaje.
+     */
+    public String getNombre() {
+        return nombre;
+    }
 
     /**
      * Convierte todos los atributos e informacion en un String para ser mostrado en consola.
@@ -122,15 +147,14 @@ public class Personaje{
                 String.format(
                         "%-30s %-10s %-10s %-10s %-10s %-10s", "Nombre:", "Vida", "Stamina", "Ataque", "Defensa",
                         "Inteligencia") +
-                "\n" +
-                String.format(
-                        "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, base.vida, base.stamina, base.ataque, base.defensa,
-                        base.inteligencia) +
+
+//                String.format(
+//                        "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, base.vida, base.stamina, base.ataque, base.defensa,
+//                        base.inteligencia) +
                 "\n" +
                 String.format(
                         "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, stat.vida, stat.stamina,
                         stat.ataque, stat.defensa, stat.inteligencia) +
-                "\n" +
                 "\n";
 
         return string;
