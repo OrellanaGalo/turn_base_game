@@ -1,5 +1,7 @@
 package programacion.practica.item.armadura;
 
+import programacion.practica.partida.Stat;
+
 /**
  * completar.
  */

@@ -7,11 +7,11 @@ public class Stat {
     /**
      * Atributos principales de un personaje dentro del juego.
      */
-    public final int vida;
-    public final int stamina;
-    public final int ataque;
-    public final int defensa;
-    public final int inteligencia;
+    protected final int vida;
+    protected final int stamina;
+    protected final int ataque;
+    protected final int defensa;
+    protected final int inteligencia;
 
     /**
      * Constructor de la clase Stat.
@@ -56,11 +56,78 @@ public class Stat {
     }
 
     /**
+     * Calcula la stamina y la modifica en funcion de la stamina agregada en el argumento.
+     * @param stamina Es un entero que representa la stamina que deseamos agregar.
+     * @return Retorna un Stat con los nuevos valores de stamina.
+     */
+    public Stat calcularStamina(int stamina) {
+        int nueva_stamina = this.stamina + stamina;
+        nueva_stamina = Math.max(0, Math.min(100, nueva_stamina));
+
+        int diferencia_stamina = nueva_stamina - this.stamina;
+
+        return new Stat(0, diferencia_stamina, 0, 0, 0);
+    }
+
+    /**
+     * Calcula la vida y la modifica en funcion de la vida agregada en el argumento.
+     * @param vida Es un entero que representa la vida que deseamos agregar.
+     * @return Retorna un Stat con los nuevos valores de vida.
+     */
+    public Stat calcularVida(int vida) {
+        int nueva_vida = this.vida + vida;
+        nueva_vida = Math.max(0, Math.min(100, nueva_vida));
+
+        int diferencia_vida = nueva_vida - this.vida;
+
+        return new Stat(diferencia_vida, 0, 0, 0, 0);
+    }
+
+    /**
+     * Metodo que revisa si la vida del personaje es mayor a 0, lo que en mecanicas del juego significa que sigue con
+     * vida.
+     * @return Retorna true si la vida es mayor a 0 y false en caso contrario.
+     */
+    public boolean estaVivo() {
+        return this.vida > 0;
+    }
+
+    /**
+     * Metodo que verifica si la stamina es suficiente comparada con la stamina introducida como argumento.
+     * @param stamina Es la stamina con la que deseamos comparar.
+     * @return True si la stamina actual es mayor a la introducida, false en caso contrario.
+     */
+    public boolean verificarStamina(int stamina) {
+        return this.stamina >= stamina;
+    }
+
+    /**
      * Metodo que muestra la informacion de los argumentos presente en esta clase.
      * @return Retorna un String con todos los elementos.
      */
-    public String toString() {
-        return "\n" + vida + stamina + ataque + defensa + inteligencia + "\n";
+    public String toString(boolean ignorarCero) {
+        StringBuilder sb = new StringBuilder();
+
+        if (!ignorarCero || vida != 0) {
+            sb.append(String.format("%-10s ", vida));
+        }
+        if (!ignorarCero || stamina != 0) {
+            sb.append(String.format("%-10s ", stamina));
+        }
+
+        if (!ignorarCero || ataque != 0) {
+            sb.append(String.format("%-10s ", ataque));
+        }
+
+        if (!ignorarCero || defensa != 0) {
+            sb.append(String.format("%-10s ", defensa));
+        }
+
+        if (!ignorarCero || inteligencia != 0) {
+            sb.append(String.format("%-10s ", inteligencia));
+        }
+
+        return sb.toString();
     }
 
     /**

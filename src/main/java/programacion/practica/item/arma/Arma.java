@@ -12,7 +12,7 @@ public abstract class Arma extends Item{
     /**
      * Ataque base que posee el arma.
      */
-    private int ataque;
+    private Stat stat;
 
     /**
      * Condicion actual en la cual se encuentra el arma.
@@ -27,22 +27,15 @@ public abstract class Arma extends Item{
      */
     public Arma(String nombre, int ataque, int condicion) {
         super(nombre);
-        this.ataque = ataque;
+        this.stat = new Stat(0, 0, ataque, 0, 0);
         this.condicion = condicion;
-    }
-
-    /**
-     * Crea un nuevo Stat en base al atributo principal de cada clase.
-     */
-    public Stat obtenerStat() {
-        return new Stat(0, 0, ataque, 0, 0);
     }
 
     /**
      * Retorna una representacion a texto de los atributos de este arma.
      */
     public String toString() {
-        return super.toString() + ataque + "//" + condicion + ']';
+        return super.toString() + stat.toString(true) + "//" + condicion + ']';
     }
 
     /**

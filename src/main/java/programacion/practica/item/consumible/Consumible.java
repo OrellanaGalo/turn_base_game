@@ -8,15 +8,11 @@ import programacion.practica.partida.Stat;
  */
 public abstract class Consumible extends Item {
     /**
-     * Cantidad de ese consumible presente en el inventario. Puede ser tanto positivo como negativo, ya que si usamos
-     * una pocion, podemos restaurar stamina. Pero si utilizamos un arrojable, perdemos stamina.
+     * Estadisticas del consumible. Puede ser tanto positivo como negativo, ya que si usamos una pocion, podemos
+     * restaurar stamina. Pero si utilizamos un arrojable, perdemos stamina. Tambien es aplicable a pociones que
+     * aumenten vida durante la pelea.
      */
-    private int stamina;
-
-    /**
-     * Idem stamina pero con vida del personaje. En este caso no puede ser negativa.
-     */
-    private int vida;
+    private Stat stat;
 
     /**
      * Constructor de la clase Consumible.
@@ -25,22 +21,13 @@ public abstract class Consumible extends Item {
      */
     public Consumible(String nombre, int vida, int stamina) {
         super(nombre);
-        this.vida = vida;
-        this.stamina = stamina;
+        this.stat = new Stat(vida, stamina, 0, 0, 0);
     }
 
     /**
-     * completar
-     * @return completar
-     */
-    public Stat obtenerStat() {
-        return new Stat(vida, stamina, 0, 0, 0);
-    }
-
-    /**
-     * Pasa como un String el atributo nombre y la cantidad presente en la clase abstracta de Consumible.
+     * Pasa como un String el atributo nombre y el atributo stat en la clase abstracta de Consumible.
      */
     public String toString(){
-        return super.toString() + vida + stamina + ']';
+        return super.toString() + stat.toString(true) + ']';
     }
 }

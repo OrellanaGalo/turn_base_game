@@ -10,7 +10,7 @@ public abstract class Accesorio extends Item{
     /**
      * Atributo inteligencia.
      */
-    private int inteligencia;
+    private Stat stat;
 
     /**
      * Constructor de la clase abstracta Accesorio.
@@ -19,21 +19,14 @@ public abstract class Accesorio extends Item{
      */
     protected Accesorio(String nombre, int inteligencia) {
         super(nombre);
-        this.inteligencia = inteligencia;
+        this.stat = new Stat(0, 0, 0, 0, inteligencia);
     }
 
     /**
-     * Metodo para generar un nuevo Stat que contiene la informacion de inteligencia del accesorio.
-     * @return Un nuevo Stat con el atributo inteligencia agregado.
-     */
-    public Stat obtenerStat() {
-        return new Stat(0, 0, 0, 0, inteligencia);
-    }
-
-    /**
-     * completar...
+     * Hereda el toString de la clase padre y luego le agrega el atributo inteligencia presente en esta.
+     * @return Retorna un String con la informacion de la clase padre sumado a nuevos atributos.
      */
     public String toString(){
-        return super.toString() + inteligencia + ']';
+        return super.toString() + stat.toString(true) + ']';
     }
 }

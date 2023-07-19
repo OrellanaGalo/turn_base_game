@@ -1,7 +1,9 @@
 package programacion.practica.item.armadura;
 
+import programacion.practica.partida.Stat;
+
 /**
- * completar.
+ * Completar.
  */
 public class Pies extends Armadura{
 

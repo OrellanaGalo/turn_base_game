@@ -48,23 +48,26 @@ public class Inventario {
      * presente ya en el equipamiento.
      * @param item Es el item que se desea equipar.
      */
-    public void equiparItem(Item item) {
+    public boolean equiparItem(Item item) {
         if(equipamiento.stream().anyMatch(e -> e.equals(item))){
             // Agregar excepciones.
             System.out.println("Ya hay un item de la misma clase equipado.");
         } else if(items.contains(item)){
             equipamiento.add(item);
+            return true;
         } else {
             // agregar excepciones.
             System.out.println("El item no esta presente en el inventario.");
         }
+
+        return false;
     }
 
     /**
      * Remueve un item de la lista de equipamiento.
      * @param item El item que se desea remover.
      */
-    public void desEquiparItem(Item item) {
+    public void desequiparItem(Item item) {
         if(equipamiento.contains(item)) {
             equipamiento.remove(item);
         } else {
@@ -78,7 +81,7 @@ public class Inventario {
      * Item.
      * @param posicion La posicion del item dentro de la lista.
      */
-    public Item seleccionarItem(int posicion){
+    public Item seleccionarItemEnInventario(int posicion){
         // Aca deberia haber una excepcion en caso de que se seleccione una posicion que excede la longitud de la lista.
         return items.get(posicion);
     }
@@ -101,7 +104,7 @@ public class Inventario {
         int pos = 0;
         int pos_equipamiento = 0;
 
-        sb.append("\n").append("------------------< Inventario >------------------").append("\n");
+        sb.append("\n").append("------------------< Inventario de >------------------").append("\n");
 
         sb.append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
                 .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
@@ -113,7 +116,7 @@ public class Inventario {
             String nombre_de_item = partes[0].trim();
             String valor_item = partes[1].trim();
 
-            String numeros_formateados = String.format("%-10s", valor_item);
+            String numeros_formateados = String.format("%-5s", valor_item);
             String linea = String.format("%-4s %-40s -> %s", pos, nombre_de_item, numeros_formateados);
 
             sb.append(linea);

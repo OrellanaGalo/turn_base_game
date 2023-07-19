@@ -10,8 +10,7 @@ public class Juego {
     /**
      * Constructor de la clase.
      */
-    public Juego () {
-
+    public Juego() {
     }
 
     /**
@@ -28,73 +27,5 @@ public class Juego {
         nombre = scanner.next();
 
         return new Personaje(nombre, base, inventario);
-    }
-
-    /**
-     * Este metodo simula la mecanica de pelear dentro del juego.
-     * @param personaje_uno Es el primer personaje.
-     * @param personaje_dos Es el segundo personaje. Este personaje siempre tiene su turno al final.
-     */
-    public void pelear(Personaje personaje_uno, Personaje personaje_dos) {
-        boolean turno = true;
-        int ingreso;
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (personaje_uno.getVida() > 0 && personaje_dos.getVida() > 0) {
-            System.out.println("Estado de: \t" + personaje_uno.getNombre() + personaje_uno);
-            System.out.println("Estado de: \t" + personaje_dos.getNombre() + personaje_dos);
-
-            if (turno) {
-                System.out.println("Que deberia hacer: " + personaje_uno.getNombre());
-            } else {
-                System.out.println("Que deberia hacer: " + personaje_dos.getNombre());
-            }
-
-            System.out.println("1: ATACAR, 2: DEFENDER, 3: DESCANSAR\n");
-
-            ingreso = scanner.nextInt();
-
-            if (turno) {
-                // Turno del primer personaje.
-                switch (ingreso) {
-                    case 1 -> {
-                        personaje_uno.atacar(personaje_dos);
-                        personaje_uno.modificarStamina(-30);
-                    }
-                    case 2 -> personaje_uno.defender();
-                    case 3 -> personaje_uno.modificarStamina(30);
-                    // Aca deberia ir una excepcion del estilo "OutOfBoundsException"
-                    default -> System.out.println("Entrada invalida.");
-                }
-            } else {
-                // Turno del segundo personaje.
-                switch (ingreso) {
-                    case 1 -> {
-                        personaje_dos.atacar(personaje_uno);
-                        personaje_dos.modificarStamina(-30);
-                    }
-                    case 2 -> personaje_dos.defender();
-                    case 3 -> personaje_dos.modificarStamina(30);
-                    // Aca deberia ir una excepcion del estilo "OutOfBoundsException"
-                    default -> System.out.println("Entrada invalida.");
-                }
-            }
-
-            turno = !turno;
-        }
-
-        // Nos fijamos quien gano.
-        if (personaje_uno.getVida() <= 0) {
-            System.out.println(personaje_dos.getNombre() + " gano la pelea.");
-        } else {
-            System.out.println(personaje_uno.getNombre() + " gano la pelea.");
-        }
-
-        // Una vez finalizada la pelea, rellenamos la vida y stamina de ambos personajes.
-        personaje_dos.modificarVida(10000);
-        personaje_uno.modificarVida(10000);
-        personaje_uno.modificarStamina(1000);
-        personaje_dos.modificarStamina(1000);
     }
 }

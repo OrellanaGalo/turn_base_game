@@ -2,6 +2,8 @@ package programacion.practica.item;
 
 import programacion.practica.partida.Stat;
 
+import java.util.Objects;
+
 /**
  * Esta clase se encarga de manejar los items presentes en el juego. Estos pueden ser armas, armaduras o incluso items
  * consumibles.
@@ -10,7 +12,7 @@ public abstract class Item{
     /**
      * Nombre del Item.
      */
-    public String nombre;
+    protected String nombre;
 
     /**
      * Constructor de la clase abstracta Item.
@@ -21,10 +23,12 @@ public abstract class Item{
     }
 
     /**
-     * Completar.
-     * @return completar.
+     * Retorna el Stat del item seleccionado.
+     * @return Retorna un Stat que representa los atributos del item buscado.
      */
-    public abstract Stat obtenerStat();
+    public Stat obtenerStat() {
+        return new Stat(0, 0, 0, 0, 0);
+    }
 
     /**
      * Compara este objeto con otro objeto para determinar si son iguales.
@@ -40,13 +44,20 @@ public abstract class Item{
         }
 
         Item item = (Item) o;
-        return nombre.equals(item.nombre);
+        return Objects.equals(nombre, item.nombre);
+    }
+
+    /**
+     * Metodo hashCode para item, esto sirve para mejorar la diferenciacion de items.
+     */
+    public int hashCode() {
+        return nombre.hashCode();
     }
 
     /**
      * Operacion que muestra el nombre del item, y deja un espacio para que las siguiente clases completen.
      */
     public String toString() {
-        return "[" + nombre + "\t->";
+        return "[" + nombre + " -> ";
     }
 }
