@@ -45,6 +45,16 @@ public class Stat {
         );
     }
 
+    public static Stat desAplicarStats(Stat original, Stat nuevo) {
+        return new Stat(
+                original.vida - nuevo.vida,
+                original.stamina - nuevo.stamina,
+                original.ataque - nuevo.ataque,
+                original.defensa - nuevo.defensa,
+                original.inteligencia - nuevo.inteligencia
+        );
+    }
+
     /**
      * Metodo que muestra la informacion de los argumentos presente en esta clase.
      * @return Retorna un String con todos los elementos.

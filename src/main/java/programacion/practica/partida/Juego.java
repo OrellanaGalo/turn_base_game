@@ -1,14 +1,12 @@
 package programacion.practica.partida;
 
 import programacion.practica.personaje.Personaje;
-
 import java.util.Scanner;
 
 /**
  * Esta clase se encarga de manejar todas las mecanicas principales del juego.
  */
 public class Juego {
-
     /**
      * Constructor de la clase.
      */
@@ -26,7 +24,7 @@ public class Juego {
         Inventario inventario = new Inventario();
         String nombre;
 
-        System.out.println("\nIngrese el nombre del nuevo personaje:");
+        System.out.println("\n< Ingrese el nombre del nuevo personaje: >");
         nombre = scanner.next();
 
         return new Personaje(nombre, base, inventario);
@@ -44,8 +42,8 @@ public class Juego {
         Scanner scanner = new Scanner(System.in);
 
         while (personaje_uno.getVida() > 0 && personaje_dos.getVida() > 0) {
-            System.out.println("Estado de: " + personaje_uno.getNombre() + personaje_uno);
-            System.out.println("Estado de: " + personaje_dos.getNombre() + personaje_dos);
+            System.out.println("Estado de: \t" + personaje_uno.getNombre() + personaje_uno);
+            System.out.println("Estado de: \t" + personaje_dos.getNombre() + personaje_dos);
 
             if (turno) {
                 System.out.println("Que deberia hacer: " + personaje_uno.getNombre());
@@ -66,6 +64,7 @@ public class Juego {
                     }
                     case 2 -> personaje_uno.defender();
                     case 3 -> personaje_uno.modificarStamina(30);
+                    // Aca deberia ir una excepcion del estilo "OutOfBoundsException"
                     default -> System.out.println("Entrada invalida.");
                 }
             } else {
@@ -77,6 +76,7 @@ public class Juego {
                     }
                     case 2 -> personaje_dos.defender();
                     case 3 -> personaje_dos.modificarStamina(30);
+                    // Aca deberia ir una excepcion del estilo "OutOfBoundsException"
                     default -> System.out.println("Entrada invalida.");
                 }
             }
@@ -90,5 +90,11 @@ public class Juego {
         } else {
             System.out.println(personaje_uno.getNombre() + " gano la pelea.");
         }
+
+        // Una vez finalizada la pelea, rellenamos la vida y stamina de ambos personajes.
+        personaje_dos.modificarVida(10000);
+        personaje_uno.modificarVida(10000);
+        personaje_uno.modificarStamina(1000);
+        personaje_dos.modificarStamina(1000);
     }
 }

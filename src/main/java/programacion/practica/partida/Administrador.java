@@ -236,10 +236,11 @@ public class Administrador {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int contador = 0;
+        int indice = 0;
 
-        sb.append(String.format("%-40s %-10s", "Nombre de Item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre de Item:", "   Stats:")).append("\t\t")
-                    .append(String.format("%-40s %-10s", "Nombre de Item:", "   Stats:")).append("\n");
+        sb.append(String.format("%-4s %-40s %-10s", "Pos:", "Nombre de Item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-10s", "Pos:", "Nombre de Item:", "   Stats:")).append("\t\t")
+                    .append(String.format("%-4s %-40s %-10s", "Pos:", "Nombre de Item:", "   Stats:")).append("\n");
 
         for (Item item : itemList) {
             String string_items = item.toString();
@@ -248,10 +249,11 @@ public class Administrador {
             String valor_item = partes[1].trim();
 
             String numeros_formateados = String.format("%-10s", valor_item);
-            String linea = String.format("%-40s -> %s", nombre_de_item, numeros_formateados);
+            String linea = String.format("%-4d %-40s -> %s", indice, nombre_de_item, numeros_formateados);
 
             sb.append(linea);
             contador++;
+            indice++;
 
             if (contador % 3 == 0) {
                 sb.append("\n");
@@ -260,27 +262,31 @@ public class Administrador {
             }
         }
 
-        for (Personaje personaje : playerList) {
-            sb.append(personaje);
-            contador++;
-
-            if (contador % 3 == 0) {
-                sb.append("\n");
-            } else {
-                sb.append("\t");
-            }
+        if (contador % 3 != 0) {
+            sb.append("\n");
         }
 
-        for (Inventario inventario : inventoryList) {
-            sb.append(inventario);
-            contador++;
+//        for (Personaje personaje : playerList) {
+//            sb.append(personaje);
+//            contador++;
+//
+//            if (contador % 3 == 0) {
+//                sb.append("\n");
+//            } else {
+//                sb.append("\t");
+//            }
+//        }
 
-            if (contador % 3 == 0) {
-                sb.append("\n");
-            } else {
-                sb.append('\t');
-            }
-        }
+//        for (Inventario inventario : inventoryList) {
+//            sb.append(inventario);
+//            contador++;
+//
+//            if (contador % 3 == 0) {
+//                sb.append("\n");
+//            } else {
+//                sb.append('\t');
+//            }
+//        }
 
         return sb.toString();
     }

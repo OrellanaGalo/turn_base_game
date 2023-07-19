@@ -59,9 +59,9 @@ public class Personaje{
 
         double danio_realizado = Math.pow(ataque_total, (variable * 0.007));
 
-        System.out.println((int) danio_realizado);
+        System.out.println("> DEBUG: "+ (int) danio_realizado);
 
-        return new Stat((int) -danio_realizado, 0, 0, 0, 0);
+        return new Stat((int) danio_realizado, 0, 0, 0, 0);
     }
 
     /**
@@ -90,7 +90,7 @@ public class Personaje{
             stat = Stat.aplicarStats(stat, calcularDefensa(80));
             defensa = true;
         } else {
-            stat = Stat.aplicarStats(stat, calcularDefensa(-80));
+            stat = Stat.desAplicarStats(stat, calcularDefensa(80));
             defensa = false;
         }
     }
@@ -100,7 +100,7 @@ public class Personaje{
      * @param personaje Personaje al cual deseamos atacar.
      */
     public void atacar(Personaje personaje) {
-        personaje.stat = Stat.aplicarStats(personaje.stat, calcularAtaque(stat.stamina));
+        personaje.stat = Stat.desAplicarStats(personaje.stat, calcularAtaque(stat.stamina));
     }
 
     /**
@@ -112,11 +112,59 @@ public class Personaje{
     }
 
     /**
+     * Desaplica los efectos de Stat del item seleccionado.
+     * @param item Es el item que deseamos que pierda los efectos.
+     */
+    public void desEquipar(Item item) {
+        stat = Stat.desAplicarStats(stat, item.obtenerStat());
+    }
+
+    /**
      * Metodo que aplica los efectos de estado de gastar o sumar stamina.
      * @param stamina La estamina que se desea agregar o sacar. Tiene que ser un entero.
      */
     public void modificarStamina(int stamina) {
-        stat = Stat.aplicarStats(stat, calcularStamina(stamina));
+        // Calculamos la nueva stamina.
+        Stat nuevo_stamina = calcularStamina(stamina);
+
+        // Sumamos la nueva stamina a la estamina vieja.
+        int suma_stamina = stat.stamina + nuevo_stamina.stamina;
+
+        // Verificamos que la stamina final se encuentre entre el rango de 0 y 100.
+        int stamina_final = Math.max(0, Math.min(100, suma_stamina));
+
+        // Actualizamos el nuevo valor de stamina.
+        Stat stamina_ajustado = new Stat(
+                0,
+                stamina_final - stat.stamina,
+                0,
+                0,
+                0
+        );
+
+        stat = Stat.aplicarStats(stat, stamina_ajustado);
+    }
+
+    /**
+     * Este metodo se encarga de modificar la cantidad de vida que posee el personaje.
+     * @param cantidad La cantidad de vida que deseemos que se le agregue o saque al personaje.
+     */
+    public void modificarVida(int cantidad) {
+        Stat nueva_vida = new Stat(cantidad, 0, 0, 0, 0);
+
+        int suma_vida = stat.vida + nueva_vida.vida;
+
+        int vida_final = Math.max(0, Math.min(100, suma_vida));
+
+        Stat vida_ajustada = new Stat(
+                vida_final - stat.vida,
+                0,
+                0,
+                0,
+                0
+        );
+
+        stat = Stat.aplicarStats(stat, vida_ajustada);
     }
 
     /**
@@ -136,21 +184,23 @@ public class Personaje{
     }
 
     /**
+     * Metodo que retorna el inventario del personaje.
+     * @return Un objeto Inventario.
+     */
+    public Inventario getInventario() {
+        return inventario;
+    }
+
+    /**
      * Convierte todos los atributos e informacion en un String para ser mostrado en consola.
      * @return Un StringBuilder convertido a un String para mostrarlo en consola.
      */
     public String toString() {
-
-        String string = "----------------------------------------------------------------------------------------------" +
-                "-------------------------------------------------------------------" +
+        String string = "--------------------------------------------------------------------------------------------" +
                 "\n" +
                 String.format(
                         "%-30s %-10s %-10s %-10s %-10s %-10s", "Nombre:", "Vida", "Stamina", "Ataque", "Defensa",
                         "Inteligencia") +
-
-//                String.format(
-//                        "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, base.vida, base.stamina, base.ataque, base.defensa,
-//                        base.inteligencia) +
                 "\n" +
                 String.format(
                         "%-30s %-10s %-10s %-10s %-10s %-10s", nombre, stat.vida, stat.stamina,

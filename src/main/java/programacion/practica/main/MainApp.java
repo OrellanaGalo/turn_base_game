@@ -13,31 +13,23 @@ import java.util.Scanner;
 public class MainApp {
     public static void main(String[] args) {
         Administrador administrador = new Administrador();
+        Juego juego = new Juego();
 
         List<Item> itemList = administrador.getItemList();
         List<Personaje> playerList = administrador.getPlayerList();
-
-        Stat base = new Stat(100, 100, 10, 10, 10);
-
-        Inventario inventario_000 = new Inventario();
-        Inventario inventario_001 = new Inventario();
-
-        Personaje personaje = new Personaje("Personaje 1", base, inventario_000);
-        Personaje personaje2 = new Personaje("Personaje 2", base, inventario_001);
-
-        Juego juego = new Juego();
+        List<Inventario> inventoryList = administrador.getInventoryList();
 
         Scanner scanner = new Scanner(System.in);
 
         while (true){
             System.out.println("Bienvenido al menu: \n");
-            System.out.println("Opcion 1 -> AGREGAR ITEMS DE LA LISTA GLOBAL DE ITEMS.\n");
-            System.out.println("Opcion 2 -> IMPRIME PERSONAJES.\n");
-            System.out.println("Opcion 3 -> IMPRIME INVENTARIOS Y EQUIPAMIENTOS DE AMBOS PERSONAJES.\n");
+            System.out.println("Opcion 1 -> AGREGAR ITEMS A UN INVENTARIO SELECCIONADO.\n");
+            System.out.println("Opcion 2 -> IMPRIME PERSONAJES EN LA LISTA.\n");
+            System.out.println("Opcion 3 -> IMPRIME INVENTARIO DEL PERSONAJE SELECCIONADO.\n");
             System.out.println("Opcion 4 -> SELECCIONA UN ITEM Y TE LO EQUIPA.\n");
             System.out.println("Opcion 5 -> CREA Y AGREGA UN PERSONAJE.\n");
             System.out.println("Opcion 6 -> PELEAR.\n");
-            System.out.println("Opcion 7 -> PERSONAJE 1 DESCANSA UN TURNO.\n");
+            System.out.println("Opcion 7 -> DESEQUIPA EL ITEM SELECCIONADO.\n");
             System.out.print(":");
 
             int numero;
@@ -45,60 +37,74 @@ public class MainApp {
 
             switch (numero){
                 case 1:
-                    System.out.println("AGREGAR ITEMS DE LA LISTA GLOBAL DE ITEMS.");
                     System.out.println(administrador);
 
-                    int entrada_001 = scanner.nextInt();
-                    Item obj = itemList.get(entrada_001);
+                    System.out.println("< NRO DE ITEM: >");
+                    int ingreso = scanner.nextInt();
+                    Item obj = itemList.get(ingreso);
 
-                    inventario_000.agregarItem(obj);
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+                    System.out.println(inventoryList);
+                    System.out.println("< INVENTARIO AL QUE DESEAS AGREGARLO: >");
+                    int ingreso_dos = scanner.nextInt();
+
+                    inventoryList.get(ingreso_dos).agregarItem(obj);
+
+                    System.out.println("\t< Si desea salir del inventario presione '1'.>");
 
                     if(scanner.nextInt() == 1){
                         break;
                     }
 
                 case 2:
-                    System.out.println("IMPRIME PERSONAJES.");
-                    System.out.println(personaje);
-                    System.out.println(personaje2);
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+                    System.out.println(playerList);
+
+                    System.out.println("\t< Si desea salir del inventario presione '1'.>");
 
                     if(scanner.nextInt() == 1){
                         break;
                     }
 
                 case 3:
-                    System.out.println("IMPRIME INVENTARIOS Y EQUIPAMIENTOS DE AMBOS PERSONAJES.");
-                    System.out.println(inventario_000);
-                    System.out.println("\n--------------------------------------------------------\n");
-                    System.out.println(inventario_001);
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+                    System.out.println("< PERSONAJE >");
+                    int jugador = scanner.nextInt();
+
+                    System.out.println(playerList.get(jugador).getInventario());
+
+                    System.out.println("\t< Si desea salir del inventario presione '1'.>");
 
                     if(scanner.nextInt() == 1){
                         break;
                     }
 
                 case 4:
-                    System.out.println("SELECCIONA UN ITEM Y TE LO EQUIPA.");
+                    System.out.println("< PERSONAJE: >");
+                    int personaje_in = scanner.nextInt();
 
-                    int entrada = scanner.nextInt();
-                    Item objetoSeleccionado = inventario_000.seleccionarItem(entrada);
+                    Personaje personaje = playerList.get(personaje_in);
+                    Inventario inventario = personaje.getInventario();
 
-                    inventario_000.equiparItem(objetoSeleccionado);
-                    personaje.equipar(objetoSeleccionado);
+                    System.out.println(inventario);
 
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+                    System.out.println("< ITEM: >");
+                    int objeto = scanner.nextInt();
+
+                    Item objetoSeleccionado = inventario.seleccionarItem(objeto);
+
+                    inventario.equiparItem(objetoSeleccionado);
+                    playerList.get(personaje_in).equipar(objetoSeleccionado);
+
+                    System.out.println("\t< Si desea salir del inventario presione '1'.>");
 
                     if(scanner.nextInt() == 1){
                         break;
                     }
 
                 case 5:
-                    System.out.println("CREA Y AGREGA UN PERSONAJE.");
-                    playerList.add(juego.crearPersonaje());
-                    System.out.println(playerList);
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+                    personaje = juego.crearPersonaje();
+                    playerList.add(personaje);
+                    inventoryList.add(personaje.getInventario());
+
+                    System.out.println("\t< Si desea salir del inventario presione '1'.>");
 
                     if(scanner.nextInt() == 1){
                         break;
@@ -107,27 +113,38 @@ public class MainApp {
                 case 6:
                     System.out.println(playerList);
 
-                    System.out.println("\nIngresa al primer personaje que desees: ");
-                    int player = scanner.nextInt();
+                    System.out.println("\n< INGRESA EL PERSONAJE QUE COMIENZA LA PELEA. >");
+                    int player_001 = scanner.nextInt();
 
-                    System.out.println("\nIngresa al segundo personaje que desees: ");
-                    int player_2 = scanner.nextInt();
+                    System.out.println("\n< INGRESA EL SEGUNDO PELEADOR. >");
+                    int player_002 = scanner.nextInt();
 
-                    personaje = playerList.get(player);
-                    personaje2 = playerList.get(player_2);
+                    juego.pelear(playerList.get(player_001), playerList.get(player_002));
 
-                    juego.pelear(personaje, personaje2);
-
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+                    System.out.println("\t< Si desea salir del inventario presione '1'.>");
 
                     if(scanner.nextInt() == 1){
                         break;
                     }
 
                 case 7:
-                    System.out.println("PERSONAJE 1 DESCANSA UN TURNO.");
-                    personaje.modificarStamina(+50);
-                    System.out.println("\t> Si desea salir del inventario presiones '1'.");
+                    System.out.println("< PERSONAJE: >");
+                    int pj_in = scanner.nextInt();
+
+                    personaje = playerList.get(pj_in);
+                    inventario = personaje.getInventario();
+
+                    System.out.println(inventario);
+
+                    System.out.println("< ITEM: >");
+                    int ob = scanner.nextInt();
+
+                    Item objetoSeleccionado_01 = inventario.seleccionarItemEnEquipamiento(ob);
+
+                    inventario.desEquiparItem(objetoSeleccionado_01);
+                    playerList.get(pj_in).desEquipar(objetoSeleccionado_01);
+
+                    System.out.println("\t< Si desea salir del inventario presione '1'.>");
 
                     if(scanner.nextInt() == 1){
                         break;

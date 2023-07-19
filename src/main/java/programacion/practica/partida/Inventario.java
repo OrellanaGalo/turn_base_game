@@ -64,8 +64,13 @@ public class Inventario {
      * Remueve un item de la lista de equipamiento.
      * @param item El item que se desea remover.
      */
-    public void desequiparItem(Item item) {
-        this.equipamiento.remove(item);
+    public void desEquiparItem(Item item) {
+        if(equipamiento.contains(item)) {
+            equipamiento.remove(item);
+        } else {
+            // Esto deberia ser una excepcion.
+            System.out.println("El item no esta equipado");
+        }
     }
 
     /**
@@ -79,18 +84,28 @@ public class Inventario {
     }
 
     /**
+     * Selecciona un item del equipamiento y lo retorna. Este metodo esta pensado para funcionar con desequiparItem.
+     * @param posicion La posicion del item dentro de la lista del equipamiento.
+     */
+    public Item seleccionarItemEnEquipamiento(int posicion) {
+        return equipamiento.get(posicion);
+    }
+
+    /**
      * Se encarga de mostrar la informacion de ambas listas en consola.
      * @return Devuelve un String que luego se muestra.
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int contador = 0;
+        int pos = 0;
+        int pos_equipamiento = 0;
 
-        sb.append("Inventario").append("\n").append("\n");
+        sb.append("\n").append("------------------< Inventario >------------------").append("\n");
 
-        sb.append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\n");
+        sb.append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\n");
 
         for(Item item : items){
             String string_items = item.toString();
@@ -99,10 +114,11 @@ public class Inventario {
             String valor_item = partes[1].trim();
 
             String numeros_formateados = String.format("%-10s", valor_item);
-            String linea = String.format("%-40s -> %s", nombre_de_item, numeros_formateados);
+            String linea = String.format("%-4s %-40s -> %s", pos, nombre_de_item, numeros_formateados);
 
             sb.append(linea);
             contador++;
+            pos++;
 
             if (contador % 3 == 0) {
                 sb.append("\n");
@@ -111,11 +127,11 @@ public class Inventario {
             }
         }
 
-        sb.append("\n\n").append("Elementos equipados").append("\n").append("\n");
+        sb.append("\n").append("------------------< Elementos equipados >------------------").append("\n");
 
-        sb.append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-40s %-10s", "Nombre del item:", "   Stats:")).append("\n");
+        sb.append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\n");
 
         for(Item item : equipamiento){
             String string_items = item.toString();
@@ -124,10 +140,11 @@ public class Inventario {
             String valor_item = partes[1].trim();
 
             String numeros_formateados = String.format("%-10s", valor_item);
-            String linea = String.format("%-40s -> %s", nombre_de_item, numeros_formateados);
+            String linea = String.format("%-4s %-40s -> %s", pos_equipamiento, nombre_de_item, numeros_formateados);
 
             sb.append(linea);
             contador++;
+            pos_equipamiento++;
 
             if (contador % 3 == 0) {
                 sb.append("\n");
