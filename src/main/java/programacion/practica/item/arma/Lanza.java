@@ -1,7 +1,9 @@
 package programacion.practica.item.arma;
 
 /**
- * completar.
+ * Esta clase representa una lanza en el juego. Las lanzas son armas que se utilizan principalmente para aumentar o
+ * disminuir el stat de ataque. Estas también cuentan con el atributo 'condicion' que representa el estado actual del
+ * arma y cómo el ataque de esta varía en función de la condición.
  */
 public class Lanza extends Arma{
     /**

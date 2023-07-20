@@ -1,12 +1,17 @@
 package programacion.practica.partida;
 
 import programacion.practica.item.Item;
+import programacion.practica.item.arma.Arma;
+import programacion.practica.item.armadura.Armadura;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta clase se encarga de manejar todo lo correspondiente al inventario del personaje y su equipamiento.
+ * La clase `Inventario` se encarga de manejar todo lo correspondiente al inventario del personaje y su equipamiento en
+ * el juego. El inventario es el espacio donde el personaje puede almacenar y gestionar los items que ha adquirido
+ * durante la partida, como armas, armaduras, accesorios y consumibles. Además, esta clase también permite al personaje
+ * equipar y desequipar objetos para mejorar sus estadísticas y habilidades durante el juego.
  */
 public class Inventario {
     /**
@@ -17,14 +22,14 @@ public class Inventario {
     /**
      * Equipamiento del personaje, lo que este presente en este atributo modifica directamente los stats del personaje.
      */
-    private List<Item> equipamiento;
+    private Item[] equipamiento;
 
     /**
      * Constructor de la clase.
      */
     public Inventario() {
         this.items = new ArrayList<>();
-        this.equipamiento = new ArrayList<>();
+        this.equipamiento = new Item[6];
     }
 
     /**
@@ -44,54 +49,119 @@ public class Inventario {
     }
 
     /**
+     * Selecciona un item del inventario y lo retorna.
+     * @param posicion La posicion del item dentro de la lista.
+     */
+    public Item seleccionarItemEnInventario(int posicion){
+        return items.get(posicion);
+    }
+
+    /**
+     * Retorna el item del equipamiento en la posicion indicada.
+     * @param posicion Es la posicion del item en el equipamiento que se desea obtener.
+     * @return El item en la posicion indicada o, null si no hay item.
+     */
+    public Item seleccionarItemEnEquipamiento(int posicion) {
+        if (posicion >= 0 && posicion < equipamiento.length) {
+            return equipamiento[posicion];
+        } else {
+            System.out.println("< La posicion introducida no es valida. >");
+            return null;
+        }
+    }
+
+    /**
      * Equipa un item seleccionado del inventario. Tambien se escarga de verificar que un item de la misma clase no este
      * presente ya en el equipamiento.
      * @param item Es el item que se desea equipar.
      */
     public boolean equiparItem(Item item) {
-        if(equipamiento.stream().anyMatch(e -> e.equals(item))){
-            // Agregar excepciones.
-            System.out.println("Ya hay un item de la misma clase equipado.");
-        } else if(items.contains(item)){
-            equipamiento.add(item);
+        if(item instanceof Arma) {
+            if (equipamiento[0] != null) {
+                System.out.println("< Espacio de arma ocupado. >");
+                return false;
+            }
+            equipamiento[0] = item;
             return true;
+        } else if (item instanceof Armadura nuevaArmadura) {
+            Class<? extends Armadura> tipoArmadura = nuevaArmadura.getClass();
+
+            for (int i = 1; i < equipamiento.length; i++) {
+                Item itemEquipado = equipamiento[i];
+
+                if (itemEquipado == null) {
+                    equipamiento[i] = item;
+                    return true;
+                } else if (itemEquipado instanceof Armadura && itemEquipado.getClass() == tipoArmadura) {
+                    System.out.println("< Te has cambiado de equipamiento. >");
+                    equipamiento[i] = item;
+                    return true;
+                }
+            }
         } else {
-            // agregar excepciones.
-            System.out.println("El item no esta presente en el inventario.");
+            // Aca va que deberia pasar si me quiero equipar con otro tipo de objeto de instancia Item.
+            System.out.println(" - ");
         }
 
+        System.out.println("< No hay espacio disponible para ese item. >");
         return false;
     }
 
     /**
-     * Remueve un item de la lista de equipamiento.
-     * @param item El item que se desea remover.
+     * Remueve un item de equipamiento.
+     * @param item Item que se desea remover.
+     * @return True si se pudo remover el item del equipamiento, false en caso de que el item no este en esa posicion.
      */
-    public void desequiparItem(Item item) {
-        if(equipamiento.contains(item)) {
-            equipamiento.remove(item);
-        } else {
-            // Esto deberia ser una excepcion.
-            System.out.println("El item no esta equipado");
+    public boolean removerItemDeEquipamiento(Item item) {
+        for (int i = 0; i < equipamiento.length; i++) {
+            if (equipamiento[i] == item) {
+                equipamiento[i] = null;
+                reorganizarEquipamiento();
+                return true;
+            }
         }
+
+        System.out.println("< El item no esta en el equipamiento. >");
+        return false;
     }
 
     /**
-     * Selecciona un item del inventario y lo retorna. Este metodo esta pensado para funcionar en conjunto con equipar
-     * Item.
-     * @param posicion La posicion del item dentro de la lista.
+     * Metodo que recorre la lista de equipamiento y filtra todos los objetos de la clase Armadura, para finalmente
+     * sumar todos sus stats en uno solo.
+     * @return Un Stat con la suma de los stats de todas las Armaduras presentes en el equipamiento.
      */
-    public Item seleccionarItemEnInventario(int posicion){
-        // Aca deberia haber una excepcion en caso de que se seleccione una posicion que excede la longitud de la lista.
-        return items.get(posicion);
+    public Stat obtenerStatsArmaduras() {
+        List<Stat> statsArmaduras = new ArrayList<>();
+
+        for (Item item : equipamiento) {
+            if (item instanceof Armadura) {
+                statsArmaduras.add(item.obtenerStat());
+            }
+        }
+
+        Stat statsTotales = new Stat(0, 0, 0, 0, 0);
+        for (Stat statArmadura : statsArmaduras) {
+            statsTotales = Stat.aplicarStats(statsTotales, statArmadura);
+        }
+
+        return statsTotales;
     }
 
     /**
-     * Selecciona un item del equipamiento y lo retorna. Este metodo esta pensado para funcionar con desequiparItem.
-     * @param posicion La posicion del item dentro de la lista del equipamiento.
+     * Reorganiza el array de equipamiento para mantener el espacio [0] siempre disponible para el arma.
      */
-    public Item seleccionarItemEnEquipamiento(int posicion) {
-        return equipamiento.get(posicion);
+    private void reorganizarEquipamiento() {
+        Item[] nuevoEquipamiento = new Item[equipamiento.length];
+        int nuevoIndice = 1;
+
+        for (Item item : equipamiento) {
+            if (item != null) {
+                nuevoEquipamiento[nuevoIndice] = item;
+                nuevoIndice++;
+            }
+        }
+
+        equipamiento = nuevoEquipamiento;
     }
 
     /**
@@ -102,13 +172,13 @@ public class Inventario {
         StringBuilder sb = new StringBuilder();
         int contador = 0;
         int pos = 0;
-        int pos_equipamiento = 0;
+        int posEquipamiento = 0;
 
         sb.append("\n").append("------------------< Inventario de >------------------").append("\n");
 
-        sb.append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\n");
+        sb.append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\n");
 
         for(Item item : items){
             String string_items = item.toString();
@@ -116,7 +186,7 @@ public class Inventario {
             String nombre_de_item = partes[0].trim();
             String valor_item = partes[1].trim();
 
-            String numeros_formateados = String.format("%-5s", valor_item);
+            String numeros_formateados = String.format("%-20s", valor_item);
             String linea = String.format("%-4s %-40s -> %s", pos, nombre_de_item, numeros_formateados);
 
             sb.append(linea);
@@ -132,24 +202,26 @@ public class Inventario {
 
         sb.append("\n").append("------------------< Elementos equipados >------------------").append("\n");
 
-        sb.append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
-                .append(String.format("%-4s %-40s %-6s", "Pos:", "Nombre del item:", "   Stats:")).append("\n");
+        sb.append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
+                .append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\n");
 
-        for(Item item : equipamiento){
-            String string_items = item.toString();
-            String[] partes = string_items.split("->");
-            String nombre_de_item = partes[0].trim();
-            String valor_item = partes[1].trim();
+        for(int i = 0; i < equipamiento.length; i++) {
+            if (equipamiento[i] != null) {
+                String stringItems = equipamiento[i].toString();
+                String[] partes = stringItems.split("->");
+                String nombreItem = partes[0].trim();
+                String valorItem = partes[1].trim();
 
-            String numeros_formateados = String.format("%-10s", valor_item);
-            String linea = String.format("%-4s %-40s -> %s", pos_equipamiento, nombre_de_item, numeros_formateados);
+                String numerosFormateados = String.format("%-20s", valorItem);
+                String linea = String.format("%-4s %-40s -> %s", posEquipamiento, nombreItem, numerosFormateados);
 
-            sb.append(linea);
-            contador++;
-            pos_equipamiento++;
+                sb.append(linea);
+            } else {
+                sb.append(String.format("%-4s %-40s -> %s", i, "Vacio", "--------------------"));
+            }
 
-            if (contador % 3 == 0) {
+            if (i % 3 == 0) {
                 sb.append("\n");
             } else {
                 sb.append("\t");

@@ -7,7 +7,13 @@ import programacion.practica.partida.Stat;
 import java.util.Scanner;
 
 /**
- * La clase que se encarga de manejar todo lo relacionado al personaje y sus diferentes atributos.
+ * La clase `Personaje` se encarga de manejar todo lo relacionado al personaje jugable en el juego y sus diferentes
+ * atributos. Un personaje representa al protagonista o al avatar controlado por el jugador durante la partida y puede
+ * tener habilidades, estadísticas y equipamiento que afectan su rendimiento y capacidad para enfrentar desafíos.
+ * *
+ * En esta clase, se definen y gestionan los atributos principales del personaje, como la vida, la stamina, el ataque,
+ * la defensa y la inteligencia. Además, esta clase también permite al personaje equipar y desequipar objetos, así como
+ * realizar acciones como atacar, defenderse y utilizar consumibles durante el juego.
  */
 public class Personaje {
     /**
@@ -47,14 +53,13 @@ public class Personaje {
     /**
      * Metodo por el cual atacamos al personaje que elijamos.
      * @param personaje Personaje al cual deseamos atacar.
-     * @param stat Stat del cual se obtiene el danio que se le aplica al personaje que atacamos.
      */
-    public void atacar(Personaje personaje, Stat stat) {
-        Stat nuevo_ataque = stat;
-
-        if (stat.verificarStamina(30)) {
+    public void atacar(Personaje personaje) {
+        if (this.stat.verificarStamina(30)) {
             modificarStamina(-30);
-            personaje.stat = Stat.desAplicarStats(personaje.stat, nuevo_ataque);
+            // El entero que tiene que recibir es el calculo del stat ataque procesado por diferentes variables.
+            personaje.modificarVida(-(int)(stat.calcularAtaque(personaje.stat) * 0.5));
+            System.out.println(-(int)(stat.calcularAtaque(personaje.stat) * 0.5));
         } else {
             // Mandar excepcion.
             System.out.println("< No tenes stamina para atacar. >");
@@ -63,19 +68,17 @@ public class Personaje {
 
     /**
      * Metodo para defenderse por un turno.
-     * @param stat Stat que aporta armadura por el turno.
+     * @param statArmadura Stat que aporta armadura por el turno.
      */
-    public void defender(Stat stat) {
-        Stat nueva_armadura = stat;
-
+    public void defender(Stat statArmadura) {
         if (stat.verificarStamina(30)) {
             modificarStamina(-30);
             isDefensa = !isDefensa;
 
             if (!isDefensa) {
-                this.stat = Stat.aplicarStats(stat, nueva_armadura);
+                stat = Stat.aplicarStats(stat, statArmadura);
             } else {
-                this.stat = Stat.desAplicarStats(stat, nueva_armadura);
+                stat = Stat.desAplicarStats(stat, statArmadura);
             }
         } else {
             // Mandar excepcion.
@@ -104,11 +107,13 @@ public class Personaje {
                 switch (opcion) {
                     case 1 -> {
                         System.out.println(personaje_001.nombre + " ataca a " + personaje_002.nombre);
-                        personaje_001.atacar(personaje_002, personaje_001.stat);
+                        personaje_001.atacar(
+                                personaje_002
+                        );
                     }
                     case 2 -> {
                         System.out.println(personaje_001.nombre + " se defiende de " + personaje_002.nombre);
-                        personaje_001.defender(personaje_001.stat);
+                        personaje_001.defender(personaje_001.inventario.obtenerStatsArmaduras());
                     }
                     case 3 -> {
                         System.out.println(personaje_001.nombre + " descansa.");
@@ -123,11 +128,11 @@ public class Personaje {
                 switch (opcion) {
                     case 1 -> {
                         System.out.println(personaje_002.nombre + " ataca a " + personaje_001.nombre);
-                        personaje_002.atacar(personaje_001, personaje_002.stat);
+                        personaje_002.atacar(personaje_001);
                     }
                     case 2 -> {
                         System.out.println(personaje_002.nombre + " se defiende de " + personaje_001.nombre);
-                        personaje_002.defender(personaje_001.stat);
+                        personaje_002.defender(personaje_001.inventario.obtenerStatsArmaduras());
                     }
                     case 3 -> {
                         System.out.println(personaje_002.nombre + " descansa.");
@@ -156,7 +161,13 @@ public class Personaje {
      * @param item Es el item que se desea equipar.
      */
     public void equiparItem(Item item) {
-        this.stat = Stat.aplicarStats(stat, item.obtenerStat());
+        if (inventario.equiparItem(item)) {
+            Stat nuevosStats = item.obtenerStat();
+
+            this.stat = Stat.aplicarStats(this.stat, nuevosStats);
+            System.out.println("DEBUG: " + item);
+            System.out.println("DEBUG - stats despues de equipar: " + this.stat.toString(true));
+        }
     }
 
     /**
@@ -164,16 +175,9 @@ public class Personaje {
      * @param item Es el item que deseamos que se desequipe.
      */
     public void desequiparItem(Item item) {
-        this.stat = Stat.desAplicarStats(stat, item.obtenerStat());
-    }
-
-    /**
-     * Metodo que aplica los efectos de estado de gastar o sumar stamina.
-     * @param stamina La estamina que se desea agregar o sacar. Tiene que ser un entero.
-     */
-    public void modificarStamina(int stamina) {
-        Stat nueva_stamina = stat.calcularStamina(stamina);
-        this.stat = Stat.aplicarStats(stat, nueva_stamina);
+        assert item != null;
+        inventario.removerItemDeEquipamiento(item);
+        stat = Stat.desAplicarStats(stat, item.obtenerStat());
     }
 
     /**
@@ -181,10 +185,23 @@ public class Personaje {
      * @param vida La cantidad de vida que deseemos que se le agregue o saque al personaje.
      */
     public void modificarVida(int vida) {
-        Stat nueva_vida = stat.calcularVida(vida);
-        this.stat = Stat.aplicarStats(stat, nueva_vida);
+        Stat nuevaVida = stat.calcularVida(vida);
+        stat = Stat.aplicarStats(stat, nuevaVida);
     }
 
+    /**
+     * Metodo que aplica los efectos de estado de gastar o sumar stamina.
+     * @param stamina La estamina que se desea agregar o sacar. Tiene que ser un entero.
+     */
+    public void modificarStamina(int stamina) {
+        Stat nuevaStamina = stat.calcularStamina(stamina);
+        stat = Stat.aplicarStats(stat, nuevaStamina);
+    }
+
+    /**
+     * Metodo que devuelve el inventario del personaje.
+     * @return Retorna un objeto de instancia inventario.
+     */
     public Inventario getInventario() {
         return inventario;
     }

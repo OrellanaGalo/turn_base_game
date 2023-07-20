@@ -11,7 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * En esta clase van a ir todos los objetos que van a haber en el juego.
+ * La clase `Administrador` se encarga de manejar todos los objetos o items presentes en el juego. Estos items pueden
+ * ser armas, armaduras, accesorios o consumibles, y son elementos fundamentales para la jugabilidad y la mecánica del
+ * juego. Además, esta clase también maneja las listas de personajes jugables y sus respectivos inventarios y
+ * equipamientos.
+ * En esta clase, se inicializan y almacenan todos los objetos predefinidos que estarán disponibles para los personajes
+ * durante la partida. Cada objeto, ya sea un arma, una armadura, un accesorio o un consumible, se crea con sus
+ * características específicas, como nombre, estadísticas y estado actual (condición para armas o defensa para
+ * armaduras).
+ * La clase `Administrador` es responsable de agregar los objetos a las listas correspondientes, como la lista de items,
+ * la lista de personajes jugables y la lista de inventarios individuales.
  */
 public class Administrador {
     /**

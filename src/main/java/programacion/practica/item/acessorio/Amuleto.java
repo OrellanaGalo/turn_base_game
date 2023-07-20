@@ -1,7 +1,10 @@
 package programacion.practica.item.acessorio;
 
 /**
- * completar.
+ * La clase `Amuleto` representa un tipo de accesorio en el juego. Los amuletos son objetos que se pueden equipar en el
+ * inventario de un personaje para proporcionar bonificaciones o efectos especiales. Los amuletos pueden otorgar mejoras
+ * en las estadísticas del personaje, aumentar la resistencia a ciertos tipos de daño o proporcionar habilidades
+ * adicionales.
  */
 public class Amuleto extends Accesorio{
     /**

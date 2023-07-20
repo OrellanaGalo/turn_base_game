@@ -10,11 +10,6 @@ import programacion.practica.partida.Stat;
  */
 public abstract class Arma extends Item{
     /**
-     * Ataque base que posee el arma.
-     */
-    private Stat stat;
-
-    /**
      * Condicion actual en la cual se encuentra el arma.
      */
     private int condicion;
@@ -22,12 +17,11 @@ public abstract class Arma extends Item{
     /**
      * Constructor de la clase abstracta Arma.
      * @param nombre Nombre del arma.
-     * @param ataque Ataque base del arma.
+     * @param ataque Es el danio que efectua el arma.
      * @param condicion Condicion total del arma.
      */
     public Arma(String nombre, int ataque, int condicion) {
-        super(nombre);
-        this.stat = new Stat(0, 0, ataque, 0, 0);
+        super(nombre, new Stat(0, 0, ataque, 0, 0));
         this.condicion = condicion;
     }
 
@@ -35,7 +29,7 @@ public abstract class Arma extends Item{
      * Retorna una representacion a texto de los atributos de este arma.
      */
     public String toString() {
-        return super.toString() + stat.toString(true) + "//" + condicion + ']';
+        return super.toString() + obtenerStat().toString(true) + ']';
     }
 
     /**
@@ -44,6 +38,6 @@ public abstract class Arma extends Item{
      * @return Retorna un entero que indica la nueva condicion del arma.
      */
     public int gastarCondicion(int variable) {
-        return condicion - variable;
+        return this.condicion - variable;
     }
 }

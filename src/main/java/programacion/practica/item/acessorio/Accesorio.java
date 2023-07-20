@@ -8,18 +8,12 @@ import programacion.practica.partida.Stat;
  */
 public abstract class Accesorio extends Item{
     /**
-     * Atributo inteligencia.
-     */
-    private Stat stat;
-
-    /**
      * Constructor de la clase abstracta Accesorio.
      * @param nombre Nombre del accesorio.
      * @param inteligencia Inteligencia que aporta el item al personaje.
      */
     protected Accesorio(String nombre, int inteligencia) {
-        super(nombre);
-        this.stat = new Stat(0, 0, 0, 0, inteligencia);
+        super(nombre, new Stat(0, 0, 0, 0, inteligencia));
     }
 
     /**
@@ -27,6 +21,6 @@ public abstract class Accesorio extends Item{
      * @return Retorna un String con la informacion de la clase padre sumado a nuevos atributos.
      */
     public String toString(){
-        return super.toString() + stat.toString(true) + ']';
+        return super.toString() + obtenerStat().toString(true) + ']';
     }
 }

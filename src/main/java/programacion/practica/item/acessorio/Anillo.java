@@ -1,7 +1,10 @@
 package programacion.practica.item.acessorio;
 
 /**
- * completar.
+ * La clase `Anillo` representa un tipo de accesorio en el juego. Los anillos son objetos que se pueden equipar en el
+ * inventario de un personaje para proporcionar bonificaciones o efectos especiales. Los anillos pueden otorgar mejoras
+ * en las estadísticas del personaje, aumentar la resistencia a ciertos tipos de daño o proporcionar habilidades
+ * adicionales.
  */
 public class Anillo extends Accesorio{
     /**
@@ -10,7 +13,7 @@ public class Anillo extends Accesorio{
     private int variable;
 
     /**
-     * completar...
+     * Constructor de la clase anillo.
      * @param nombre Nombre del Anillo.
      * @param inteligencia Inteligencia por la cual se modifican los stats de personaje al equipar el Anillo.
      * @param variable ... Todavia tengo que elegir que hacen los anillos.

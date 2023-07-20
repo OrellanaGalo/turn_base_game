@@ -1,7 +1,11 @@
 package programacion.practica.partida;
 
 /**
- * Es la clase que se encarga de manejar las estadisticas de los jugadores.
+ * La clase `Stat` representa las estadísticas de un personaje o un objeto en el juego. Estas estadísticas incluyen
+ * valores como vida, stamina, ataque, defensa e inteligencia, que determinan las capacidades y características del
+ * personaje o del objeto en el juego. La clase `Stat` es inmutable, lo que significa que una vez que se crea una
+ * instancia, sus valores no pueden modificarse directamente. En cambio, para aplicar cambios en las estadísticas, se
+ * utilizan métodos específicos para calcular y retornar nuevas instancias de `Stat` con los valores actualizados.
  */
 public class Stat {
     /**
@@ -56,6 +60,20 @@ public class Stat {
     }
 
     /**
+     * Calcula la vida y la modifica en funcion de la vida agregada en el argumento.
+     * @param vida Es un entero que representa la vida que deseamos agregar.
+     * @return Retorna un Stat con los nuevos valores de vida.
+     */
+    public Stat calcularVida(int vida) {
+        int nueva_vida = this.vida + vida;
+        nueva_vida = Math.max(0, Math.min(100, nueva_vida));
+
+        int diferencia_vida = nueva_vida - this.vida;
+
+        return new Stat(diferencia_vida, 0, 0, 0, 0);
+    }
+
+    /**
      * Calcula la stamina y la modifica en funcion de la stamina agregada en el argumento.
      * @param stamina Es un entero que representa la stamina que deseamos agregar.
      * @return Retorna un Stat con los nuevos valores de stamina.
@@ -70,17 +88,33 @@ public class Stat {
     }
 
     /**
-     * Calcula la vida y la modifica en funcion de la vida agregada en el argumento.
-     * @param vida Es un entero que representa la vida que deseamos agregar.
-     * @return Retorna un Stat con los nuevos valores de vida.
+     * Calcula el daño de ataque resultante después de considerar el stamina del atacante y la defensa del
+     * personaje atacado.
+     * @param defensaAjena La Stat de defensa del personaje enemigo.
+     * @return Un entero que representa el dano final efectuado por el atacante.
      */
-    public Stat calcularVida(int vida) {
-        int nueva_vida = this.vida + vida;
-        nueva_vida = Math.max(0, Math.min(100, nueva_vida));
+    public int calcularAtaque(Stat defensaAjena) {
+        int diferenciaStamina = 100 - this.stamina;
 
-        int diferencia_vida = nueva_vida - this.vida;
+        double factorStamina = 0.5 + (diferenciaStamina / (double) 100) * 0.5;
 
-        return new Stat(diferencia_vida, 0, 0, 0, 0);
+        int danioInicial = this.ataque;
+        int danioReduccionDefensa = Math.max(defensaAjena.defensa - danioInicial, 0);
+        int danioReducido = danioInicial - danioReduccionDefensa;
+
+        int danioFinal = (int) (danioReducido * factorStamina);
+        if (danioFinal < 0) {
+            danioFinal = 5;
+        }
+
+        return danioFinal;
+    }
+
+    /**
+     * Falta implementar.
+     */
+    public int calcularDefensa() {
+        return this.defensa;
     }
 
     /**
@@ -135,6 +169,7 @@ public class Stat {
      * @param o El objeto con el cual se compara Stat.
      * @return True si ambos objetos son iguales o False si son distintos.
      */
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

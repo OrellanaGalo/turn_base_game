@@ -4,14 +4,15 @@ import programacion.practica.personaje.Personaje;
 import java.util.Scanner;
 
 /**
- * Esta clase se encarga de manejar todas las mecanicas principales del juego.
+ * La clase `Juego` se encarga de manejar todas las mecánicas principales del juego. Esta clase es el corazón del juego
+ * y se encarga de coordinar todas las interacciones entre los personajes, los objetos y las acciones del jugador
+ * durante la partida.
  */
 public class Juego {
     /**
      * Constructor de la clase.
      */
-    public Juego() {
-    }
+    public Juego() {}
 
     /**
      * Este metodo es utilizado para la creacion de personajes en el juego.
@@ -19,9 +20,9 @@ public class Juego {
      */
     public Personaje crearPersonaje() {
         Scanner scanner = new Scanner(System.in);
+        String nombre;
         Stat base = new Stat(100, 100, 10, 10, 10);
         Inventario inventario = new Inventario();
-        String nombre;
 
         System.out.println("\n< Ingrese el nombre del nuevo personaje: >");
         nombre = scanner.next();
