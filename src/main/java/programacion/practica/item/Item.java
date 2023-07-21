@@ -1,7 +1,6 @@
 package programacion.practica.item;
 
 import programacion.practica.partida.Stat;
-
 import java.util.Objects;
 
 /**

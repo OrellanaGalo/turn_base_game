@@ -1,5 +1,6 @@
 package programacion.practica.partida;
 
+import programacion.practica.excepciones.IllegalNombreException;
 import programacion.practica.personaje.Personaje;
 import java.util.Scanner;
 
@@ -24,9 +25,14 @@ public class Juego {
         Stat base = new Stat(100, 100, 10, 10, 10);
         Inventario inventario = new Inventario();
 
-        System.out.println("\n< Ingrese el nombre del nuevo personaje: >");
-        nombre = scanner.next();
+        try {
+            System.out.println("\n< Ingrese el nombre del nuevo personaje: >");
+            nombre = scanner.next();
 
-        return new Personaje(nombre, base, inventario);
+            return new Personaje(nombre, base, inventario);
+        } catch (IllegalNombreException e) {
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
     }
 }

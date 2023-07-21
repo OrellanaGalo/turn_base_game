@@ -1,5 +1,8 @@
 package programacion.practica.personaje;
 
+import programacion.practica.excepciones.EquipamientoFullException;
+import programacion.practica.excepciones.IllegalNombreException;
+import programacion.practica.excepciones.ItemNotFoundException;
 import programacion.practica.item.Item;
 import programacion.practica.partida.Inventario;
 import programacion.practica.partida.Stat;
@@ -43,8 +46,13 @@ public class Personaje {
      * Estos pueden ser vida, stamina, ataque, etc.
      * @param inventario Es el inventario del personaje, aca se guardan los items y tambien se controla el equipamiento
      * del personaje.
+     * @throws IllegalNombreException si el nombre del personaje es nulo o vacio.
      */
-    public Personaje(String nombre, Stat base, Inventario inventario){
+    public Personaje(String nombre, Stat base, Inventario inventario) throws IllegalNombreException {
+        if (nombre == null || nombre.isEmpty()) {
+            throw new IllegalNombreException("El nombre del personaje no puede ser nulo o vacio.");
+        }
+
         this.nombre = nombre;
         this.stat = base;
         this.inventario = inventario;
@@ -161,12 +169,13 @@ public class Personaje {
      * @param item Es el item que se desea equipar.
      */
     public void equiparItem(Item item) {
-        if (inventario.equiparItem(item)) {
-            Stat nuevosStats = item.obtenerStat();
-
-            this.stat = Stat.aplicarStats(this.stat, nuevosStats);
-            System.out.println("DEBUG: " + item);
-            System.out.println("DEBUG - stats despues de equipar: " + this.stat.toString(true));
+        try {
+            if (inventario.equiparItem(item)) {
+                Stat nuevosStats = item.obtenerStat();
+                this.stat = Stat.aplicarStats(this.stat, nuevosStats);
+            }
+        } catch (EquipamientoFullException e) {
+            System.out.println("Error al equipar el item: " + e.getMessage());
         }
     }
 
@@ -175,9 +184,13 @@ public class Personaje {
      * @param item Es el item que deseamos que se desequipe.
      */
     public void desequiparItem(Item item) {
-        assert item != null;
-        inventario.removerItemDeEquipamiento(item);
-        stat = Stat.desAplicarStats(stat, item.obtenerStat());
+        try {
+            inventario.removerItemDeEquipamiento(item);
+            stat = Stat.desAplicarStats(stat, item.obtenerStat());
+        } catch (ItemNotFoundException e) {
+            // Aca podemos manejar la excepcion.
+            System.out.println("Error al desequipar el item: " + e.getMessage());
+        }
     }
 
     /**

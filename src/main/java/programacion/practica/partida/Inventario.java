@@ -1,5 +1,7 @@
 package programacion.practica.partida;
 
+import programacion.practica.excepciones.EquipamientoFullException;
+import programacion.practica.excepciones.ItemNotFoundException;
 import programacion.practica.item.Item;
 import programacion.practica.item.arma.Arma;
 import programacion.practica.item.armadura.Armadura;
@@ -44,7 +46,10 @@ public class Inventario {
      * Remueve el item seleccionado del inventario.
      * @param item Item que se desea remover.
      */
-    public void eliminarItem(Item item) {
+    public void eliminarItem(Item item) throws ItemNotFoundException {
+        if (!items.contains(item)) {
+            throw new ItemNotFoundException("El item no se encuentra en el inventario.");
+        }
         this.items.remove(item);
     }
 
@@ -75,7 +80,7 @@ public class Inventario {
      * presente ya en el equipamiento.
      * @param item Es el item que se desea equipar.
      */
-    public boolean equiparItem(Item item) {
+    public boolean equiparItem(Item item) throws EquipamientoFullException {
         if(item instanceof Arma) {
             if (equipamiento[0] != null) {
                 System.out.println("< Espacio de arma ocupado. >");
@@ -98,13 +103,10 @@ public class Inventario {
                     return true;
                 }
             }
+            throw new EquipamientoFullException("No hay espacio disponible para ese item.");
         } else {
-            // Aca va que deberia pasar si me quiero equipar con otro tipo de objeto de instancia Item.
-            System.out.println(" - ");
+            throw new EquipamientoFullException("No es posible equipar ese tipo de objeto.");
         }
-
-        System.out.println("< No hay espacio disponible para ese item. >");
-        return false;
     }
 
     /**
@@ -112,7 +114,7 @@ public class Inventario {
      * @param item Item que se desea remover.
      * @return True si se pudo remover el item del equipamiento, false en caso de que el item no este en esa posicion.
      */
-    public boolean removerItemDeEquipamiento(Item item) {
+    public boolean removerItemDeEquipamiento(Item item) throws ItemNotFoundException {
         for (int i = 0; i < equipamiento.length; i++) {
             if (equipamiento[i] == item) {
                 equipamiento[i] = null;
@@ -121,8 +123,7 @@ public class Inventario {
             }
         }
 
-        System.out.println("< El item no esta en el equipamiento. >");
-        return false;
+        throw new ItemNotFoundException("El item no se encuentra en el equipamiento.");
     }
 
     /**

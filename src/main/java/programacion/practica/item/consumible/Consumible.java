@@ -1,5 +1,6 @@
 package programacion.practica.item.consumible;
 
+import programacion.practica.excepciones.IllegalNombreException;
 import programacion.practica.item.Item;
 import programacion.practica.partida.Stat;
 
@@ -15,7 +16,7 @@ public abstract class Consumible extends Item {
      * @param nombre Nombre del consumible.
      * @param stamina Stamina que va a ser agregada o restada del personaje.
      */
-    public Consumible(String nombre, int vida, int stamina) {
+    public Consumible(String nombre, int vida, int stamina) throws IllegalNombreException {
         super(nombre, new Stat(vida, stamina, 0, 0, 0));
     }
 
