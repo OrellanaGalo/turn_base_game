@@ -136,7 +136,15 @@ public class Stat {
     }
 
     /**
+     * Este metodo esta pensado para ser utilizado solo en los tests.
+     */
+    public int getVida() {
+        return vida;
+    }
+
+    /**
      * Metodo que muestra la informacion de los argumentos presente en esta clase.
+     * @param ignorarCero Un booleano que se utiliza para saber si se tiene que mostrar los valores en 0 del stat o no.
      * @return Retorna un String con todos los elementos.
      */
     public String toString(boolean ignorarCero) {

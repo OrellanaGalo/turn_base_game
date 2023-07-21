@@ -168,29 +168,35 @@ public class Personaje {
      * Aplica los stats del item seleccionado.
      * @param item Es el item que se desea equipar.
      */
-    public void equiparItem(Item item) {
+    public boolean equiparItem(Item item) {
         try {
             if (inventario.equiparItem(item)) {
                 Stat nuevosStats = item.obtenerStat();
                 this.stat = Stat.aplicarStats(this.stat, nuevosStats);
+                return true;
             }
         } catch (EquipamientoFullException e) {
             System.out.println("Error al equipar el item: " + e.getMessage());
         }
+
+        return false;
     }
 
     /**
      * Desaplica los stats del item seleccionado.
      * @param item Es el item que deseamos que se desequipe.
      */
-    public void desequiparItem(Item item) {
+    public boolean desequiparItem(Item item) {
         try {
             inventario.removerItemDeEquipamiento(item);
             stat = Stat.desAplicarStats(stat, item.obtenerStat());
+            return true;
         } catch (ItemNotFoundException e) {
             // Aca podemos manejar la excepcion.
             System.out.println("Error al desequipar el item: " + e.getMessage());
         }
+
+        return false;
     }
 
     /**
@@ -217,6 +223,21 @@ public class Personaje {
      */
     public Inventario getInventario() {
         return inventario;
+    }
+
+    /**
+     * Metodo que devuelve el Stat del personaje.
+     * @return Retorna un objeto de instancia Stat.
+     */
+    public Stat getStat() {
+        return stat;
+    }
+
+    /**
+     * Este metodo solo se utiliza en los tests.
+     */
+    public boolean isDefensa() {
+        return isDefensa;
     }
 
     /**

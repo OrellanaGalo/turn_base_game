@@ -1,4 +1,4 @@
-package programacion.practica.item.acessorio;
+package programacion.practica.item.accesorio;
 
 import programacion.practica.item.Item;
 import programacion.practica.partida.Stat;

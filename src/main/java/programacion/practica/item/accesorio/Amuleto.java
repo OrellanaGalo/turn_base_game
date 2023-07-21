@@ -1,4 +1,4 @@
-package programacion.practica.item.acessorio;
+package programacion.practica.item.accesorio;
 
 /**
  * La clase `Amuleto` representa un tipo de accesorio en el juego. Los amuletos son objetos que se pueden equipar en el

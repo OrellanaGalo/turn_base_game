@@ -1,8 +1,8 @@
 package programacion.practica.partida;
 
 import programacion.practica.item.Item;
-import programacion.practica.item.acessorio.Amuleto;
-import programacion.practica.item.acessorio.Anillo;
+import programacion.practica.item.accesorio.Amuleto;
+import programacion.practica.item.accesorio.Anillo;
 import programacion.practica.item.arma.Lanza;
 import programacion.practica.item.armadura.*;
 import programacion.practica.personaje.Personaje;
