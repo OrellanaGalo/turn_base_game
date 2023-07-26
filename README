@@ -1,1 +1,113 @@
+# Diagrama hecho con Mermaid:
 
+> https://github.com/OrellanaGalo/turn_base_game/blob/main/diagrama.md
+
+# Implementaciones.
+
+> Justificar la existencia de las clase que heredan Armadura, Arma, Accesorio y Consumible. --> Importante.
+
+> Hacer funcionar el metodo desequiparItem de la clase Personaje y RemoverItemDeEquipamiento de la clase Inventario. No funciona especificamente con las Armas.
+
+> Arreglar error de que un peleador puede pelear contra el mismo.
+
+> Arreglar error al defender que permite que un personaje tenga el buffo de la armadura indefinidamente.
+
+> Agregar metodo para poder volver al menu, para evitar casos de softlock.
+
+> Darle funcionalidad al atributo inteligencia y que sirva para aumentar el ataque, asi como que aumente la probabilidad de golpes criticos.
+
+> Agregar la probabilidad de golpes criticos.
+
+# Revisiones Martin.
+
+>  ̶p̶o̶r̶ ̶q̶u̶e̶ ̶h̶a̶y̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶c̶o̶m̶o̶ ̶f̶l̶o̶a̶t̶?̶ ̶e̶s̶ ̶c̶o̶m̶p̶l̶i̶c̶a̶r̶ ̶b̶a̶s̶t̶a̶n̶t̶e̶ ̶l̶a̶s̶ ̶c̶o̶s̶a̶s̶ ̶e̶s̶ ̶m̶a̶s̶ ̶f̶a̶c̶i̶l̶ ̶s̶i̶ ̶m̶e̶t̶e̶s̶ ̶(̶d̶e̶ ̶u̶l̶t̶i̶m̶a̶)̶ ̶u̶n̶ ̶n̶ú̶m̶e̶r̶o̶ ̶m̶a̶s̶
+̶g̶r̶a̶n̶d̶e̶
+
+> ̶ ̶m̶e̶j̶o̶r̶a̶r̶ ̶l̶a̶ ̶o̶r̶g̶a̶n̶i̶z̶a̶c̶i̶ó̶n̶ ̶d̶e̶ ̶l̶o̶s̶ ̶p̶a̶q̶u̶e̶t̶e̶s̶ ̶p̶o̶r̶q̶u̶e̶ ̶a̶h̶o̶r̶a̶ ̶e̶s̶t̶a̶ ̶t̶o̶d̶o̶ ̶s̶u̶e̶l̶t̶o̶ ̶e̶n̶ ̶l̶a̶ ̶r̶a̶í̶z̶ ̶d̶e̶l̶ ̶r̶e̶p̶o̶s̶i̶t̶o̶r̶i̶o̶.̶
+̶i̶d̶e̶a̶l̶m̶e̶n̶t̶e̶,̶ ̶c̶o̶n̶ ̶g̶r̶a̶d̶l̶e̶ ̶y̶ ̶s̶i̶n̶ ̶s̶u̶b̶i̶r̶ ̶l̶o̶s̶ ̶a̶r̶c̶h̶i̶v̶o̶s̶ ̶d̶e̶ ̶p̶r̶o̶y̶e̶c̶t̶o̶ ̶d̶e̶ ̶i̶n̶t̶e̶l̶l̶i̶j̶ ̶(̶c̶o̶m̶o̶ ̶e̶s̶t̶a̶ ̶e̶n̶ ̶l̶o̶s̶ ̶e̶n̶u̶n̶c̶i̶a̶d̶o̶s̶ ̶d̶e̶ ̶l̶o̶s̶ ̶T̶P̶)̶ ̶e̶s̶t̶o̶
+̶a̶y̶u̶d̶a̶ ̶a̶ ̶q̶u̶e̶ ̶s̶i̶ ̶n̶o̶ ̶t̶e̶n̶e̶s̶ ̶e̶x̶a̶c̶t̶a̶m̶e̶n̶t̶e̶ ̶l̶a̶ ̶m̶i̶s̶m̶a̶ ̶c̶o̶n̶f̶i̶g̶u̶r̶a̶c̶i̶ó̶n̶,̶ ̶f̶u̶n̶c̶i̶o̶n̶e̶ ̶b̶i̶e̶n̶ ̶(̶e̶n̶ ̶m̶i̶ ̶c̶a̶s̶o̶ ̶t̶e̶n̶g̶o̶ ̶q̶u̶e̶ ̶c̶a̶m̶b̶i̶a̶r̶ ̶e̶l̶ ̶J̶D̶K̶ ̶p̶o̶r̶q̶u̶e̶
+̶n̶o̶ ̶t̶e̶n̶e̶m̶o̶s̶ ̶e̶l̶ ̶m̶i̶s̶m̶o̶ ̶i̶n̶s̶t̶a̶l̶a̶d̶o̶,̶ ̶y̶ ̶d̶e̶ ̶u̶s̶a̶r̶ ̶v̶e̶r̶i̶f̶i̶c̶a̶c̶i̶ó̶n̶ ̶a̶u̶t̶o̶m̶á̶t̶i̶c̶a̶,̶ ̶n̶o̶ ̶f̶u̶n̶c̶i̶o̶n̶a̶r̶i̶a̶)̶.̶
+
+>  ̶q̶u̶e̶ ̶o̶t̶r̶a̶s̶ ̶e̶n̶t̶i̶d̶a̶d̶e̶s̶ ̶h̶a̶y̶?̶
+
+>  ̶s̶i̶ ̶n̶o̶ ̶h̶a̶y̶ ̶m̶a̶s̶,̶ ̶d̶e̶j̶a̶ ̶s̶o̶l̶o̶ ̶P̶e̶r̶s̶o̶n̶a̶j̶e̶,̶ ̶c̶u̶a̶n̶d̶o̶ ̶s̶e̶a̶ ̶n̶e̶c̶e̶s̶a̶r̶i̶o̶ ̶l̶o̶ ̶s̶e̶p̶a̶r̶a̶s̶ ̶e̶n̶ ̶d̶o̶s̶.̶ ̶s̶i̶e̶n̶d̶o̶ ̶q̶u̶e̶ ̶p̶o̶r̶ ̶e̶l̶ ̶m̶o̶m̶e̶n̶t̶o̶ ̶e̶s̶ ̶l̶o̶ ̶u̶n̶i̶c̶o̶ ̶q̶u̶e̶
+̶h̶a̶y̶,̶ ̶n̶o̶ ̶v̶a̶l̶e̶ ̶l̶a̶ ̶p̶e̶n̶a̶ ̶c̶o̶m̶p̶l̶i̶c̶a̶r̶s̶e̶.̶
+
+>  ̶e̶n̶ ̶A̶c̶c̶e̶s̶o̶r̶i̶o̶,̶ ̶p̶o̶r̶ ̶q̶u̶e̶ ̶l̶a̶ ̶d̶u̶r̶a̶b̶i̶l̶i̶d̶a̶d̶ ̶e̶s̶ ̶u̶n̶ ̶f̶l̶o̶a̶t̶?̶
+
+>  ̶L̶a̶s̶ ̶c̶o̶m̶p̶a̶r̶a̶c̶i̶o̶n̶e̶s̶ ̶d̶e̶ ̶f̶l̶o̶a̶t̶s̶ ̶n̶o̶ ̶s̶o̶n̶ ̶d̶i̶r̶e̶c̶t̶a̶s̶ ̶y̶ ̶l̶o̶s̶ ̶d̶e̶c̶i̶m̶a̶l̶e̶s̶ ̶d̶e̶ ̶p̶u̶n̶t̶o̶ ̶f̶l̶o̶t̶a̶n̶t̶e̶ ̶i̶n̶t̶r̶o̶d̶u̶c̶e̶n̶ ̶e̶r̶r̶o̶r̶e̶s̶ ̶n̶o̶ ̶h̶a̶y̶ ̶r̶a̶z̶ó̶n̶ ̶p̶a̶r̶a̶
+̶u̶t̶i̶l̶i̶z̶a̶r̶l̶o̶s̶.̶
+
+>  ̶P̶e̶r̶o̶ ̶l̶o̶ ̶m̶a̶s̶ ̶i̶m̶p̶o̶r̶t̶a̶n̶t̶e̶,̶ ̶q̶u̶e̶ ̶e̶s̶ ̶l̶a̶ ̶d̶u̶r̶a̶b̶i̶l̶i̶d̶a̶d̶?̶ ̶p̶o̶r̶q̶u̶e̶ ̶l̶o̶ ̶m̶e̶n̶c̶i̶o̶n̶a̶s̶ ̶p̶e̶r̶o̶ ̶n̶o̶ ̶l̶o̶ ̶e̶x̶p̶l̶i̶c̶a̶s̶.
+
+>  ̶E̶n̶t̶i̶d̶a̶d̶ ̶t̶i̶e̶n̶e̶ ̶s̶u̶ ̶d̶o̶c̶u̶m̶e̶n̶t̶a̶c̶i̶ó̶n̶ ̶i̶n̶c̶o̶m̶p̶l̶e̶t̶a̶.̶
+
+ ̶l̶a̶s̶ ̶c̶l̶a̶s̶e̶s̶ ̶l̶l̶e̶v̶a̶n̶ ̶s̶u̶ ̶d̶o̶c̶u̶m̶e̶n̶t̶a̶c̶i̶ó̶n̶ ̶a̶d̶e̶m̶a̶s̶ ̶d̶e̶ ̶s̶u̶s̶ ̶m̶i̶e̶m̶b̶r̶o̶s̶
+
+/**
+ * esta clase representa ...
+ */
+public class Personaje extends Entidad{
+    // Lo que hace la clase.
+}
+
+> ̶t̶h̶i̶s̶.̶i̶t̶e̶m̶s̶ ̶=̶ ̶i̶t̶e̶m̶s̶ ̶!̶=̶ ̶n̶u̶l̶l̶ ̶?̶ ̶i̶t̶e̶m̶s̶ ̶:̶ ̶n̶e̶w̶ ̶A̶r̶r̶a̶y̶L̶i̶s̶t̶<̶>̶(̶)̶;̶
+
+*  ̶S̶i̶n̶ ̶a̶p̶i̶l̶a̶r̶ ̶l̶i̶n̶e̶a̶s̶
+
+>  ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶a̶c̶c̶e̶s̶o̶r̶i̶o̶s̶ ̶d̶e̶b̶i̶e̶r̶a̶ ̶d̶e̶ ̶c̶o̶m̶p̶o̶r̶t̶a̶r̶s̶e̶ ̶e̶x̶a̶c̶t̶e̶m̶e̶n̶t̶e̶ ̶i̶g̶u̶a̶l̶e̶s̶.̶ ̶s̶i̶n̶ ̶e̶m̶b̶a̶r̶g̶o̶,̶ ̶e̶l̶ ̶a̶m̶u̶l̶e̶t̶o̶ ̶t̶i̶e̶n̶e̶ ̶u̶n̶a̶ ̶c̶o̶n̶s̶t̶r̶u̶c̶c̶i̶ó̶n̶
+̶d̶i̶f̶e̶r̶e̶n̶t̶e̶ ̶(̶l̶o̶ ̶m̶i̶s̶m̶o̶ ̶q̶u̶e̶ ̶e̶l̶ ̶a̶n̶i̶l̶l̶o̶)̶ ̶p̶e̶r̶o̶ ̶l̶o̶ ̶m̶a̶s̶ ̶i̶m̶p̶o̶r̶t̶a̶n̶t̶e̶ ̶e̶l̶ ̶a̶m̶u̶l̶e̶t̶o̶ ̶y̶ ̶a̶n̶i̶l̶l̶o̶ ̶h̶a̶c̶e̶n̶ ̶l̶o̶ ̶m̶i̶s̶m̶o̶ ̶(̶e̶l̶ ̶c̶ó̶d̶i̶g̶o̶ ̶e̶s̶ ̶i̶g̶u̶a̶l̶)̶,̶
+̶p̶e̶r̶o̶ ̶e̶s̶t̶a̶ ̶d̶u̶p̶l̶i̶c̶a̶d̶o̶.̶
+
+>  ̶e̶l̶ ̶m̶é̶t̶o̶d̶o̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶r̶S̶t̶a̶t̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶q̶u̶e̶ ̶n̶o̶ ̶l̶e̶ ̶p̶e̶r̶t̶e̶n̶e̶c̶e̶n̶;̶ ̶a̶q̶u̶e̶l̶l̶o̶s̶ ̶q̶u̶e̶ ̶s̶o̶n̶ ̶p̶r̶i̶v̶a̶d̶o̶s̶ ̶a̶l̶ ̶P̶e̶r̶s̶o̶n̶a̶j̶e̶.̶
+
+>  ̶L̶o̶ ̶m̶i̶s̶m̶o̶ ̶c̶o̶n̶ ̶l̶a̶s̶ ̶a̶r̶m̶a̶s̶,̶ ̶l̶a̶ ̶i̶d̶e̶a̶ ̶d̶e̶ ̶l̶a̶ ̶o̶r̶i̶e̶n̶t̶a̶c̶i̶ó̶n̶ ̶a̶ ̶o̶b̶j̶e̶t̶o̶s̶,̶ ̶e̶s̶ ̶r̶e̶d̶u̶c̶i̶r̶ ̶l̶a̶ ̶d̶u̶p̶l̶i̶c̶a̶c̶i̶o̶n̶ ̶d̶e̶ ̶c̶o̶d̶i̶g̶o̶.̶
+
+>  ̶e̶l̶ ̶a̶C̶a̶d̶e̶n̶a̶ ̶e̶s̶ ̶t̶o̶S̶t̶r̶i̶n̶g̶.̶
+
+>  ̶e̶q̶u̶a̶l̶s̶ ̶e̶s̶ ̶i̶g̶u̶a̶l̶ ̶p̶a̶r̶a̶ ̶t̶o̶d̶a̶s̶ ̶l̶a̶s̶ ̶a̶r̶m̶a̶s̶.̶
+
+>  ̶t̶o̶d̶a̶s̶ ̶l̶a̶s̶ ̶a̶r̶m̶a̶s̶ ̶m̶o̶d̶i̶f̶i̶c̶a̶n̶ ̶l̶o̶s̶ ̶s̶t̶a̶t̶s̶ ̶d̶e̶ ̶l̶a̶ ̶m̶i̶s̶m̶a̶ ̶m̶a̶n̶e̶r̶a̶.̶
+
+>  ̶p̶e̶r̶o̶ ̶l̶a̶ ̶f̶o̶r̶m̶a̶ ̶d̶e̶ ̶c̶a̶m̶b̶i̶a̶r̶ ̶e̶l̶ ̶s̶t̶a̶t̶ ̶e̶n̶ ̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶ ̶n̶o̶ ̶e̶s̶ ̶c̶o̶r̶r̶e̶c̶t̶a̶.̶
+
+>  ̶L̶o̶ ̶m̶i̶s̶m̶o̶ ̶p̶a̶r̶a̶ ̶l̶a̶ ̶a̶r̶m̶a̶d̶u̶r̶a̶.̶
+
+>  ̶T̶o̶d̶o̶ ̶l̶o̶ ̶q̶u̶e̶ ̶e̶s̶ ̶E̶q̶u̶i̶p̶a̶b̶l̶e̶ ̶s̶e̶ ̶d̶e̶b̶e̶ ̶d̶e̶ ̶c̶o̶m̶p̶o̶r̶t̶a̶r̶ ̶e̶x̶a̶c̶t̶a̶m̶e̶n̶t̶e̶ ̶i̶g̶u̶a̶l̶.̶
+
+>  ̶l̶a̶ ̶i̶d̶e̶a̶ ̶e̶s̶ ̶q̶u̶e̶ ̶m̶i̶n̶i̶m̶i̶c̶e̶s̶ ̶e̶l̶ ̶c̶ó̶d̶i̶g̶o̶ ̶d̶u̶p̶l̶i̶c̶a̶d̶o̶ ̶a̶l̶ ̶s̶u̶p̶e̶r̶ ̶r̶e̶c̶o̶n̶t̶r̶a̶ ̶m̶í̶n̶i̶m̶o̶.̶
+
+>  ̶l̶a̶ ̶c̶l̶a̶v̶e̶ ̶e̶s̶,̶ ̶s̶i̶ ̶t̶e̶ ̶v̶e̶s̶ ̶h̶a̶c̶i̶e̶n̶d̶o̶ ̶l̶o̶ ̶m̶i̶s̶m̶o̶ ̶v̶a̶r̶i̶a̶s̶ ̶v̶e̶c̶e̶s̶ ̶e̶n̶t̶o̶n̶c̶e̶s̶ ̶h̶a̶y̶ ̶q̶u̶e̶ ̶a̶l̶e̶j̶a̶r̶ ̶l̶a̶ ̶s̶i̶l̶l̶a̶ ̶y̶ ̶v̶e̶r̶ ̶q̶u̶e̶ ̶s̶e̶ ̶p̶u̶e̶d̶e̶ ̶h̶a̶c̶e̶r̶ ̶p̶a̶r̶a̶
+̶q̶u̶e̶ ̶e̶s̶o̶ ̶n̶o̶ ̶s̶e̶ ̶d̶u̶p̶l̶i̶q̶u̶e̶.̶
+
+>  ̶T̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶e̶q̶u̶a̶l̶s̶ ̶d̶e̶ ̶l̶o̶s̶ ̶I̶t̶e̶m̶,̶ ̶v̶a̶n̶ ̶a̶h̶í̶;̶ ̶s̶o̶n̶ ̶t̶o̶d̶o̶s̶ ̶i̶g̶u̶a̶l̶e̶s̶,̶ ̶e̶s̶ ̶i̶n̶t̶e̶r̶e̶s̶a̶n̶t̶e̶ ̶p̶e̶n̶s̶a̶r̶ ̶q̶u̶e̶ ̶e̶l̶ ̶e̶q̶u̶a̶l̶s̶ ̶e̶s̶ ̶d̶i̶f̶e̶r̶e̶n̶t̶e̶ ̶p̶o̶r̶ ̶t̶i̶p̶o̶
+̶d̶e̶ ̶i̶t̶e̶m̶,̶ ̶p̶e̶r̶o̶ ̶l̶a̶ ̶r̶e̶a̶l̶i̶d̶a̶d̶ ̶e̶s̶ ̶q̶u̶e̶ ̶n̶o̶.̶
+
+ ̶>̶ ̶a̶l̶g̶o̶ ̶q̶u̶e̶ ̶p̶o̶d̶e̶s̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶a̶r̶ ̶e̶s̶ ̶u̶n̶a̶ ̶c̶l̶a̶s̶e̶ ̶S̶t̶a̶t̶ ̶p̶a̶r̶a̶ ̶g̶u̶a̶r̶d̶a̶r̶ ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶d̶e̶ ̶a̶l̶g̶o̶.̶ ̶l̶o̶s̶ ̶b̶a̶s̶e̶ ̶d̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶
+̶y̶ ̶l̶o̶s̶ ̶'̶m̶o̶d̶i̶f̶i̶c̶a̶d̶o̶r̶e̶s̶'̶ ̶e̶n̶ ̶l̶o̶s̶ ̶I̶t̶e̶m̶s̶.̶
+ ̶D̶e̶ ̶e̶s̶t̶a̶ ̶m̶a̶n̶e̶r̶a̶,̶ ̶p̶o̶d̶e̶s̶ ̶h̶a̶c̶e̶r̶ ̶u̶n̶ ̶m̶é̶t̶o̶d̶o̶ ̶e̶n̶ ̶I̶t̶e̶m̶ ̶q̶u̶e̶ ̶s̶e̶a̶ ̶p̶u̶b̶l̶i̶c̶ ̶S̶t̶a̶t̶ ̶o̶b̶t̶e̶n̶e̶r̶S̶t̶a̶t̶(̶)̶ ̶q̶u̶e̶ ̶t̶e̶ ̶d̶e̶v̶u̶e̶l̶v̶e̶ ̶u̶n̶a̶ ̶c̶l̶a̶s̶e̶ ̶d̶e̶ ̶e̶s̶e̶ ̶t̶i̶p̶o̶.̶
+
+Que ese Stat puede ser una clase así:
+    public class Stat {
+        public final int vida;
+        public final int stamina;
+        public final int ataque;
+        public final int defensa;
+        public final int inteligencia;
+
+        public Stat(int v, int s, int a, int d, int i){
+            vida = v;
+            stamina = s;
+            ataque = a;
+            defensa = d;
+            inteligencia = i;
+        }
+    }
+>  ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶,̶ ̶v̶a̶ ̶a̶ ̶l̶l̶a̶m̶a̶r̶ ̶e̶l̶ ̶o̶b̶t̶e̶n̶e̶r̶S̶t̶a̶t̶ ̶d̶e̶ ̶s̶u̶s̶ ̶i̶t̶e̶m̶s̶.̶ ̶c̶o̶n̶ ̶e̶s̶o̶s̶ ̶s̶t̶a̶t̶s̶,̶ ̶l̶o̶s̶ ̶"̶a̶p̶l̶i̶c̶a̶"̶ ̶a̶ ̶s̶u̶ ̶S̶t̶a̶t̶
+  ̶(̶q̶u̶e̶ ̶p̶o̶d̶e̶s̶ ̶u̶s̶a̶r̶ ̶e̶n̶ ̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶ ̶t̶a̶m̶b̶i̶e̶n̶ ̶��̶ ̶)̶,̶ ̶l̶a̶ ̶s̶u̶m̶a̶ ̶d̶e̶ ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶S̶t̶a̶t̶ ̶h̶a̶c̶e̶ ̶e̶l̶ ̶v̶a̶l̶o̶r̶ ̶f̶i̶n̶a̶l̶ ̶d̶e̶ ̶a̶t̶a̶q̶u̶e̶ ̶(̶y̶ ̶e̶t̶c̶)̶.̶
+
+> Esta clase, esta pensada para ser "inmutable" --- Se refiere a la clase STAT.
+   ̶t̶o̶d̶a̶s̶ ̶l̶a̶s̶ ̶o̶p̶e̶r̶a̶c̶i̶o̶n̶e̶s̶ ̶q̶u̶e̶ ̶n̶e̶c̶e̶s̶i̶t̶e̶n̶ ̶u̶n̶ ̶c̶a̶m̶b̶i̶o̶ ̶d̶e̶ ̶S̶t̶a̶t̶,̶ ̶g̶e̶n̶e̶r̶a̶n̶ ̶u̶n̶ ̶n̶u̶e̶v̶o̶ ̶S̶t̶a̶t̶
+̶ ̶ ̶(̶e̶l̶ ̶p̶e̶r̶s̶o̶n̶a̶j̶e̶,̶ ̶d̶e̶b̶i̶e̶r̶a̶ ̶d̶e̶ ̶t̶e̶n̶e̶r̶ ̶d̶o̶s̶,̶ ̶u̶n̶o̶ ̶p̶a̶r̶a̶ ̶l̶a̶ ̶'̶b̶a̶s̶e̶'̶,̶ ̶l̶a̶ ̶c̶u̶a̶l̶ ̶s̶o̶n̶ ̶l̶o̶s̶ ̶p̶u̶n̶t̶o̶s̶ ̶q̶u̶e̶ ̶e̶l̶ ̶j̶u̶g̶a̶d̶o̶r̶ ̶a̶s̶i̶g̶n̶a̶ ̶d̶i̶r̶e̶c̶t̶a̶m̶e̶n̶t̶e̶,̶ ̶y̶
+̶ ̶ ̶o̶t̶r̶o̶ ̶p̶a̶r̶a̶ ̶l̶a̶ ̶s̶u̶m̶a̶ ̶c̶a̶l̶c̶u̶l̶a̶d̶a̶ ̶d̶e̶l̶ ̶e̶q̶u̶i̶p̶a̶m̶i̶e̶n̶t̶o̶ ̶c̶u̶a̶n̶d̶o̶ ̶h̶a̶y̶ ̶u̶n̶ ̶c̶a̶m̶b̶i̶o̶ ̶d̶e̶ ̶e̶q̶u̶i̶p̶o̶,̶ ̶r̶e̶c̶a̶l̶c̶u̶l̶a̶s̶ ̶l̶a̶ ̶s̶u̶m̶a̶ ̶d̶e̶l̶ ̶s̶t̶a̶t̶ ̶(̶e̶s̶t̶o̶ ̶s̶e̶r̶í̶a̶
+̶ ̶ ̶p̶a̶r̶a̶ ̶n̶o̶ ̶t̶e̶n̶e̶r̶ ̶q̶u̶e̶ ̶r̶e̶c̶o̶r̶r̶e̶r̶ ̶t̶o̶d̶o̶s̶ ̶l̶o̶s̶ ̶i̶t̶e̶m̶s̶ ̶c̶u̶a̶n̶d̶o̶ ̶q̶u̶e̶r̶e̶s̶ ̶h̶a̶c̶e̶r̶ ̶u̶n̶a̶ ̶o̶p̶e̶r̶a̶c̶i̶ó̶n̶,̶ ̶c̶o̶s̶a̶ ̶q̶u̶e̶ ̶a̶ ̶p̶r̶i̶o̶r̶i̶,̶ ̶n̶o̶ ̶e̶s̶t̶a̶ ̶m̶a̶l̶)̶.̶
