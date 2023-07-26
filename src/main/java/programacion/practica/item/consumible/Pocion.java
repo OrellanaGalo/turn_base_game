@@ -1,7 +1,5 @@
 package programacion.practica.item.consumible;
 
-import programacion.practica.excepciones.IllegalNombreException;
-
 /**
  * La clase `Pocion` es una subclase de la clase `Consumible` y representa un tipo específico de consumible en el juego.
  * Las pociones son objetos que pueden ser utilizados por un personaje para recuperar puntos de vida o stamina durante
@@ -15,7 +13,7 @@ public class Pocion extends Consumible{
      * @param vida Cantidad de vida que restaura o quita consumir o arrojar la pocion.
      * @param stamina Cantidad de Stamina que recupera o quita al consumir o arrojar la pocion.
      */
-    public Pocion(String nombre, int vida, int stamina) throws IllegalNombreException {
+    public Pocion(String nombre, int vida, int stamina) {
         super(nombre, vida, stamina);
     }
 }

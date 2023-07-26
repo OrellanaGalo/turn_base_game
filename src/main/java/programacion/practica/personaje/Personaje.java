@@ -64,12 +64,11 @@ public class Personaje {
      */
     public void atacar(Personaje personaje) {
         if (this.stat.verificarStamina(30)) {
-            modificarStamina(-30);
+            modificarStamina(-15);
             // El entero que tiene que recibir es el calculo del stat ataque procesado por diferentes variables.
             personaje.modificarVida(-(int)(stat.calcularAtaque(personaje.stat) * 0.5));
-            System.out.println(-(int)(stat.calcularAtaque(personaje.stat) * 0.5));
+            System.out.println("Daño: "+ -(int)(stat.calcularAtaque(personaje.stat) * 0.5));
         } else {
-            // Mandar excepcion.
             System.out.println("< No tenes stamina para atacar. >");
         }
     }
@@ -79,18 +78,19 @@ public class Personaje {
      * @param statArmadura Stat que aporta armadura por el turno.
      */
     public void defender(Stat statArmadura) {
-        if (stat.verificarStamina(30)) {
-            modificarStamina(-30);
-            isDefensa = !isDefensa;
-
-            if (!isDefensa) {
-                stat = Stat.aplicarStats(stat, statArmadura);
-            } else {
-                stat = Stat.desAplicarStats(stat, statArmadura);
-            }
+        if (isDefensa) {
+            stat = Stat.desAplicarStats(stat, statArmadura);
+            isDefensa = false;
         } else {
-            // Mandar excepcion.
-            System.out.println("< No tenes stamina suficiente para defenderte. >");
+            if (stat.verificarStamina(30)) {
+                modificarStamina(-15);
+
+                stat = Stat.aplicarStats(stat, statArmadura);
+                isDefensa = true;
+
+            } else {
+                System.out.println("< No tenes stamina suficiente para defenderte. >");
+            }
         }
     }
 
@@ -158,6 +158,7 @@ public class Personaje {
             System.out.println("< Ganador: " + personaje_002.nombre + " >");
         }
 
+        // Una vez terminada la pelea se restauran los stats vida y stamina a su maximo.
         personaje_001.modificarVida(1000);
         personaje_001.modificarStamina(1000);
         personaje_002.modificarVida(1000);
@@ -188,9 +189,11 @@ public class Personaje {
      */
     public boolean desequiparItem(Item item) {
         try {
-            inventario.removerItemDeEquipamiento(item);
-            stat = Stat.desAplicarStats(stat, item.obtenerStat());
-            return true;
+            if (inventario.removerItemDeEquipamiento(item)) {
+                inventario.removerItemDeEquipamiento(item);
+                stat = Stat.desAplicarStats(stat, item.obtenerStat());
+                return true;
+            }
         } catch (ItemNotFoundException e) {
             // Aca podemos manejar la excepcion.
             System.out.println("Error al desequipar el item: " + e.getMessage());

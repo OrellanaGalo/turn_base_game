@@ -9,12 +9,24 @@ package programacion.practica.partida;
  */
 public class Stat {
     /**
-     * Atributos principales de un personaje dentro del juego.
+     * Hit points del personaje.
      */
     protected final int vida;
+    /**
+     * Stamina o, energia del personaje.
+     */
     protected final int stamina;
+    /**
+     * Ataque total del personaje, con este atributo se calcula la perdida de HP del personaje enemigo.
+     */
     protected final int ataque;
+    /**
+     * Defensa total del personaje, este atributo se usa para calcular la reduccion de ataque que recibis del enemigo.
+     */
     protected final int defensa;
+    /**
+     * Inteligencia del personaje, en base a este atributo se calculan las probabilidades de ataque critico.
+     */
     protected final int inteligencia;
 
     /**
@@ -49,6 +61,12 @@ public class Stat {
         );
     }
 
+    /**
+     * Metodo que recibe un Stat nuevo y le aplica la reduccion de stat al Stat viejo.
+     * @param original Stat que va a recibir los cambios.
+     * @param nuevo Stat nuevo que trae los cambios negativos para el Stat viejo.
+     * @return Retorna un Stat nuevo, que es una combinacion de los que entraron como argumentos.
+     */
     public static Stat desAplicarStats(Stat original, Stat nuevo) {
         return new Stat(
                 original.vida - nuevo.vida,
@@ -99,8 +117,8 @@ public class Stat {
         double factorStamina = 0.5 + (diferenciaStamina / (double) 100) * 0.5;
 
         int danioInicial = this.ataque;
-        int danioReduccionDefensa = Math.max(defensaAjena.defensa - danioInicial, 0);
-        int danioReducido = danioInicial - danioReduccionDefensa;
+        double danioReduccionDefensa = Math.max(defensaAjena.defensa * 0.8 - danioInicial, 0);
+        int danioReducido = danioInicial - (int) danioReduccionDefensa;
 
         int danioFinal = (int) (danioReducido * factorStamina);
         if (danioFinal < 0) {
@@ -108,13 +126,6 @@ public class Stat {
         }
 
         return danioFinal;
-    }
-
-    /**
-     * Falta implementar.
-     */
-    public int calcularDefensa() {
-        return this.defensa;
     }
 
     /**
@@ -133,13 +144,6 @@ public class Stat {
      */
     public boolean verificarStamina(int stamina) {
         return this.stamina >= stamina;
-    }
-
-    /**
-     * Este metodo esta pensado para ser utilizado solo en los tests.
-     */
-    public int getVida() {
-        return vida;
     }
 
     /**

@@ -15,7 +15,7 @@ public class Amuleto extends Accesorio{
     /**
      * Constructor de la clase Amuleto.
      * @param nombre Nombre del Amuleto.
-     * @param inteligencia ....
+     * @param inteligencia es la cantidad de inteligencia que aporta equiparte un Amuleto.
      * @param variable variable por el cual se modifican los stats de personaje si utiliza el Amuleto.
      */
     public Amuleto(String nombre, int inteligencia, int variable) {

@@ -5,6 +5,7 @@ import programacion.practica.item.accesorio.Amuleto;
 import programacion.practica.item.accesorio.Anillo;
 import programacion.practica.item.arma.Lanza;
 import programacion.practica.item.armadura.*;
+import programacion.practica.item.consumible.Pocion;
 import programacion.practica.personaje.Personaje;
 
 import java.util.ArrayList;
@@ -73,32 +74,32 @@ public class Administrador {
     /**
      * Piezas de parte superior.
      */
-    Torso torso_001 = new Torso("Armadura de Alva.", 89);
-    Torso torso_002 = new Torso("Armadura de Raime.", 203);
-    Torso torso_003 = new Torso("Armadura de Catarina.", 149);
-    Torso torso_004 = new Torso("Armadura de la ruina.", 139);
-    Torso torso_005 = new Torso("Armadura de guerrero loco.", 171);
-    Torso torso_006 = new Torso("Armadura de jinete de dragon.", 242);
+    Pecho pecho_001 = new Pecho("Armadura de Alva.", 89);
+    Pecho pecho_002 = new Pecho("Armadura de Raime.", 203);
+    Pecho pecho_003 = new Pecho("Armadura de Catarina.", 149);
+    Pecho pecho_004 = new Pecho("Armadura de la ruina.", 139);
+    Pecho pecho_005 = new Pecho("Armadura de guerrero loco.", 171);
+    Pecho pecho_006 = new Pecho("Armadura de jinete de dragon.", 242);
 
     /**
      * Piezas de parte inferior.
      */
-    Pantalon pantalon_001 = new Pantalon("Pantalones de Alva.", 53);
-    Pantalon pantalon_002 = new Pantalon("Polainas de caballero de Heide.", 63);
-    Pantalon pantalon_003 = new Pantalon("Pantalones de Velstadt.", 108);
-    Pantalon pantalon_004 = new Pantalon("Pantalones de soldado real.", 45);
-    Pantalon pantalon_005 = new Pantalon("Pantalones de Raime.", 97);
-    Pantalon pantalon_006 = new Pantalon("Pantalones de la ruina.", 82);
+    Piernas piernas_001 = new Piernas("Pantalones de Alva.", 53);
+    Piernas piernas_002 = new Piernas("Polainas de caballero de Heide.", 63);
+    Piernas piernas_003 = new Piernas("Pantalones de Velstadt.", 108);
+    Piernas piernas_004 = new Piernas("Pantalones de soldado real.", 45);
+    Piernas piernas_005 = new Piernas("Pantalones de Raime.", 97);
+    Piernas piernas_006 = new Piernas("Pantalones de la ruina.", 82);
 
     /**
      * Zapatos - Botas - Pies.
      */
-    Pies pies_001 = new Pies("Botas de Faraam.", 78);
-    Pies pies_002 = new Pies("Botas de Vengarl.", 115);
-    Pies pies_003 = new Pies("Sandalias#003", 10);
-    Pies pies_004 = new Pies("Sandalias#004", 10);
-    Pies pies_005 = new Pies("Sandalias#005", 10);
-    Pies pies_006 = new Pies("Sandalias#006", 10);
+    Botas botas_001 = new Botas("Botas de Faraam.", 78);
+    Botas botas_002 = new Botas("Botas de Vengarl.", 115);
+    Botas botas_003 = new Botas("Botas de felino volador.", 40);
+    Botas botas_004 = new Botas("Botas de maniqui.", 32);
+    Botas botas_005 = new Botas("Botas insolentes.", 50);
+    Botas botas_006 = new Botas("Timbos de Messi.", 81);
 
     /**
      * Amuletos - Collares.
@@ -120,14 +121,25 @@ public class Administrador {
     Anillo anillo_005 = new Anillo("Anillo#005", 10, 10);
     Anillo anillo_006 = new Anillo("Anillo#006", 10, 10);
 
+    /**
+     * Pociones.
+     */
+    Pocion pocion_001 = new Pocion("Pocion#001", 50, 0);
+    Pocion pocion_002 = new Pocion("Pocion#002", 50, 0);
+    Pocion pocion_003 = new Pocion("Pocion#003", 50, 0);
+    Pocion pocion_004 = new Pocion("Pocion#004", 50, 0);
+    Pocion pocion_005 = new Pocion("Pocion#005", 50, 0);
+    Pocion pocion_006 = new Pocion("Pocion#006", 50, 0);
+
     private void agregarObjetos() {
         agregarLanzas();
         agregarCascos();
-        agregarTorsos();
-        agregarPantalones();
-        agregarPies();
+        agregarPechos();
+        agregarPiernas();
+        agregarBotas();
         agregarAmuletos();
         agregarAnillos();
+        agregarPociones();
     }
 
     /**
@@ -155,39 +167,39 @@ public class Administrador {
     }
 
     /**
-     * Agrega los objetos 'Torso' a la lista de Items.
+     * Agrega los objetos 'Pecho' a la lista de Items.
      */
-    private void agregarTorsos() {
-        itemList.add(torso_001);
-        itemList.add(torso_002);
-        itemList.add(torso_003);
-        itemList.add(torso_004);
-        itemList.add(torso_005);
-        itemList.add(torso_006);
+    private void agregarPechos() {
+        itemList.add(pecho_001);
+        itemList.add(pecho_002);
+        itemList.add(pecho_003);
+        itemList.add(pecho_004);
+        itemList.add(pecho_005);
+        itemList.add(pecho_006);
     }
 
     /**
-     * Agrega los objetos 'Pantalon' a la lista de Items.
+     * Agrega los objetos 'Piernas' a la lista de Items.
      */
-    private void agregarPantalones() {
-        itemList.add(pantalon_001);
-        itemList.add(pantalon_002);
-        itemList.add(pantalon_003);
-        itemList.add(pantalon_004);
-        itemList.add(pantalon_005);
-        itemList.add(pantalon_006);
+    private void agregarPiernas() {
+        itemList.add(piernas_001);
+        itemList.add(piernas_002);
+        itemList.add(piernas_003);
+        itemList.add(piernas_004);
+        itemList.add(piernas_005);
+        itemList.add(piernas_006);
     }
 
     /**
-     * Agrega los objetos 'Pies' a la lista de Items.
+     * Agrega los objetos 'Botas' a la lista de Items.
      */
-    private void agregarPies() {
-        itemList.add(pies_001);
-        itemList.add(pies_002);
-        itemList.add(pies_003);
-        itemList.add(pies_004);
-        itemList.add(pies_005);
-        itemList.add(pies_006);
+    private void agregarBotas() {
+        itemList.add(botas_001);
+        itemList.add(botas_002);
+        itemList.add(botas_003);
+        itemList.add(botas_004);
+        itemList.add(botas_005);
+        itemList.add(botas_006);
     }
 
     /**
@@ -212,6 +224,18 @@ public class Administrador {
         itemList.add(anillo_004);
         itemList.add(anillo_005);
         itemList.add(anillo_006);
+    }
+
+    /**
+     * Agrega los objetos 'Pocion' a la lista de items.
+     */
+    private void agregarPociones() {
+        itemList.add(pocion_001);
+        itemList.add(pocion_002);
+        itemList.add(pocion_003);
+        itemList.add(pocion_004);
+        itemList.add(pocion_005);
+        itemList.add(pocion_006);
     }
 
     /**

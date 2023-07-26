@@ -16,7 +16,7 @@ public class Anillo extends Accesorio{
      * Constructor de la clase anillo.
      * @param nombre Nombre del Anillo.
      * @param inteligencia Inteligencia por la cual se modifican los stats de personaje al equipar el Anillo.
-     * @param variable ... Todavia tengo que elegir que hacen los anillos.
+     * @param variable variable por el cual se modifican los stats de personaje si utiliza el Amuleto.
      */
     public Anillo(String nombre, int inteligencia, int variable) {
         super(nombre, inteligencia);

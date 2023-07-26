@@ -5,13 +5,13 @@ package programacion.practica.item.armadura;
  * proporcionar protección adicional. Los pies son objetos que forman parte del equipo de un personaje y pueden
  * aumentar la defensa del personaje contra ciertos tipos de daño, como ataques físicos o ataques mágicos.
  */
-public class Pies extends Armadura{
+public class Botas extends Armadura{
     /**
      * Constructor de la clase 'Pies'.
      * @param nombre Nombre que va a llevar los pies.
      * @param defensa Cantidad de defensa que otorgan los pies actuales.
      */
-    public Pies(String nombre, int defensa) {
+    public Botas(String nombre, int defensa) {
         super(nombre, defensa);
     }
 }

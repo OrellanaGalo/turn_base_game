@@ -5,13 +5,13 @@ package programacion.practica.item.armadura;
  * proporcionar protección adicional. Los pantalones son objetos que forman parte del equipo de un personaje y pueden
  * aumentar la defensa del personaje contra ciertos tipos de daño, como ataques físicos o ataques mágicos.
  */
-public class Pantalon extends Armadura{
+public class Piernas extends Armadura{
     /**
      * Constructor de la clase 'Pantalon'.
      * @param nombre Nombre que va a llevar el pantalon.
      * @param defensa Cantidad de defensa que otorga el pantalon actual.
      */
-    public Pantalon(String nombre, int defensa) {
+    public Piernas(String nombre, int defensa) {
         super(nombre, defensa);
     }
 }

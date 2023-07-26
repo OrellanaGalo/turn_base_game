@@ -2,6 +2,9 @@ package programacion.practica.partida;
 
 import programacion.practica.excepciones.IllegalNombreException;
 import programacion.practica.personaje.Personaje;
+
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -10,10 +13,37 @@ import java.util.Scanner;
  * durante la partida.
  */
 public class Juego {
+
     /**
-     * Constructor de la clase.
+     * Este metodo se utiliza para obtener un numero entero valido del usuario.
+     * Si el usuario se equivoca de ingreso, se le va a pedir que lo ingrese nuevamente.
+     * @param mensaje El mensaje que se mostrara al usuario para obtener el input.
+     * @param min Valor minimo permitido (el inclusive).
+     * @param lista La lista de objetos a la cual el usuario intenta acceder.
+     * @return El numero entero ingresado por el usuario.
      */
-    public Juego() {}
+    public int obtenerNumeroEntero(String mensaje, int min, List<?> lista) {
+        int tamanioActual = lista.size();
+        int rangoMaximo = tamanioActual > 0 ? tamanioActual - 1 : 0;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+                System.out.println(mensaje);
+                int input = scanner.nextInt();
+
+                if (input >= min && input <= rangoMaximo) {
+                    return input;
+                } else {
+                    System.out.println("< Ingresa un numero dentro del rango permitido. >");
+                }
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println("< Error: Ingresa un entero valido. >");
+            }
+        }
+    }
 
     /**
      * Este metodo es utilizado para la creacion de personajes en el juego.

@@ -31,7 +31,7 @@ public class Inventario {
      */
     public Inventario() {
         this.items = new ArrayList<>();
-        this.equipamiento = new Item[6];
+        this.equipamiento = new Item[7];
     }
 
     /**
@@ -166,6 +166,13 @@ public class Inventario {
     }
 
     /**
+     * Metodo que retorna la lista de Items.
+     */
+    public List<Item> getItems() {
+        return items;
+    }
+
+    /**
      * Se encarga de mostrar la informacion de ambas listas en consola.
      * @return Devuelve un String que luego se muestra.
      */
@@ -175,7 +182,11 @@ public class Inventario {
         int pos = 0;
         int posEquipamiento = 0;
 
-        sb.append("\n").append("------------------< Inventario de >------------------").append("\n");
+        sb.append("##################################################################################################" +
+                    "################################################################################################" +
+                        "#################");
+
+        sb.append("\n").append("------------------< Inventario >------------------").append("\n");
 
         sb.append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
                 .append(String.format("%-4s %-40s %-20s", "Pos:", "Nombre del item:", "   Stats:")).append("\t\t")
@@ -228,6 +239,8 @@ public class Inventario {
                 sb.append("\t");
             }
         }
+
+        sb.append("\n");
 
         return sb.toString();
     }

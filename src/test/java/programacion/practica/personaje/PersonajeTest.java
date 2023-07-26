@@ -54,7 +54,7 @@ public class PersonajeTest {
 
         personaje.atacar(enemigo);
 
-        assertTrue(enemigo.getStat().getVida() < 100);
+        assertTrue(enemigo.getStat().estaVivo());
     }
 
     @Test

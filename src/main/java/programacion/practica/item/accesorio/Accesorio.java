@@ -4,7 +4,8 @@ import programacion.practica.item.Item;
 import programacion.practica.partida.Stat;
 
 /**
- * Clase accesorio. Los accesorios son un item equipable que aportar x beneficio al personaje.
+ * Representa un accesorio, que es un tipo de item equipable que aporta beneficios al personaje. Los accesorios pueden
+ * aumentar la inteligencia del personaje, lo que afecta su capacidad para realizar acciones relacionadas con la magia.
  */
 public abstract class Accesorio extends Item{
     /**

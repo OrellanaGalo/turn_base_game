@@ -1,4 +1,24 @@
+# Diagrama hecho con Mermaid:
+
+> https://github.com/OrellanaGalo/turn_base_game/blob/main/diagrama.md
+
 # Implementaciones.
+
+> Justificar la existencia de las clase que heredan Armadura, Arma, Accesorio y Consumible. --> Importante.
+
+> Hacer funcionar el metodo desequiparItem de la clase Personaje y RemoverItemDeEquipamiento de la clase Inventario. No funciona especificamente con las Armas.
+
+> Arreglar error de que un peleador puede pelear contra el mismo.
+
+> Arreglar error al defender que permite que un personaje tenga el buffo de la armadura indefinidamente.
+
+> Agregar metodo para poder volver al menu, para evitar casos de softlock.
+
+> Darle funcionalidad al atributo inteligencia y que sirva para aumentar el ataque, asi como que aumente la probabilidad de golpes criticos.
+
+> Agregar la probabilidad de golpes criticos.
+
+# Revisiones Martin.
 
 >  ̶p̶o̶r̶ ̶q̶u̶e̶ ̶h̶a̶y̶ ̶a̶t̶r̶i̶b̶u̶t̶o̶s̶ ̶c̶o̶m̶o̶ ̶f̶l̶o̶a̶t̶?̶ ̶e̶s̶ ̶c̶o̶m̶p̶l̶i̶c̶a̶r̶ ̶b̶a̶s̶t̶a̶n̶t̶e̶ ̶l̶a̶s̶ ̶c̶o̶s̶a̶s̶ ̶e̶s̶ ̶m̶a̶s̶ ̶f̶a̶c̶i̶l̶ ̶s̶i̶ ̶m̶e̶t̶e̶s̶ ̶(̶d̶e̶ ̶u̶l̶t̶i̶m̶a̶)̶ ̶u̶n̶ ̶n̶ú̶m̶e̶r̶o̶ ̶m̶a̶s̶
 ̶g̶r̶a̶n̶d̶e̶
