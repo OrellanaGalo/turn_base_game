@@ -5,7 +5,7 @@ import programacion.practica.partida.Stat;
 
 /**
  * Esta clase representa un arma en el juego. Las armas son objetos que se utilizan principalmente para aumentar o
- * disminuir el stat de ataque. Estas tambien cuentan con el atributo 'condicion' que representa el estado actual del
+ * disminuir el stat de ataque. Estas también cuentan con el atributo 'condicion' que representa el estado actual del
  * arma y como el ataque de esta varia en funcion de la condicion.
  */
 public abstract class Arma extends Item{
@@ -26,7 +26,7 @@ public abstract class Arma extends Item{
     }
 
     /**
-     * Retorna una representacion a texto de los atributos de este arma.
+     * Retorna una representacion a texto de los atributos de esta arma.
      */
     public String toString() {
         return super.toString() + obtenerStat().toString(true) + ']';

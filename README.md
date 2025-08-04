@@ -1,7 +1,7 @@
 # Diagrama hecho con Mermaid:
 
 ```mermaid
-flowchart 
+flowchart TD
     A[Object] -.ABSTRACT.-> Item{Item}
     subgraph item
         Item -.ABSTRACT.-> Armadura{Armadura}
